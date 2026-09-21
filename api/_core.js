@@ -1,5 +1,7 @@
 // api/_core.js — Core engine for M3U generation, scraping, and stream decoding
 
+import { waitUntil } from "@vercel/functions";
+
 const API_KEY_DEFAULT = process.env.API_KEY || "televisor2024";
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 
@@ -361,6 +363,7 @@ export async function resolveInstreamM3U8(streamId) {
 const hlsVariantCache = new Map();
 const HLS_VARIANT_TTL = 8000;
 const hlsRequests = new Map();
+const HLS_STALE_TTL = 15000;
 
 async function fetchHlsText(url) {
   const response = await fetch(url, {
@@ -406,18 +409,37 @@ async function loadDirectHls(m3u8Url, streamKey) {
 }
 
 export async function resolveHlsStream(m3u8Url, streamKey) {
+  const now = Date.now();
   const cached = manifestCache.get(streamKey);
-  if (cached && Date.now() - cached.time < MANIFEST_CACHE_TTL && cached.content) {
+  const cacheAge = cached ? now - cached.time : Infinity;
+  if (cached?.content && cacheAge < MANIFEST_CACHE_TTL) {
     return cached.content;
   }
 
-  if (hlsRequests.has(streamKey)) return hlsRequests.get(streamKey);
-  const request = buildDirectHls(m3u8Url, streamKey);
-  hlsRequests.set(streamKey, request);
+  let request = hlsRequests.get(streamKey);
+  if (!request) {
+    request = buildDirectHls(m3u8Url, streamKey);
+    hlsRequests.set(streamKey, request);
+    request.then(
+      () => hlsRequests.delete(streamKey),
+      () => hlsRequests.delete(streamKey),
+    );
+  }
+
+  // On Vercel, return a recent live window immediately and refresh it after
+  // the response. This prevents a slow upstream poll from delaying the player.
+  if (process.env.VERCEL && cached?.content && cacheAge < HLS_STALE_TTL) {
+    waitUntil(request.catch((err) => {
+      console.error(`[HLS background refresh] ${streamKey}:`, err.message);
+    }));
+    return cached.content;
+  }
+
   try {
     return await request;
-  } finally {
-    hlsRequests.delete(streamKey);
+  } catch (err) {
+    if (cached?.content && cacheAge < HLS_STALE_TTL) return cached.content;
+    throw err;
   }
 }
 
