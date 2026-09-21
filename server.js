@@ -4,6 +4,7 @@ import deportesHandler from "./api/deportes.js";
 import peruHandler from "./api/peru.js";
 import eventosHandler from "./api/eventos.js";
 import liveHandler from "./api/live.js";
+import streamHandler from "./api/stream.js";
 import healthHandler from "./api/health.js";
 
 const PORT = process.env.PORT || 10002;
@@ -42,6 +43,9 @@ const server = http.createServer(async (req, res) => {
   }
   if (pathname === "/live.m3u8" || pathname === "/api/live") {
     return liveHandler(req, res);
+  }
+  if (pathname === "/stream.m3u8" || pathname === "/api/stream") {
+    return streamHandler(req, res);
   }
 
   res.status(404).send("Not Found");

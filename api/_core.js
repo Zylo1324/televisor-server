@@ -1,6 +1,7 @@
 // api/_core.js — Core engine for M3U generation, scraping, and stream decoding
 
 const API_KEY_DEFAULT = process.env.API_KEY || "televisor2024";
+const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 
 // ─── Static Channel Catalog ──────────────────────────────────────────────────
 export const CHANNELS = [
@@ -77,7 +78,7 @@ export function generateM3U(filterGroup, baseUrl, apiKey) {
 let eventosCache = { m3u: null, timestamp: 0 };
 const PIRLOTV_CACHE_TTL = 3 * 60 * 1000; // 3 minutos
 
-export async function fetchEventosM3U() {
+export async function fetchEventosM3U(baseUrl, apiKey) {
   const now = Date.now();
   if (eventosCache.m3u && now - eventosCache.timestamp < PIRLOTV_CACHE_TTL) {
     return eventosCache.m3u;
@@ -85,7 +86,7 @@ export async function fetchEventosM3U() {
 
   const pirlotvHome = "https://pirlotv.la/home.php";
   const res = await fetch(pirlotvHome, {
-    headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" },
+    headers: { "user-agent": UA },
   });
   const html = await res.text();
 
@@ -95,7 +96,6 @@ export async function fetchEventosM3U() {
     "",
   ];
 
-  // Extraer bloques de evento: <li><a href="#">EVENTO<span class="t">HORA</span></a><ul>CANALES</ul></li>
   const reEvent = /<li><a href="#">([^<]+)<span class="t">([^<]+)<\/span><\/a>\s*<ul>([\s\S]*?)<\/ul><\/li>/g;
   let eventMatch;
   const events = [];
@@ -131,18 +131,20 @@ export async function fetchEventosM3U() {
     }
   }
 
-  // Resolver canales en paralelo por evento (máximo 4 eventos concurrentes)
   for (const ev of events) {
     const group = ev.name.replace(/[^\w\s\-\:áéíóúÁÉÍÓÚñÑ]/g, "").trim();
 
     for (const ch of ev.channels) {
-      const streamUrl = await resolveChannelStream(ch.url);
-      if (streamUrl) {
+      const streamInfo = await resolveChannelStream(ch.url);
+      if (streamInfo && streamInfo.url) {
         const title = `${ev.name} — ${ch.label}`;
         lines.push(
           `#EXTINF:-1 tvg-name="${title}" tvg-logo="https://pirlotv.la/logo.png" group-title="${group}",${title}`
         );
-        lines.push(streamUrl);
+
+        // Proxied URL with Referer injection
+        const proxiedStream = `${baseUrl}/stream.m3u8?url=${encodeURIComponent(streamInfo.url)}&ref=${encodeURIComponent(streamInfo.referer)}&key=${apiKey}`;
+        lines.push(proxiedStream);
       }
     }
   }
@@ -161,7 +163,7 @@ export async function resolveChannelStream(url) {
       const res = await fetch(currentUrl, {
         headers: {
           referer,
-          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+          "user-agent": UA,
         },
       });
       const html = await res.text();
@@ -169,7 +171,8 @@ export async function resolveChannelStream(url) {
       // 1. Direct M3U8
       const m3u8Match = html.match(/["'](https?:\/\/[^"'\s]+\.m3u8[^"'\s]*)["']/);
       if (m3u8Match) {
-        return m3u8Match[1];
+        const clean = m3u8Match[1].replace(/\\u0026/g, "&");
+        return { url: clean, referer: currentUrl };
       }
 
       // 2. Decoder for streamx305 / futlivehd / envivoslatam
@@ -187,7 +190,8 @@ export async function resolveChannelStream(url) {
             decoded += String.fromCharCode(parseInt(dec.replace(/\D/g, "")) - k);
           }
           if (decoded.startsWith("http")) {
-            return decoded;
+            const clean = decoded.replace(/\\u0026/g, "&");
+            return { url: clean, referer: currentUrl };
           }
         } catch (_) {}
       }
@@ -206,35 +210,78 @@ export async function resolveChannelStream(url) {
   return null;
 }
 
-// ─── tvplusgratis.org Resolver ───────────────────────────────────────────────
+// ─── tvplusgratis.org Resolver with Full M3U8 Proxied Content ────────────────
 
 let tvplusCache = new Map();
 
-export async function resolveTvPlusGratis(slug) {
+export async function fetchTvPlusGratisM3U8(slug) {
   const cached = tvplusCache.get(slug);
-  if (cached && Date.now() - cached.time < 30 * 60 * 1000) {
-    return cached.url;
+  // Fast cache hit (< 3000ms TTL)
+  if (cached && Date.now() - cached.time < 3000 && cached.content) {
+    return cached.content;
   }
 
+  // Fast poll with cached playlistUrl
+  if (cached && cached.playlistUrl && cached.streamUrl) {
+    try {
+      const playRes = await fetch(cached.playlistUrl, {
+        headers: {
+          "Referer": cached.streamUrl,
+          "User-Agent": UA,
+          "Accept": "text/html,application/xhtml+xml,application/x-mpegURL,*/*"
+        }
+      });
+      if (playRes.ok) {
+        const text = await playRes.text();
+        if (text.includes("#EXTM3U")) {
+          cached.content = text;
+          cached.time = Date.now();
+          return text;
+        }
+      }
+    } catch (_) {}
+  }
+
+  // Full 3-step handshake: core.php -> stream.php -> playlist.php
   const coreUrl = `https://www.tvplusgratis.org/live/core.php?canal=${slug}`;
   const coreRes = await fetch(coreUrl, {
-    headers: { referer: "https://www.tvplusgratis.org/" },
+    headers: { "Referer": "https://www.tvplusgratis.org/", "User-Agent": UA, "Accept": "text/html,application/xhtml+xml" }
   });
   const coreHtml = await coreRes.text();
 
   const streamMatch = coreHtml.match(/src=['"]([^'"]*stream\.php[^'"]*)['"]/);
-  if (!streamMatch) throw new Error("No stream.php");
+  if (!streamMatch) throw new Error("No stream.php encontrado en core.php");
 
-  const cleanStreamUrl = streamMatch[1].replace(/&amp;/g, "&");
-  const streamRes = await fetch(cleanStreamUrl, { headers: { referer: coreUrl } });
+  const streamUrl = streamMatch[1].replace(/&amp;/g, "&");
+  const streamRes = await fetch(streamUrl, {
+    headers: { "Referer": coreUrl, "User-Agent": UA, "Accept": "text/html,application/xhtml+xml" }
+  });
   const streamHtml = await streamRes.text();
 
   const unescaped = streamHtml.replace(/\\\//g, "/").replace(/&amp;/g, "&");
   const playlistMatch = unescaped.match(/https?:\/\/[^\s'"]+playlist\.php[^\s'"]*/);
-  if (!playlistMatch) throw new Error("No playlist.php");
+  if (!playlistMatch) throw new Error("No playlist.php encontrado en stream.php");
 
-  const finalUrl = playlistMatch[0];
+  const playlistUrl = playlistMatch[0];
+  const playRes = await fetch(playlistUrl, {
+    headers: {
+      "Referer": streamUrl,
+      "User-Agent": UA,
+      "Accept": "text/html,application/xhtml+xml,application/x-mpegURL,*/*"
+    }
+  });
 
-  tvplusCache.set(slug, { url: finalUrl, time: Date.now() });
-  return finalUrl;
+  const playlistText = await playRes.text();
+  if (!playlistText.includes("#EXTM3U")) {
+    throw new Error("El servidor devolvió respuesta sin cabecera EXTM3U");
+  }
+
+  tvplusCache.set(slug, {
+    playlistUrl,
+    streamUrl,
+    content: playlistText,
+    time: Date.now()
+  });
+
+  return playlistText;
 }

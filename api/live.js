@@ -1,4 +1,4 @@
-import { checkAuth, resolveTvPlusGratis } from "./_core.js";
+import { checkAuth, fetchTvPlusGratisM3U8 } from "./_core.js";
 
 export default async function handler(req, res) {
   if (!checkAuth(req)) {
@@ -13,9 +13,11 @@ export default async function handler(req, res) {
   }
 
   try {
-    const streamUrl = await resolveTvPlusGratis(slug);
-    // Redirige al reproductor (VLC, Smart TV, navegador) al stream real
-    res.redirect(302, streamUrl);
+    const m3u8Content = await fetchTvPlusGratisM3U8(slug);
+    res.setHeader("Content-Type", "application/vnd.apple.mpegurl; charset=utf-8");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.status(200).send(m3u8Content);
   } catch (err) {
     res.status(502).send(`Error resolviendo stream: ${err.message}\n`);
   }
