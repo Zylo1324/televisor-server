@@ -14,6 +14,7 @@
     { "src": "/pirlotv.m3u", "dest": "/api/pirlotv.js" },
     { "src": "/eventos.m3u", "dest": "/api/eventos.js" },
     { "src": "/live.m3u8", "dest": "/api/live.js" },
-    { "src": "/stream.m3u8", "dest": "/api/stream.js" }
+    { "src": "/stream.m3u8", "dest": "/api/stream.js" },
+    { "src": "/warm", "dest": "/api/warm.js" }
   ]
 }
