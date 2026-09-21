@@ -15,12 +15,17 @@ export default async function handler(req, res) {
     return res.status(400).send("Falta ?url=URL_DEL_STREAM\n");
   }
 
+  // Strip IP restriction from stream URL
+  const cleanTargetUrl = targetUrl.replace(/&ip=[^&]+/g, "").replace(/\?ip=[^&]+&/, "?");
+
   try {
-    const upstreamRes = await fetch(targetUrl, {
+    const origin = referer.startsWith("http") ? new URL(referer).origin : undefined;
+    const upstreamRes = await fetch(cleanTargetUrl, {
       headers: {
         "referer": referer,
+        ...(origin ? { "origin": origin } : {}),
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
-        "accept": "application/x-mpegURL,application/vnd.apple.mpegurl,*/*"
+        "accept": "*/*"
       }
     });
 

@@ -171,7 +171,7 @@ export async function resolveChannelStream(url) {
       // 1. Direct M3U8
       const m3u8Match = html.match(/["'](https?:\/\/[^"'\s]+\.m3u8[^"'\s]*)["']/);
       if (m3u8Match) {
-        const clean = m3u8Match[1].replace(/\\u0026/g, "&");
+        const clean = m3u8Match[1].replace(/\\u0026/g, "&").replace(/&ip=[^&]+/g, "");
         return { url: clean, referer: currentUrl };
       }
 
@@ -190,13 +190,41 @@ export async function resolveChannelStream(url) {
             decoded += String.fromCharCode(parseInt(dec.replace(/\D/g, "")) - k);
           }
           if (decoded.startsWith("http")) {
-            const clean = decoded.replace(/\\u0026/g, "&");
+            const clean = decoded.replace(/\\u0026/g, "&").replace(/&ip=[^&]+/g, "");
             return { url: clean, referer: currentUrl };
           }
         } catch (_) {}
       }
 
-      // 3. Follow next iframe
+      // 3. Decoder for lunchup.net (window._econfig)
+      const econfigMatch = html.match(/window\._econfig\s*=\s*'([^']+)'/);
+      if (econfigMatch) {
+        try {
+          const rawB64 = econfigMatch[1];
+          const order = [2, 0, 3, 1];
+          const decoded = Buffer.from(rawB64, "base64").toString("binary");
+          const partLen = Math.floor(decoded.length / 4);
+          const parts = [];
+          let offset = 0;
+          for (let i = 0; i < 4; i++) {
+            parts.push(decoded.slice(offset, offset + partLen));
+            offset += partLen;
+          }
+          const orderedParts = [];
+          for (let i = 0; i < 4; i++) {
+            let p = String(parts[i]);
+            p = p.slice(0, 3) + p.slice(4);
+            orderedParts[order[i]] = Buffer.from(p, "base64").toString("binary");
+          }
+          const config = JSON.parse(Buffer.from(orderedParts.join(""), "base64").toString("utf-8"));
+          const streamUrl = config.stream_url_nop2p || config.stream_url;
+          if (streamUrl) {
+            return { url: streamUrl, referer: currentUrl };
+          }
+        } catch (_) {}
+      }
+
+      // 4. Follow next iframe
       const iframeMatch = html.match(/<iframe[^>]+src="([^"]+)"/);
       if (iframeMatch) {
         referer = currentUrl;
