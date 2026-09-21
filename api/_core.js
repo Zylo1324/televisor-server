@@ -55,6 +55,8 @@ export const CHANNELS = [
   { name: "Win Sports", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winsports" },
   { name: "Win Sports +", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winplus" },
   { name: "TyC Sports", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/6/62/TyC_Sports_logo.svg", slug: "tycsports" },
+  { name: "Movistar LaLiga HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Movistar_LaLiga_logo.svg", slug: "movistar-la-liga" },
+  { name: "Sky Sports LaLiga HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Sky_Sports_logo_2020.svg", slug: "sky-sports-la-liga" },
 
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
   { name: "HBO 2", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
@@ -65,6 +67,10 @@ export const CHANNELS = [
   { name: "TNT", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/TNT_Logo_2016.svg", directUrl: "http://190.93.224.43/TNT/index.m3u8" },
   { name: "TNT Series", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/TNT_Series_logo.svg", directUrl: "http://190.93.224.43/TNT-SERIES/index.m3u8" },
   { name: "TNT Novelas", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/TNT_Novelas_logo.svg", directUrl: "http://190.93.224.43/TNT-NOVELAS/index.m3u8" },
+  { name: "Star Channel HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Star_Channel_2021.svg", slug: "star-channel" },
+  { name: "Warner Channel HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/3/36/Warner_Channel_2021.svg", slug: "warner-channel" },
+  { name: "Cinemax HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Cinemax_logo_2016.svg", slug: "cinemax" },
+  { name: "Golden Premier HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Logo.png", slug: "golden-premier" },
   { name: "Space", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Space_logo.svg", directUrl: "http://190.93.224.43/SPACE/index.m3u8" },
   { name: "AXN", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/f/fb/AXN_Logo.svg", directUrl: "http://190.93.224.43/AXN/index.m3u8" },
   { name: "FX", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/FX_logo.svg", directUrl: "http://190.93.224.43/FX/index.m3u8" },
@@ -76,6 +82,7 @@ export const CHANNELS = [
   { name: "Discovery Home & Health (H&H)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Discovery_Home_%26_Health_logo.png", directUrl: "http://45.185.163.75:8000/play/a05r/index.m3u8" },
   { name: "El Gourmet", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/El_Gourmet_logo.png", directUrl: "http://190.93.224.43/EL-GOURMET/index.m3u8" },
   { name: "History Channel", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f5/History_Logo.svg", directUrl: "http://190.93.224.43/HISTORY/index.m3u8" },
+  { name: "History 2", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/2/27/History_2_logo.svg", directUrl: "http://190.93.224.43/HISTORY-2/index.m3u8" },
   { name: "National Geographic", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/National_Geographic_logo.svg", directUrl: "http://190.93.224.43/NAT-GEO/index.m3u8" },
   { name: "Discovery Turbo", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Discovery_Turbo_Logo.svg", directUrl: "http://190.93.224.43/DISCOVERY-TURBO/index.m3u8" },
 
@@ -876,12 +883,56 @@ export async function fetchTvPlusGratisM3U8(slug, clientIp = "127.0.0.1") {
     throw new Error("El servidor devolvió respuesta sin cabecera EXTM3U");
   }
 
+  // Parse segments for low-latency & anti-buffering sliding window
+  const lines = playlistText.split("\n");
+  const seqMatch = playlistText.match(/#EXT-X-MEDIA-SEQUENCE:(\d+)/);
+  const origSeq = seqMatch ? parseInt(seqMatch[1]) : 0;
+  const targetDurMatch = playlistText.match(/#EXT-X-TARGETDURATION:(\d+)/);
+  const targetDur = targetDurMatch ? targetDurMatch[1] : "10";
+
+  const segments = [];
+  let currentInf = null;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    if (trimmed.startsWith("#EXTINF:")) {
+      currentInf = trimmed;
+    } else if (currentInf && !trimmed.startsWith("#")) {
+      const fullTs = trimmed.startsWith("http") ? trimmed : new URL(trimmed, playlistUrl).href;
+      segments.push({ inf: currentInf, ts: fullTs });
+      currentInf = null;
+    }
+  }
+
+  const KEEP_COUNT = 4;
+  const keptSegments = segments.length > KEEP_COUNT ? segments.slice(-KEEP_COUNT) : segments;
+  const droppedCount = segments.length - keptSegments.length;
+  const newSeq = origSeq + droppedCount;
+
+  const outputLines = [
+    "#EXTM3U",
+    "#EXT-X-VERSION:3",
+    `#EXT-X-MEDIA-SEQUENCE:${newSeq}`,
+    `#EXT-X-TARGETDURATION:${targetDur}`,
+  ];
+  if (keptSegments.length >= 3) {
+    outputLines.push("#EXT-X-START:TIME-OFFSET=-4.0,PREFER-PRECISE=YES");
+  }
+
+  for (const seg of keptSegments) {
+    outputLines.push(seg.inf);
+    outputLines.push(seg.ts);
+  }
+
+  const optimizedM3U8 = outputLines.join("\n");
+
   tvplusCache.set(cacheKey, {
     playlistUrl,
     streamUrl,
-    content: playlistText,
+    content: optimizedM3U8,
     time: Date.now(),
   });
 
-  return playlistText;
+  return optimizedM3U8;
 }

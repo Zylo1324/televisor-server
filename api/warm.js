@@ -13,7 +13,9 @@ const TOP_CHANNELS = [
   "espnpremium",
   "tntsports",
   "winplus",
-  "tycsports"
+  "tycsports",
+  "movistar-la-liga",
+  "sky-sports-la-liga"
 ];
 
 export default async function handler(req, res) {
