@@ -242,20 +242,28 @@ export async function resolveChannelStream(url) {
 
 let tvplusCache = new Map();
 
-export async function fetchTvPlusGratisM3U8(slug) {
-  const cached = tvplusCache.get(slug);
+export async function fetchTvPlusGratisM3U8(slug, clientIp = "127.0.0.1") {
+  const cacheKey = `${slug}:${clientIp}`;
+  const cached = tvplusCache.get(cacheKey);
   // Fast cache hit (< 3000ms TTL)
   if (cached && Date.now() - cached.time < 3000 && cached.content) {
     return cached.content;
   }
+
+  const ipHeaders = {
+    "User-Agent": UA,
+    "X-Forwarded-For": clientIp,
+    "X-Real-IP": clientIp,
+    "Client-IP": clientIp
+  };
 
   // Fast poll with cached playlistUrl
   if (cached && cached.playlistUrl && cached.streamUrl) {
     try {
       const playRes = await fetch(cached.playlistUrl, {
         headers: {
+          ...ipHeaders,
           "Referer": cached.streamUrl,
-          "User-Agent": UA,
           "Accept": "text/html,application/xhtml+xml,application/x-mpegURL,*/*"
         }
       });
@@ -273,7 +281,7 @@ export async function fetchTvPlusGratisM3U8(slug) {
   // Full 3-step handshake: core.php -> stream.php -> playlist.php
   const coreUrl = `https://www.tvplusgratis.org/live/core.php?canal=${slug}`;
   const coreRes = await fetch(coreUrl, {
-    headers: { "Referer": "https://www.tvplusgratis.org/", "User-Agent": UA, "Accept": "text/html,application/xhtml+xml" }
+    headers: { ...ipHeaders, "Referer": "https://www.tvplusgratis.org/", "Accept": "text/html,application/xhtml+xml" }
   });
   const coreHtml = await coreRes.text();
 
@@ -282,7 +290,7 @@ export async function fetchTvPlusGratisM3U8(slug) {
 
   const streamUrl = streamMatch[1].replace(/&amp;/g, "&");
   const streamRes = await fetch(streamUrl, {
-    headers: { "Referer": coreUrl, "User-Agent": UA, "Accept": "text/html,application/xhtml+xml" }
+    headers: { ...ipHeaders, "Referer": coreUrl, "Accept": "text/html,application/xhtml+xml" }
   });
   const streamHtml = await streamRes.text();
 
@@ -293,8 +301,8 @@ export async function fetchTvPlusGratisM3U8(slug) {
   const playlistUrl = playlistMatch[0];
   const playRes = await fetch(playlistUrl, {
     headers: {
+      ...ipHeaders,
       "Referer": streamUrl,
-      "User-Agent": UA,
       "Accept": "text/html,application/xhtml+xml,application/x-mpegURL,*/*"
     }
   });
@@ -304,7 +312,7 @@ export async function fetchTvPlusGratisM3U8(slug) {
     throw new Error("El servidor devolvió respuesta sin cabecera EXTM3U");
   }
 
-  tvplusCache.set(slug, {
+  tvplusCache.set(cacheKey, {
     playlistUrl,
     streamUrl,
     content: playlistText,
@@ -313,3 +321,4 @@ export async function fetchTvPlusGratisM3U8(slug) {
 
   return playlistText;
 }
+

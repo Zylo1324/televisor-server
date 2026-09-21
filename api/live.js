@@ -12,8 +12,11 @@ export default async function handler(req, res) {
     return res.status(400).send("Falta ?slug=canal\n");
   }
 
+  const forwarded = req.headers["x-forwarded-for"] || "";
+  const clientIp = forwarded.split(",")[0].trim() || req.socket?.remoteAddress || "127.0.0.1";
+
   try {
-    const m3u8Content = await fetchTvPlusGratisM3U8(slug);
+    const m3u8Content = await fetchTvPlusGratisM3U8(slug, clientIp);
     res.setHeader("Content-Type", "application/vnd.apple.mpegurl; charset=utf-8");
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
