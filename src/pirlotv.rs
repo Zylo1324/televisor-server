@@ -98,14 +98,16 @@ fn parse_events_html(html: &str) -> anyhow::Result<Vec<LiveEvent>> {
     // </li>
 
     static RE_EVENT: Lazy<Regex> = Lazy::new(|| {
+        // Match event blocks with name, time, and channel list
         Regex::new(
-            r#"<li><a href="#">([^<]+)<span class="t">([^<]+)</span></a>\s*<ul>([\s\S]*?)</ul></li>"#
+            r##"<li><a href="#">([^<]+)<span class="t">([^<]+)</span></a>\s*<ul>([\s\S]*?)</ul></li>"##
         ).unwrap()
     });
 
     static RE_CHANNEL: Lazy<Regex> = Lazy::new(|| {
+        // Match individual channel links
         Regex::new(
-            r#"<li class="subitem1"><a href="([^"]+)">([^<]+)</a></li>"#
+            r##"<li class="subitem1"><a href="([^"]+)">([^<]+)</a></li>"##
         ).unwrap()
     });
 
@@ -276,7 +278,7 @@ async fn fetch_html(http: &reqwest::Client, url: &str) -> anyhow::Result<String>
 
 fn extract_iframe_src(html: &str) -> anyhow::Result<String> {
     static RE: Lazy<Regex> = Lazy::new(|| {
-        Regex::new(r#"<iframe[^>]+src="([^"]+)""#).unwrap()
+        Regex::new(r##"<iframe[^>]+src="([^"]+)""##).unwrap()
     });
     RE.captures(html)
         .and_then(|c| c.get(1))
@@ -287,7 +289,7 @@ fn extract_iframe_src(html: &str) -> anyhow::Result<String> {
 fn extract_direct_m3u8(html: &str) -> Option<String> {
     // Buscar URLs M3U8 directas en el HTML/JS
     static RE: Lazy<Regex> = Lazy::new(|| {
-        Regex::new(r#"["'](https?://[^"']+\.m3u8[^"']*)"#).unwrap()
+        Regex::new(r##"["'](https?://[^"']+\.m3u8[^"']*)"##).unwrap()
     });
     RE.captures(html)
         .and_then(|c| c.get(1))

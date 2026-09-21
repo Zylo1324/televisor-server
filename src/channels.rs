@@ -148,7 +148,7 @@ async fn do_tvplusgratis_handshake(
 
     // Extraer URL del iframe stream.php
     static RE_STREAM: Lazy<Regex> = Lazy::new(|| {
-        Regex::new(r#"src=['"]([^'"]*stream\.php[^'"]*)['""]"#).unwrap()
+        Regex::new(r##"src=['"]([^'"]*stream\.php[^'"]*)['""]"##).unwrap()
     });
 
     let stream_url = RE_STREAM.captures(&core_html)
@@ -167,7 +167,7 @@ async fn do_tvplusgratis_handshake(
 
     // Extraer URL playlist.php
     static RE_PLAYLIST: Lazy<Regex> = Lazy::new(|| {
-        Regex::new(r#"var\s+src\s*=\s*["']([^"']+playlist\.php[^"']*)['""]"#).unwrap()
+        Regex::new(r##"var\s+src\s*=\s*["']([^"']+playlist\.php[^"']*)['"]"##).unwrap()
     });
 
     let playlist_url = RE_PLAYLIST.captures(&stream_html)
