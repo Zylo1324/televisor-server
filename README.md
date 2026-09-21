@@ -1,6 +1,16 @@
+---
+title: Televisor Server
+emoji: 📺
+colorFrom: red
+colorTo: blue
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # Televisor Server 📺
 
-Servidor cloud auto-actualizable para streaming de TV en vivo. Desplegado en Render.com (gratis 24/7).
+Servidor cloud auto-actualizable para streaming de TV en vivo. Desplegado en Hugging Face Spaces (gratis 24/7, sin tarjeta).
 
 ## Rutas disponibles
 
@@ -11,41 +21,18 @@ Todas las rutas requieren autenticación con `?key=TU_API_KEY` o header `X-API-K
 | `/lista.m3u` | Lista completa de canales |
 | `/deportes.m3u` | Solo canales deportivos |
 | `/peru.m3u` | Solo canales peruanos |
-| `/eventos.m3u` | Eventos en vivo de pirlotv.la (se actualiza cada 5 min) |
-| `/live.m3u8?slug=espn` | Stream directo de un canal |
+| `/eventos.m3u` | Eventos en vivo de pirlotv.la divididos por partido (auto-actualizado) |
+| `/live.m3u8?slug=espn` | Stream directo con auto-renovación |
 | `/health` | Health check |
 
-## Cómo usar
+## Cómo usar en reproductores
 
 ### En VLC
-```
-Media → Abrir URL de red → https://televisor-proxy.onrender.com/eventos.m3u?key=TU_KEY
+```text
+Media → Abrir emisión de red → https://TU-ESPACIO.hf.space/eventos.m3u?key=televisor2024
 ```
 
 ### En Smart TV (TiViMate, IPTV Smarters)
+```text
+URL M3U: https://TU-ESPACIO.hf.space/lista.m3u?key=televisor2024
 ```
-URL: https://televisor-proxy.onrender.com/lista.m3u?key=TU_KEY
-```
-
-### En el navegador
-```
-https://televisor-proxy.onrender.com/eventos.m3u?key=TU_KEY
-```
-
-## Arquitectura
-
-```
-pirlotv.la/home.php
-  → Eventos en vivo con canales
-  → Cada canal: playvi.org → live4.lat/streamx305.sbs
-  → streamx305: JS ofuscado con array ne[] + decode k1+k2
-  → Stream real: envivoslatam99.sbs/global/{canal}/index.m3u8
-```
-
-## Variables de entorno (Render)
-
-| Variable | Descripción |
-|---|---|
-| `PORT` | Puerto del servidor (default 10000) |
-| `API_KEY` | Clave de acceso (generada automáticamente) |
-| `SERVER_URL` | URL pública del servidor en Render |

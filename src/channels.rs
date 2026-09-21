@@ -52,12 +52,7 @@ pub static CHANNELS: Lazy<Vec<Channel>> = Lazy::new(|| {
 
 /// Genera lista M3U de canales estáticos.
 /// Si `filter_group` es Some("Deportes") solo incluye canales de ese grupo.
-pub fn generate_m3u(filter_group: Option<&str>) -> String {
-    let server_base = std::env::var("SERVER_URL")
-        .unwrap_or_else(|_| "http://localhost:10000".into());
-    let api_key = std::env::var("API_KEY")
-        .unwrap_or_else(|_| "televisor2024".into());
-
+pub fn generate_m3u(filter_group: Option<&str>, server_base: &str, api_key: &str) -> String {
     let mut lines = vec![
         "#EXTM3U x-tvg-url=\"\"".to_string(),
         format!("# Televisor Cloud — {}", chrono::Utc::now().format("%Y-%m-%d %H:%M UTC")),

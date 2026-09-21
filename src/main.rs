@@ -84,6 +84,25 @@ fn unauthorized() -> Response {
     (StatusCode::UNAUTHORIZED, "401 Unauthorized — pasa ?key=TU_API_KEY\n").into_response()
 }
 
+fn get_base_url(headers: &HeaderMap) -> String {
+    if let Ok(server_url) = std::env::var("SERVER_URL") {
+        if !server_url.is_empty() {
+            return server_url;
+        }
+    }
+    let proto = headers
+        .get("x-forwarded-proto")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("https");
+    let host = headers
+        .get("x-forwarded-host")
+        .or_else(|| headers.get("host"))
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("localhost:7860");
+
+    format!("{}://{}", proto, host)
+}
+
 // ─── routes ──────────────────────────────────────────────────────────────────
 
 async fn health() -> &'static str {
@@ -96,7 +115,8 @@ async fn route_lista(
     Query(params): Query<HashMap<String, String>>,
 ) -> Response {
     if !check_auth(&state, &headers, &params) { return unauthorized(); }
-    let m3u = channels::generate_m3u(None);
+    let base_url = get_base_url(&headers);
+    let m3u = channels::generate_m3u(None, &base_url, &state.api_key);
     m3u_response(m3u)
 }
 
@@ -106,7 +126,8 @@ async fn route_deportes(
     Query(params): Query<HashMap<String, String>>,
 ) -> Response {
     if !check_auth(&state, &headers, &params) { return unauthorized(); }
-    let m3u = channels::generate_m3u(Some("Deportes"));
+    let base_url = get_base_url(&headers);
+    let m3u = channels::generate_m3u(Some("Deportes"), &base_url, &state.api_key);
     m3u_response(m3u)
 }
 
@@ -116,7 +137,8 @@ async fn route_peru(
     Query(params): Query<HashMap<String, String>>,
 ) -> Response {
     if !check_auth(&state, &headers, &params) { return unauthorized(); }
-    let m3u = channels::generate_m3u(Some("Peru"));
+    let base_url = get_base_url(&headers);
+    let m3u = channels::generate_m3u(Some("Peru"), &base_url, &state.api_key);
     m3u_response(m3u)
 }
 
