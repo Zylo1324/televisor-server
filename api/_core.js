@@ -225,17 +225,15 @@ export async function resolveTvPlusGratis(slug) {
   const streamMatch = coreHtml.match(/src=['"]([^'"]*stream\.php[^'"]*)['"]/);
   if (!streamMatch) throw new Error("No stream.php");
 
-  const streamRes = await fetch(streamMatch[1], { headers: { referer: coreUrl } });
+  const cleanStreamUrl = streamMatch[1].replace(/&amp;/g, "&");
+  const streamRes = await fetch(cleanStreamUrl, { headers: { referer: coreUrl } });
   const streamHtml = await streamRes.text();
 
-  const playlistMatch = streamHtml.match(/var\s+src\s*=\s*["']([^"']+playlist\.php[^"']*)['"]/);
+  const unescaped = streamHtml.replace(/\\\//g, "/").replace(/&amp;/g, "&");
+  const playlistMatch = unescaped.match(/https?:\/\/[^\s'"]+playlist\.php[^\s'"]*/);
   if (!playlistMatch) throw new Error("No playlist.php");
 
-  const playlistRes = await fetch(playlistMatch[1], { headers: { referer: streamMatch[1] } });
-  const playlistText = await playlistRes.text();
-
-  const m3u8Match = playlistText.match(/(https?:\/\/[^\s]+\.m3u8[^\s]*)/);
-  const finalUrl = m3u8Match ? m3u8Match[1] : playlistMatch[1];
+  const finalUrl = playlistMatch[0];
 
   tvplusCache.set(slug, { url: finalUrl, time: Date.now() });
   return finalUrl;
