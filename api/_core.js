@@ -5,32 +5,34 @@ const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 
 // ─── Static Channel Catalog ──────────────────────────────────────────────────
 export const CHANNELS = [
-  // Perú
-  { name: "América Televisión", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/47/America_Television_logo.png", slug: "americatv" },
-  { name: "Latina TV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Latina_Televisi%C3%B3n_Peru_logo.svg", slug: "latina" },
-  { name: "ATV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", slug: "atv" },
-  { name: "TV Perú", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/TV_Per%C3%BA.svg", slug: "tvperu" },
-  { name: "Canal N", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/7/74/Canal_N_logo.png", slug: "canaln" },
-  { name: "Willax", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/42/Willax_logo.jpg", slug: "willax" },
+  // ── Perú (Directos de alta velocidad sin bloqueos) ──────────────────────────
+  { name: "América Televisión", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/47/America_Television_logo.png", directUrl: "http://190.93.224.43/AMERICA-TV/index.m3u8" },
+  { name: "Latina TV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Latina_Televisi%C3%B3n_Peru_logo.svg", directUrl: "http://190.93.224.43/LATINA/index.m3u8" },
+  { name: "Panamericana TV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Panamericana_Television_logo.png", directUrl: "http://190.93.224.43/PANAMERICANA/index.m3u8" },
+  { name: "ATV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", directUrl: "http://190.93.224.43/ATV/index.m3u8" },
+  { name: "ATV+", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", directUrl: "http://190.93.224.43/ATV-PLUS/index.m3u8" },
+  { name: "ATV Sur", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", directUrl: "https://dnhmqt6n0lkaq.cloudfront.net/ts:abr.m3u8" },
+  { name: "TV Perú", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/TV_Per%C3%BA.svg", directUrl: "http://190.93.224.43/TV-PERU/index.m3u8" },
+  { name: "TV Perú Noticias", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/TV_Per%C3%BA.svg", directUrl: "http://190.93.224.43/TV-PERU-NOTICIAS/index.m3u8" },
+  { name: "Willax", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/42/Willax_logo.jpg", directUrl: "http://190.93.224.43/WILLAX/index.m3u8" },
+  { name: "Exitosa TV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/9/90/Corporacion_Universal.png", directUrl: "http://190.93.224.43/EXITOSA/index.m3u8" },
+  { name: "RPP Noticias", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/RPP_Noticias_logo.png", directUrl: "http://190.93.224.43/RPP/index.m3u8" },
 
-  // Deportes
-  { name: "ESPN", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "espn", directUrl: "http://190.93.224.42/bein/espnlat/index.m3u8" },
-  { name: "ESPN 2", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "espn2", directUrl: "http://190.93.224.42/bein/espn2lat/index.m3u8" },
-  { name: "ESPN 3", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "espn3", directUrl: "http://190.93.224.42/bein/espn3lat/index.m3u8" },
+  // ── Deportes ───────────────────────────────────────────────────────────────
+  { name: "Liga 1 MAX", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/Liga1_peru_logo.png", directUrl: "http://190.93.224.43/LIGA-1-MAX/index.m3u8" },
+  { name: "ESPN", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN/index.m3u8" },
+  { name: "ESPN 2", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-2/index.m3u8" },
+  { name: "ESPN 3", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-3/index.m3u8" },
   { name: "ESPN Premium", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "espnpremium" },
-  { name: "DSports", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "dsports", directUrl: "http://190.93.224.42/bein/directvlat/index.m3u8" },
-  { name: "DSports 2", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "dsports2", directUrl: "http://190.93.224.42/bein/directv2lat/index.m3u8" },
-  { name: "Fox Sports", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/21/Fox_Sports_logo.svg", slug: "foxsports" },
-  { name: "Fox Sports 2", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/21/Fox_Sports_logo.svg", slug: "foxsports2" },
-  { name: "TNT Sports", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntsports" },
-  { name: "Movistar LaLiga", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/f/fb/LaLiga_logo.svg", slug: "movistarlaliga" },
-  { name: "bein Sports", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5f/BeIN_Sports_logo.svg", slug: "beinsports" },
+  { name: "Fox Sports", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/21/Fox_Sports_logo.svg", slug: "fox1ar" },
+  { name: "TNT Sports", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntar" },
+  { name: "Win Sports+", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winplus" },
 
-  // Entretenimiento
-  { name: "CNN en Español", group: "Noticias", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b1/CNN.svg", slug: "cnn" },
-  { name: "Cartoon Network", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/8/80/Cartoon_Network_2010_logo.svg", slug: "cartoonnetwork" },
-  { name: "Discovery Channel", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/7/74/Discovery-channel-logo.png", slug: "discovery" },
-  { name: "National Geographic", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/National_Geographic_logo.svg", slug: "natgeo" },
+  // ── Entretenimiento y Cultura ──────────────────────────────────────────────
+  { name: "TNT", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/TNT_Logo_2016.svg", directUrl: "http://190.93.224.43/TNT/index.m3u8" },
+  { name: "Space", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Space_logo.svg", directUrl: "http://190.93.224.43/SPACE/index.m3u8" },
+  { name: "History Channel", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f5/History_Logo.svg", directUrl: "http://190.93.224.43/HISTORY/index.m3u8" },
+  { name: "National Geographic", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/National_Geographic_logo.svg", directUrl: "http://190.93.224.43/NAT-GEO/index.m3u8" },
 ];
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -320,5 +322,59 @@ export async function fetchTvPlusGratisM3U8(slug, clientIp = "127.0.0.1") {
   });
 
   return playlistText;
+}
+
+// ─── Universal Live Stream Fetcher (Sports & Regional Channels) ───────────────
+
+const SPORTS_MAP = {
+  espnpremium: "espnpremium",
+  fox1ar: "fox1ar",
+  tntar: "tntar",
+  winplus: "winplus",
+  espn: "espn",
+  espn2: "espn2",
+  espn3: "espn3",
+  espn4: "espn4",
+  espnextra: "espnextra",
+};
+
+export async function fetchLiveStreamM3U8(slug, clientIp = "127.0.0.1") {
+  // 1. Try decoding from streamx305 if known sports channel
+  if (SPORTS_MAP[slug]) {
+    try {
+      const channelName = SPORTS_MAP[slug];
+      const channelUrl = `https://streamx305.sbs/global3.php?channel=${channelName}`;
+      const res = await fetch(channelUrl, { headers: { "referer": "https://pirlotv.la/" } });
+      const html = await res.text();
+      const arrMatch = html.match(/\b([a-zA-Z_]\w*)=(\[\[\d+,"[A-Za-z0-9+\/=]+"[\s\S]*?\]\]);/);
+      const fnMatches = [...html.matchAll(/function \w+\(\)\{return (\d+);\}/g)];
+      if (arrMatch && fnMatches.length >= 2) {
+        const pairs = JSON.parse(arrMatch[2]);
+        pairs.sort((a, b) => a[0] - b[0]);
+        const k = parseInt(fnMatches[0][1]) + parseInt(fnMatches[1][1]);
+        let decoded = "";
+        for (const p of pairs) {
+          const dec = Buffer.from(p[1], "base64").toString("utf-8");
+          decoded += String.fromCharCode(parseInt(dec.replace(/\D/g, "")) - k);
+        }
+        const cleanUrl = decoded.replace(/&ip=[^&]+/g, "");
+        const upstreamRes = await fetch(cleanUrl, { headers: { "referer": "https://streamx305.sbs/" } });
+        const m3u8Text = await upstreamRes.text();
+
+        const targetObj = new URL(cleanUrl);
+        const basePath = cleanUrl.substring(0, cleanUrl.lastIndexOf("/") + 1);
+        return m3u8Text.split("\n").map(line => {
+          const trimmed = line.trim();
+          if (!trimmed || trimmed.startsWith("#")) return line;
+          if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
+          if (trimmed.startsWith("/")) return `${targetObj.origin}${trimmed}`;
+          return `${basePath}${trimmed}`;
+        }).join("\n");
+      }
+    } catch (_) {}
+  }
+
+  // 2. Fallback to tvplusgratis handshake
+  return fetchTvPlusGratisM3U8(slug, clientIp);
 }
 

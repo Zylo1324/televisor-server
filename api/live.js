@@ -1,4 +1,4 @@
-import { checkAuth, fetchTvPlusGratisM3U8 } from "./_core.js";
+import { checkAuth, fetchLiveStreamM3U8 } from "./_core.js";
 
 export default async function handler(req, res) {
   if (!checkAuth(req)) {
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   const clientIp = forwarded.split(",")[0].trim() || req.socket?.remoteAddress || "127.0.0.1";
 
   try {
-    const m3u8Content = await fetchTvPlusGratisM3U8(slug, clientIp);
+    const m3u8Content = await fetchLiveStreamM3U8(slug, clientIp);
     res.setHeader("Content-Type", "application/vnd.apple.mpegurl; charset=utf-8");
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
