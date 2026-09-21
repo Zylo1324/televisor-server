@@ -4,6 +4,7 @@ import deportesHandler from "./api/deportes.js";
 import peruHandler from "./api/peru.js";
 import eventosHandler from "./api/eventos.js";
 import liveHandler from "./api/live.js";
+import pirlotvHandler from "./api/pirlotv.js";
 import streamHandler from "./api/stream.js";
 import healthHandler from "./api/health.js";
 
@@ -37,6 +38,9 @@ const server = http.createServer(async (req, res) => {
   }
   if (pathname === "/peru.m3u" || pathname === "/api/peru") {
     return peruHandler(req, res);
+  }
+  if (pathname === "/pirlotv.m3u" || pathname === "/api/pirlotv") {
+    return pirlotvHandler(req, res);
   }
   if (pathname === "/eventos.m3u" || pathname === "/api/eventos") {
     return eventosHandler(req, res);
