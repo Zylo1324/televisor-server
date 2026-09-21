@@ -5,6 +5,7 @@
   "private": true,
   "description": "Cloud streaming server with pirlotv scraping",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node --test"
   }
 }

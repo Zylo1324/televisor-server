@@ -23,11 +23,10 @@ export default async function handler(req, res) {
     const m3u8Content = await fetchLiveStreamM3U8(target, clientIp);
     res.setHeader("Content-Type", "application/vnd.apple.mpegurl; charset=utf-8");
     res.setHeader("Access-Control-Allow-Origin", "*");
-    // Vercel Global Edge Network Cache:
-    // Serves repeated requests directly from Edge memory in 15-25ms!
-    res.setHeader("Cache-Control", "public, max-age=1, s-maxage=2, stale-while-revalidate=4");
-    res.setHeader("Vercel-CDN-Cache-Control", "max-age=2, stale-while-revalidate=4");
-    res.setHeader("CDN-Cache-Control", "max-age=2, stale-while-revalidate=4");
+    // Refresh on the CDN without making every player wait for the upstream.
+    // Keep the browser's copy at zero age so it checks the live edge playlist.
+    res.setHeader("Cache-Control", "public, max-age=0");
+    res.setHeader("Vercel-CDN-Cache-Control", "public, s-maxage=1, stale-while-revalidate=5");
     res.status(200).send(m3u8Content);
   } catch (err) {
     res.status(502).send(`Error resolviendo stream ${target}: ${err.message}\n`);

@@ -353,52 +353,78 @@ export async function resolveInstreamM3U8(streamId) {
   return optimizedM3U8;
 }
 
-// ─── Direct HLS Stream Resolver (Master playlist follower + Ring Buffer) ─────
+// ─── Direct HLS Stream Resolver ───────────────────────────────────────────────
 
-const hlsRingCache = new Map();
+// Astra's variant URL stays valid across playlist refreshes. Reusing it avoids
+// fetching the master playlist on every cache miss, while a failed variant is
+// retried through the master immediately.
+const hlsVariantCache = new Map();
+const HLS_VARIANT_TTL = 8000;
+const hlsRequests = new Map();
 
-export async function resolveHlsStream(m3u8Url, streamKey) {
-  const now = Date.now();
-
-  const cached = manifestCache.get(streamKey);
-  if (cached && now - cached.time < MANIFEST_CACHE_TTL && cached.content) {
-    return cached.content;
-  }
-
-  const res = await fetch(m3u8Url, {
+async function fetchHlsText(url) {
+  const response = await fetch(url, {
     headers: { "user-agent": UA },
     signal: AbortSignal.timeout(6000),
   });
+  if (!response.ok) throw new Error(`Stream upstream retornó HTTP ${response.status}`);
+  const text = await response.text();
+  if (!text.startsWith("#EXTM3U")) throw new Error("Stream upstream no devolvió M3U8");
+  return text;
+}
 
-  if (!res.ok) {
-    throw new Error(`Stream upstream retornó HTTP ${res.status}`);
-  }
-
-  let text = await res.text();
+async function loadDirectHls(m3u8Url, streamKey) {
   let activeUrl = m3u8Url;
+  let text;
+  const cachedVariant = hlsVariantCache.get(streamKey);
 
-  // Follow master playlist if present
-  if (text.includes("#EXT-X-STREAM-INF")) {
-    const lines = text.split("\n");
-    let subUrl = null;
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].includes("#EXT-X-STREAM-INF")) {
-        subUrl = lines[i + 1]?.trim();
-        break;
-      }
-    }
-    if (subUrl) {
-      activeUrl = subUrl.startsWith("http") ? subUrl : new URL(subUrl, m3u8Url).href;
-      const subRes = await fetch(activeUrl, {
-        headers: { "user-agent": UA },
-        signal: AbortSignal.timeout(6000),
-      });
-      if (!subRes.ok) throw new Error(`Sub-playlist retornó HTTP ${subRes.status}`);
-      text = await subRes.text();
+  if (cachedVariant && cachedVariant.expires > Date.now()) {
+    try {
+      activeUrl = cachedVariant.url;
+      text = await fetchHlsText(activeUrl);
+    } catch {
+      hlsVariantCache.delete(streamKey);
+      activeUrl = m3u8Url;
     }
   }
 
-  // Parse segments and sequence for ring buffer
+  if (!text) {
+    text = await fetchHlsText(m3u8Url);
+    if (text.includes("#EXT-X-STREAM-INF")) {
+      const lines = text.split("\n");
+      const index = lines.findIndex((line) => line.startsWith("#EXT-X-STREAM-INF"));
+      const subUrl = lines.slice(index + 1).find((line) => line.trim() && !line.startsWith("#"));
+      if (!subUrl) throw new Error("Master playlist sin variante HLS");
+      activeUrl = new URL(subUrl.trim(), m3u8Url).href;
+      text = await fetchHlsText(activeUrl);
+      hlsVariantCache.set(streamKey, { url: activeUrl, expires: Date.now() + HLS_VARIANT_TTL });
+    }
+  }
+
+  if (text.includes("#EXT-X-STREAM-INF")) throw new Error("Variante HLS no resuelta");
+  return { text, activeUrl };
+}
+
+export async function resolveHlsStream(m3u8Url, streamKey) {
+  const cached = manifestCache.get(streamKey);
+  if (cached && Date.now() - cached.time < MANIFEST_CACHE_TTL && cached.content) {
+    return cached.content;
+  }
+
+  if (hlsRequests.has(streamKey)) return hlsRequests.get(streamKey);
+  const request = buildDirectHls(m3u8Url, streamKey);
+  hlsRequests.set(streamKey, request);
+  try {
+    return await request;
+  } finally {
+    hlsRequests.delete(streamKey);
+  }
+}
+
+async function buildDirectHls(m3u8Url, streamKey) {
+  const { text, activeUrl } = await loadDirectHls(m3u8Url, streamKey);
+
+  // Parse the upstream sequence and its current live window.
   const lines = text.split("\n");
   const seqMatch = text.match(/#EXT-X-MEDIA-SEQUENCE:(\d+)/);
   const origSeq = seqMatch ? parseInt(seqMatch[1]) : 0;
@@ -420,45 +446,27 @@ export async function resolveHlsStream(m3u8Url, streamKey) {
     }
   }
 
-  // Retrieve or initialize ring buffer for this stream
-  let ring = hlsRingCache.get(streamKey);
-  if (!ring) {
-    ring = {
-      baseSeq: origSeq || 1000,
-      segments: [],
-    };
-    hlsRingCache.set(streamKey, ring);
-  }
+  if (!segments.length) throw new Error("Playlist HLS sin fragmentos");
 
-  for (const seg of segments) {
-    const segKey = seg.ts.substring(seg.ts.lastIndexOf("/") + 1).split("?")[0];
-    const exists = ring.segments.some((s) => s.key === segKey);
-    if (!exists) {
-      ring.segments.push({ ...seg, key: segKey });
-    }
-  }
-
-  // Maintain 6 segments window (~18 seconds of buffer margin for Samsung TVs)
+  // Preserve the upstream sequence across independent Vercel instances.
   const MAX_RING_SEGMENTS = 6;
-  while (ring.segments.length > MAX_RING_SEGMENTS) {
-    ring.segments.shift();
-    ring.baseSeq++;
-  }
+  const dropped = Math.max(0, segments.length - MAX_RING_SEGMENTS);
+  const keptSegments = segments.slice(dropped);
 
   const outputLines = [
     "#EXTM3U",
     "#EXT-X-VERSION:3",
-    `#EXT-X-MEDIA-SEQUENCE:${ring.baseSeq}`,
+    `#EXT-X-MEDIA-SEQUENCE:${origSeq + dropped}`,
     `#EXT-X-TARGETDURATION:${targetDur}`,
   ];
 
-  for (const seg of ring.segments) {
+  for (const seg of keptSegments) {
     outputLines.push(seg.inf);
     outputLines.push(seg.ts);
   }
 
   const optimizedM3U8 = outputLines.join("\n");
-  manifestCache.set(streamKey, { content: optimizedM3U8, time: now });
+  manifestCache.set(streamKey, { content: optimizedM3U8, time: Date.now() });
   return optimizedM3U8;
 }
 
@@ -942,10 +950,6 @@ export async function fetchTvPlusGratisM3U8(slug, clientIp = "127.0.0.1") {
     `#EXT-X-MEDIA-SEQUENCE:${newSeq}`,
     `#EXT-X-TARGETDURATION:${targetDur}`,
   ];
-  if (keptSegments.length >= 3) {
-    outputLines.push("#EXT-X-START:TIME-OFFSET=-4.0,PREFER-PRECISE=YES");
-  }
-
   for (const seg of keptSegments) {
     outputLines.push(seg.inf);
     outputLines.push(seg.ts);

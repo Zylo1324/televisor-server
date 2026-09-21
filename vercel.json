@@ -1,20 +1,17 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/*.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    { "src": "/health", "dest": "/api/health.js" },
-    { "src": "/lista.m3u", "dest": "/api/lista.js" },
-    { "src": "/deportes.m3u", "dest": "/api/deportes.js" },
-    { "src": "/peru.m3u", "dest": "/api/peru.js" },
-    { "src": "/pirlotv.m3u", "dest": "/api/pirlotv.js" },
-    { "src": "/eventos.m3u", "dest": "/api/eventos.js" },
-    { "src": "/live.m3u8", "dest": "/api/live.js" },
-    { "src": "/stream.m3u8", "dest": "/api/stream.js" },
-    { "src": "/warm", "dest": "/api/warm.js" }
+  "functions": {
+    "api/live.js": { "regions": ["gru1"] }
+  },
+  "rewrites": [
+    { "source": "/health", "destination": "/api/health" },
+    { "source": "/lista.m3u", "destination": "/api/lista" },
+    { "source": "/deportes.m3u", "destination": "/api/deportes" },
+    { "source": "/peru.m3u", "destination": "/api/peru" },
+    { "source": "/pirlotv.m3u", "destination": "/api/pirlotv" },
+    { "source": "/eventos.m3u", "destination": "/api/eventos" },
+    { "source": "/live.m3u8", "destination": "/api/live" },
+    { "source": "/stream.m3u8", "destination": "/api/stream" },
+    { "source": "/warm", "destination": "/api/warm" }
   ]
 }
