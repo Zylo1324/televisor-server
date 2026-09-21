@@ -588,23 +588,24 @@ export async function fetchLiveStreamM3U8(targetSlug, clientIp = "127.0.0.1") {
   if (!targetSlug) throw new Error("Falta slug de canal");
   const cleanSlug = targetSlug.toLowerCase().trim();
 
-  // 1. PelotaLibre / TVF90 1080p Flussonic cluster (Movistar Deportes, Fox, TyC, DSports)
-  const tvf90Id = TVF90_MAP[cleanSlug];
-  if (tvf90Id) {
-    try {
-      return await resolveTvf90M3U8(tvf90Id, cleanSlug);
-    } catch (err) {
-      console.warn(`[TVF90 fallback to direct HLS] ${cleanSlug} (${tvf90Id}):`, err.message);
-    }
-  }
-
-  // 2. Direct HLS stream (Astra ring-buffered dynamic sliding window)
+  // 1. Direct HLS stream (Astra ring-buffered dynamic sliding window & local fiber)
+  // Zero IP locks, zero tokens, works seamlessly on Smart TVs without 403 Forbidden!
   const directHls = DIRECT_HLS_MAP[cleanSlug];
   if (directHls) {
     try {
       return await resolveHlsStream(directHls, cleanSlug);
     } catch (err) {
       console.error(`[Direct HLS Error] ${cleanSlug}:`, err.message);
+    }
+  }
+
+  // 2. PelotaLibre / TVF90 1080p Flussonic cluster (fallback)
+  const tvf90Id = TVF90_MAP[cleanSlug];
+  if (tvf90Id) {
+    try {
+      return await resolveTvf90M3U8(tvf90Id, cleanSlug);
+    } catch (err) {
+      console.warn(`[TVF90 fallback] ${cleanSlug} (${tvf90Id}):`, err.message);
     }
   }
 
