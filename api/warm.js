@@ -11,6 +11,7 @@ const TOP_CHANNELS = [
   "dsportsplus",
   "liga1max",
   "espnpremium",
+  "claro-sports",
   "tntsports",
   "winplus",
   "tycsports",
