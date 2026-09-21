@@ -35,11 +35,17 @@ export const CHANNELS = [
   { name: "ESPN", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN/index.m3u8" },
   { name: "ESPN 2", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-2/index.m3u8" },
   { name: "ESPN 3", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-3/index.m3u8" },
-  { name: "ESPN 4", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-4/index.m3u8" },
+  { name: "ESPN 4 (Ex-Fox Sports 1)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-4/index.m3u8" },
+  { name: "ESPN 5 (Ex-Fox Sports 2)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-5/index.m3u8" },
+  { name: "ESPN 6 (Ex-Fox Sports 3)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-6/index.m3u8" },
+  { name: "ESPN 7 (Ex-Fox Sports Premium)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-7/index.m3u8" },
   { name: "ESPN Deportes USA", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "espndeportes" },
   { name: "FOX Sports 1 HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1" },
+  { name: "FOX Sports 1 (Directo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hm/index.m3u8" },
   { name: "FOX Sports 2 HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
+  { name: "FOX Sports 2 (Directo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hk/index.m3u8" },
   { name: "FOX Sports 3 HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
+  { name: "FOX Sports 3 (Directo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hj/index.m3u8" },
 
   // ── Deportes: Ligas, TNT, Win & TyC ─────────────────────────────────────────
   { name: "Liga 1 MAX (Cable HD 60fps)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/Liga1_peru_logo.png", directUrl: "http://190.93.224.43/LIGA-1-MAX/index.m3u8" },
@@ -81,9 +87,9 @@ export const DIRECT_HLS_MAP = {
   "movistar-deportes": "http://45.185.163.75:8000/play/a0i9/index.m3u8",
   movistar: "http://45.185.163.75:8000/play/a0i9/index.m3u8",
   cmd: "http://45.185.163.75:8000/play/a0i9/index.m3u8",
-  foxsports1: "http://45.185.163.75:8000/play/a0hl/index.m3u8",
-  "fox-sports-1": "http://45.185.163.75:8000/play/a0hl/index.m3u8",
-  "fox-sports": "http://45.185.163.75:8000/play/a0hl/index.m3u8",
+  foxsports1: "http://45.185.163.75:8000/play/a0hm/index.m3u8",
+  "fox-sports-1": "http://45.185.163.75:8000/play/a0hm/index.m3u8",
+  "fox-sports": "http://45.185.163.75:8000/play/a0hm/index.m3u8",
   foxsports2: "http://45.185.163.75:8000/play/a0hk/index.m3u8",
   "fox-sports-2": "http://45.185.163.75:8000/play/a0hk/index.m3u8",
   foxsports3: "http://45.185.163.75:8000/play/a0hj/index.m3u8",
@@ -280,8 +286,10 @@ export async function resolveInstreamM3U8(streamId) {
     "#EXT-X-VERSION:3",
     `#EXT-X-MEDIA-SEQUENCE:${newSeq}`,
     `#EXT-X-TARGETDURATION:${targetDur}`,
-    "#EXT-X-START:TIME-OFFSET=-6.0,PREFER-PRECISE=YES",
   ];
+  if (keptSegments.length >= 3) {
+    outputLines.push("#EXT-X-START:TIME-OFFSET=-4.0,PREFER-PRECISE=YES");
+  }
 
   for (const seg of keptSegments) {
     outputLines.push(seg.inf);
@@ -368,8 +376,10 @@ export async function resolveHlsStream(m3u8Url, streamKey) {
     "#EXT-X-VERSION:3",
     `#EXT-X-MEDIA-SEQUENCE:${newSeq}`,
     `#EXT-X-TARGETDURATION:${targetDur}`,
-    "#EXT-X-START:TIME-OFFSET=-6.0,PREFER-PRECISE=YES",
   ];
+  if (keptSegments.length >= 3) {
+    outputLines.push("#EXT-X-START:TIME-OFFSET=-4.0,PREFER-PRECISE=YES");
+  }
 
   for (const seg of keptSegments) {
     outputLines.push(seg.inf);
