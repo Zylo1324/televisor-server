@@ -17,6 +17,12 @@ export const CHANNELS = [
   { name: "Willax Televisión", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/42/Willax_logo.jpg", directUrl: "http://190.93.224.43/WILLAX/index.m3u8" },
   { name: "Exitosa TV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/9/90/Corporacion_Universal.png", directUrl: "http://190.93.224.43/EXITOSA/index.m3u8" },
   { name: "RPP Noticias", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/RPP_Noticias_logo.png", directUrl: "http://190.93.224.43/RPP/index.m3u8" },
+  { name: "USMP TV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/USMP_TV.png", directUrl: "http://190.93.224.43/USMP/index.m3u8" },
+  { name: "Bethel Televisión", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Bethel_Television_logo.png", directUrl: "http://190.93.224.43/BETHEL/index.m3u8" },
+
+  // ── Deportes: Movistar Deportes (Perú) ───────────────────────────────────────
+  { name: "Movistar Deportes (HD Auto-Renovado)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Deportes_logo.png", slug: "movistardeportes" },
+  { name: "Movistar Deportes (Directo Astra HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Deportes_logo.png", directUrl: "http://45.185.163.75:8000/play/a0i9/index.m3u8" },
 
   // ── Deportes: DIRECTV Sports (DSPORTS) ──────────────────────────────────────
   { name: "DSPORTS (DirecTV Sports)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports" },
@@ -31,6 +37,9 @@ export const CHANNELS = [
   { name: "ESPN 3", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-3/index.m3u8" },
   { name: "ESPN 4", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-4/index.m3u8" },
   { name: "ESPN Deportes USA", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "espndeportes" },
+  { name: "FOX Sports 1 HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1" },
+  { name: "FOX Sports 2 HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
+  { name: "FOX Sports 3 HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
 
   // ── Deportes: Ligas, TNT, Win & TyC ─────────────────────────────────────────
   { name: "Liga 1 MAX (Cable HD 60fps)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/Liga1_peru_logo.png", directUrl: "http://190.93.224.43/LIGA-1-MAX/index.m3u8" },
@@ -46,6 +55,7 @@ export const CHANNELS = [
   { name: "HBO Plus", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-PLUS/index.m3u8" },
   { name: "HBO Family", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-FAMILY/index.m3u8" },
   { name: "HBO Signature", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-SIGNATURE/index.m3u8" },
+  { name: "Comedy Central", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Comedy_Central_2018.svg", directUrl: "http://190.93.224.43/COMEDY-CENTRAL/index.m3u8" },
   { name: "TNT", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/TNT_Logo_2016.svg", directUrl: "http://190.93.224.43/TNT/index.m3u8" },
   { name: "Space", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Space_logo.svg", directUrl: "http://190.93.224.43/SPACE/index.m3u8" },
   { name: "AXN", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/f/fb/AXN_Logo.svg", directUrl: "http://190.93.224.43/AXN/index.m3u8" },
@@ -58,10 +68,27 @@ export const CHANNELS = [
   { name: "History Channel", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f5/History_Logo.svg", directUrl: "http://190.93.224.43/HISTORY/index.m3u8" },
   { name: "National Geographic", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/National_Geographic_logo.svg", directUrl: "http://190.93.224.43/NAT-GEO/index.m3u8" },
   { name: "Discovery Turbo", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Discovery_Turbo_Logo.svg", directUrl: "http://190.93.224.43/DISCOVERY-TURBO/index.m3u8" },
+  { name: "Nickelodeon", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Nickelodeon_2009_logo.svg", directUrl: "http://190.93.224.43/NICK/index.m3u8" },
   { name: "Discovery Kids", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Discovery_Kids_2016.svg", directUrl: "http://190.93.224.43/DISCOVERY-KIDS/index.m3u8" },
   { name: "Disney Jr", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", directUrl: "http://190.93.224.43/DISNEY-JR/index.m3u8" },
+  { name: "CNN en Español", group: "Noticias", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bb/CNN_en_Espa%C3%B1ol_logo.svg", directUrl: "http://190.93.224.43/CNN-ESPANOL/index.m3u8" },
   { name: "Telemundo", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Telemundo_logo.svg", directUrl: "http://190.93.224.43/TELEMUNDO/index.m3u8" },
 ];
+
+// ─── Mapping: Direct HLS Streams (Optimized Dynamic Window) ───────────────────
+export const DIRECT_HLS_MAP = {
+  movistardeportes: "http://45.185.163.75:8000/play/a0i9/index.m3u8",
+  "movistar-deportes": "http://45.185.163.75:8000/play/a0i9/index.m3u8",
+  movistar: "http://45.185.163.75:8000/play/a0i9/index.m3u8",
+  cmd: "http://45.185.163.75:8000/play/a0i9/index.m3u8",
+  foxsports1: "http://45.185.163.75:8000/play/a0hl/index.m3u8",
+  "fox-sports-1": "http://45.185.163.75:8000/play/a0hl/index.m3u8",
+  "fox-sports": "http://45.185.163.75:8000/play/a0hl/index.m3u8",
+  foxsports2: "http://45.185.163.75:8000/play/a0hk/index.m3u8",
+  "fox-sports-2": "http://45.185.163.75:8000/play/a0hk/index.m3u8",
+  foxsports3: "http://45.185.163.75:8000/play/a0hj/index.m3u8",
+  "fox-sports-3": "http://45.185.163.75:8000/play/a0hj/index.m3u8",
+};
 
 // ─── Mapping: Slugs to PirloTV / Instream Stream IDs ──────────────────────────
 export const INSTREAM_MAP = {
@@ -266,13 +293,111 @@ export async function resolveInstreamM3U8(streamId) {
   return optimizedM3U8;
 }
 
+// ─── Direct HLS Stream Resolver (Master playlist follower + Sliding window) ──
+
+export async function resolveHlsStream(m3u8Url, streamKey) {
+  const now = Date.now();
+
+  const cached = manifestCache.get(streamKey);
+  if (cached && now - cached.time < MANIFEST_CACHE_TTL && cached.content) {
+    return cached.content;
+  }
+
+  const res = await fetch(m3u8Url, {
+    headers: { "user-agent": UA },
+    signal: AbortSignal.timeout(6000),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Stream upstream retornó HTTP ${res.status}`);
+  }
+
+  let text = await res.text();
+  let activeUrl = m3u8Url;
+
+  // Follow master playlist if present
+  if (text.includes("#EXT-X-STREAM-INF")) {
+    const lines = text.split("\n");
+    let subUrl = null;
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].includes("#EXT-X-STREAM-INF")) {
+        subUrl = lines[i + 1]?.trim();
+        break;
+      }
+    }
+    if (subUrl) {
+      activeUrl = subUrl.startsWith("http") ? subUrl : new URL(subUrl, m3u8Url).href;
+      const subRes = await fetch(activeUrl, {
+        headers: { "user-agent": UA },
+        signal: AbortSignal.timeout(6000),
+      });
+      if (!subRes.ok) throw new Error(`Sub-playlist retornó HTTP ${subRes.status}`);
+      text = await subRes.text();
+    }
+  }
+
+  // Parse segments and sequence for ultra-low latency sliding window
+  const lines = text.split("\n");
+  const seqMatch = text.match(/#EXT-X-MEDIA-SEQUENCE:(\d+)/);
+  const origSeq = seqMatch ? parseInt(seqMatch[1]) : 0;
+  const targetDurMatch = text.match(/#EXT-X-TARGETDURATION:(\d+)/);
+  const targetDur = targetDurMatch ? targetDurMatch[1] : "3";
+
+  const segments = [];
+  let currentInf = null;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    if (trimmed.startsWith("#EXTINF:")) {
+      currentInf = trimmed;
+    } else if (currentInf && !trimmed.startsWith("#")) {
+      const fullTs = trimmed.startsWith("http") ? trimmed : new URL(trimmed, activeUrl).href;
+      segments.push({ inf: currentInf, ts: fullTs });
+      currentInf = null;
+    }
+  }
+
+  const KEEP_COUNT = 4;
+  const keptSegments = segments.length > KEEP_COUNT ? segments.slice(-KEEP_COUNT) : segments;
+  const droppedCount = segments.length - keptSegments.length;
+  const newSeq = origSeq + droppedCount;
+
+  const outputLines = [
+    "#EXTM3U",
+    "#EXT-X-VERSION:3",
+    `#EXT-X-MEDIA-SEQUENCE:${newSeq}`,
+    `#EXT-X-TARGETDURATION:${targetDur}`,
+    "#EXT-X-START:TIME-OFFSET=-6.0,PREFER-PRECISE=YES",
+  ];
+
+  for (const seg of keptSegments) {
+    outputLines.push(seg.inf);
+    outputLines.push(seg.ts);
+  }
+
+  const optimizedM3U8 = outputLines.join("\n");
+  manifestCache.set(streamKey, { content: optimizedM3U8, time: now });
+  return optimizedM3U8;
+}
+
 // ─── Universal Live Stream Fetcher ───────────────────────────────────────────
 
 export async function fetchLiveStreamM3U8(targetSlug, clientIp = "127.0.0.1") {
   if (!targetSlug) throw new Error("Falta slug de canal");
   const cleanSlug = targetSlug.toLowerCase().trim();
 
-  // 1. Direct stream ID (e.g. H94, H95, H96) or mapped slug
+  // 1. Direct HLS stream (e.g. Movistar Deportes, Fox Sports)
+  const directHls = DIRECT_HLS_MAP[cleanSlug];
+  if (directHls) {
+    try {
+      return await resolveHlsStream(directHls, cleanSlug);
+    } catch (err) {
+      console.error(`[Direct HLS Error] ${cleanSlug}:`, err.message);
+    }
+  }
+
+  // 2. Direct stream ID (e.g. H94, H95, H96) or mapped slug
   const streamId = (cleanSlug.startsWith("h") && !isNaN(cleanSlug.slice(1)))
     ? cleanSlug.toUpperCase()
     : INSTREAM_MAP[cleanSlug];
@@ -285,7 +410,7 @@ export async function fetchLiveStreamM3U8(targetSlug, clientIp = "127.0.0.1") {
     }
   }
 
-  // 2. Fallback to tvplusgratis handshake if exists
+  // 3. Fallback to tvplusgratis handshake if exists
   return fetchTvPlusGratisM3U8(cleanSlug, clientIp);
 }
 
