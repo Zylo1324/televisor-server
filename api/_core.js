@@ -5,97 +5,93 @@ const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 
 // ─── Static Channel Catalog ──────────────────────────────────────────────────
 export const CHANNELS = [
-  // ── Perú (Directos de alta velocidad sin bloqueos ni tokens) ─────────────────
-  { name: "América Televisión", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/47/America_Television_logo.png", directUrl: "http://190.93.224.43/AMERICA-TV/index.m3u8" },
-  { name: "Latina TV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Latina_Televisi%C3%B3n_Peru_logo.svg", directUrl: "http://190.93.224.43/LATINA/index.m3u8" },
-  { name: "Panamericana TV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Panamericana_Television_logo.png", directUrl: "http://190.93.224.43/PANAMERICANA/index.m3u8" },
-  { name: "ATV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", directUrl: "http://190.93.224.43/ATV/index.m3u8" },
-  { name: "ATV+", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", directUrl: "http://190.93.224.43/ATV-PLUS/index.m3u8" },
-  { name: "ATV Sur", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", directUrl: "https://dnhmqt6n0lkaq.cloudfront.net/ts:abr.m3u8" },
-  { name: "TV Perú", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/TV_Per%C3%BA.svg", directUrl: "http://190.93.224.43/TV-PERU/index.m3u8" },
-  { name: "TV Perú Noticias", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/TV_Per%C3%BA.svg", directUrl: "http://190.93.224.43/TV-PERU-NOTICIAS/index.m3u8" },
-  { name: "Willax Televisión", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/42/Willax_logo.jpg", directUrl: "http://190.93.224.43/WILLAX/index.m3u8" },
-  { name: "Exitosa TV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/9/90/Corporacion_Universal.png", directUrl: "http://190.93.224.43/EXITOSA/index.m3u8" },
-  { name: "RPP Noticias", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/RPP_Noticias_logo.png", directUrl: "http://190.93.224.43/RPP/index.m3u8" },
-  { name: "USMP TV", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/USMP_TV.png", directUrl: "http://190.93.224.43/USMP/index.m3u8" },
-  { name: "Bethel Televisión", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Bethel_Television_logo.png", directUrl: "http://190.93.224.43/BETHEL/index.m3u8" },
+  // ── Perú (Canales Directos Fibra Lima - 16ms 1080p Full HD) ─────────────────
+  { name: "América Televisión (HD 1080p - 16ms)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/47/America_Television_logo.png", directUrl: "http://190.93.224.43/AMERICA-TV/index.m3u8" },
+  { name: "Latina TV (HD 1080p - 16ms)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Latina_Televisi%C3%B3n_Peru_logo.svg", directUrl: "http://190.93.224.43/LATINA/index.m3u8" },
+  { name: "Panamericana TV (HD - 16ms)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Panamericana_Television_logo.png", directUrl: "http://190.93.224.43/PANAMERICANA/index.m3u8" },
+  { name: "ATV (HD - 16ms)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", directUrl: "http://190.93.224.43/ATV/index.m3u8" },
+  { name: "ATV+ (HD - 16ms)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", directUrl: "http://190.93.224.43/ATV-PLUS/index.m3u8" },
+  { name: "ATV Sur (HD)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", directUrl: "https://dnhmqt6n0lkaq.cloudfront.net/ts:abr.m3u8" },
+  { name: "TV Perú (HD - 16ms)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/TV_Per%C3%BA.svg", directUrl: "http://190.93.224.43/TV-PERU/index.m3u8" },
+  { name: "TV Perú Noticias (HD - 16ms)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/TV_Per%C3%BA.svg", directUrl: "http://190.93.224.43/TV-PERU-NOTICIAS/index.m3u8" },
+  { name: "Willax Televisión (HD - 16ms)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/42/Willax_logo.jpg", directUrl: "http://190.93.224.43/WILLAX/index.m3u8" },
+  { name: "Exitosa TV (HD - 16ms)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/9/90/Corporacion_Universal.png", directUrl: "http://190.93.224.43/EXITOSA/index.m3u8" },
+  { name: "RPP Noticias (HD - 16ms)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/RPP_Noticias_logo.png", directUrl: "http://190.93.224.43/RPP/index.m3u8" },
+  { name: "USMP TV (HD - 16ms)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/USMP_TV.png", directUrl: "http://190.93.224.43/USMP/index.m3u8" },
+  { name: "Bethel Televisión (HD - 16ms)", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Bethel_Television_logo.png", directUrl: "http://190.93.224.43/BETHEL/index.m3u8" },
 
-  // ── Deportes: Movistar Deportes (Perú) ───────────────────────────────────────
-  { name: "Movistar Deportes (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Deportes_logo.png", slug: "movistardeportes" },
-  { name: "Movistar Deportes (Respaldo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Deportes_logo.png", directUrl: "http://45.185.163.75:8000/play/a0i9/index.m3u8" },
+  // ── Deportes: Perú y Ligas Principales ──────────────────────────────────────
+  { name: "Movistar Deportes (HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Deportes_logo.png", directUrl: "http://45.185.163.75:8000/play/a0i9/index.m3u8" },
+  { name: "Liga 1 MAX (HD 1080p 60fps - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/Liga1_peru_logo.png", directUrl: "http://190.93.224.43/LIGA-1-MAX/index.m3u8" },
+  { name: "Liga 1 MAX (Señal 2 PirloTV)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/Liga1_peru_logo.png", slug: "liga1max" },
 
   // ── Deportes: DIRECTV Sports (DSPORTS) ──────────────────────────────────────
   { name: "DSPORTS (DirecTV Sports)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports" },
   { name: "DSPORTS 2 (DirecTV Sports 2)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports2" },
   { name: "DSPORTS + (DirecTV Sports +)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsportsplus" },
 
-  // ── Deportes: ESPN & Fox ────────────────────────────────────────────────────
-  { name: "ESPN Premium (Cable HD 60fps)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-PREMIUM/index.m3u8" },
-  { name: "ESPN Premium (PirloTV)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "espnpremium" },
-  { name: "ESPN", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN/index.m3u8" },
-  { name: "ESPN 2", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-2/index.m3u8" },
-  { name: "ESPN 3", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-3/index.m3u8" },
-  { name: "ESPN 4 (Ex-Fox Sports 1)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-4/index.m3u8" },
-  { name: "ESPN 5 (Ex-Fox Sports 2)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-5/index.m3u8" },
-  { name: "ESPN 6 (Ex-Fox Sports 3)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-6/index.m3u8" },
-  { name: "ESPN 7 (Ex-Fox Sports Premium)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-7/index.m3u8" },
+  // ── Deportes: ESPN & FOX Sports (16ms Fibra Directa 60fps) ───────────────────
+  { name: "ESPN Premium (HD 60fps - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-PREMIUM/index.m3u8" },
+  { name: "ESPN Premium (Señal 2 PirloTV)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "espnpremium" },
+  { name: "ESPN (HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN/index.m3u8" },
+  { name: "ESPN 2 (HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-2/index.m3u8" },
+  { name: "ESPN 3 (HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-3/index.m3u8" },
+  { name: "ESPN 4 (FOX Sports 1) (HD 60fps - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-4/index.m3u8" },
+  { name: "ESPN 5 (FOX Sports 2) (HD 60fps - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-5/index.m3u8" },
+  { name: "ESPN 6 (FOX Sports 3) (HD 60fps - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-6/index.m3u8" },
+  { name: "ESPN 7 (FOX Sports Premium) (HD 60fps - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-7/index.m3u8" },
+  { name: "FOX Sports 1 (HD Directo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hm/index.m3u8" },
+  { name: "FOX Sports 2 (HD Directo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hn/index.m3u8" },
+  { name: "FOX Sports 3 (HD Directo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0ho/index.m3u8" },
   { name: "ESPN Deportes USA", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "espndeportes" },
-  { name: "FOX Sports 1 HD (1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1" },
-  { name: "FOX Sports 1 (Respaldo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hm/index.m3u8" },
-  { name: "FOX Sports 2 HD (1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
-  { name: "FOX Sports 2 (Respaldo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hk/index.m3u8" },
-  { name: "FOX Sports 3 HD (1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
-  { name: "FOX Sports 3 (Respaldo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hj/index.m3u8" },
 
-  // ── Deportes: Ligas, TNT, Win & TyC ─────────────────────────────────────────
-  { name: "Liga 1 MAX (Cable HD 60fps)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/Liga1_peru_logo.png", directUrl: "http://190.93.224.43/LIGA-1-MAX/index.m3u8" },
-  { name: "Liga 1 MAX (PirloTV)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/Liga1_peru_logo.png", slug: "liga1max" },
+  // ── Deportes: TNT, Win, TyC & Claro ─────────────────────────────────────────
   { name: "TNT Sports Premium Argentina", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntsports" },
   { name: "TNT Sports Premium Chile", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntchile" },
   { name: "Win Sports", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winsports" },
   { name: "Win Sports +", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winplus" },
   { name: "TyC Sports", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/6/62/TyC_Sports_logo.svg", slug: "tycsports" },
-  { name: "Movistar LaLiga HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Movistar_LaLiga_logo.svg", slug: "movistar-la-liga" },
-  { name: "Sky Sports LaLiga HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Sky_Sports_logo_2020.svg", slug: "sky-sports-la-liga" },
+  { name: "Claro Sports (HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Claro_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a07k/index.m3u8" },
 
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
-  { name: "HBO 2", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
-  { name: "HBO Plus", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-PLUS/index.m3u8" },
-  { name: "HBO Family", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-FAMILY/index.m3u8" },
-  { name: "HBO Signature", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-SIGNATURE/index.m3u8" },
-  { name: "Comedy Central", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Comedy_Central_2018.svg", directUrl: "http://190.93.224.43/COMEDY-CENTRAL/index.m3u8" },
-  { name: "TNT", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/TNT_Logo_2016.svg", directUrl: "http://190.93.224.43/TNT/index.m3u8" },
-  { name: "TNT Series", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/TNT_Series_logo.svg", directUrl: "http://190.93.224.43/TNT-SERIES/index.m3u8" },
-  { name: "TNT Novelas", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/TNT_Novelas_logo.svg", directUrl: "http://190.93.224.43/TNT-NOVELAS/index.m3u8" },
-  { name: "Star Channel HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Star_Channel_2021.svg", slug: "star-channel" },
-  { name: "Warner Channel HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/3/36/Warner_Channel_2021.svg", slug: "warner-channel" },
-  { name: "Cinemax HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Cinemax_logo_2016.svg", slug: "cinemax" },
-  { name: "Golden Premier HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Logo.png", slug: "golden-premier" },
-  { name: "Space", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Space_logo.svg", directUrl: "http://190.93.224.43/SPACE/index.m3u8" },
-  { name: "AXN", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/f/fb/AXN_Logo.svg", directUrl: "http://190.93.224.43/AXN/index.m3u8" },
-  { name: "FX", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/FX_logo.svg", directUrl: "http://190.93.224.43/FX/index.m3u8" },
-  { name: "Sony Channel", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/Sony_Channel_logo.svg", directUrl: "http://190.93.224.43/SONY-CHANNEL/index.m3u8" },
-  { name: "Golden", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Logo.png", directUrl: "http://190.93.224.43/GOLDEN/index.m3u8" },
-  { name: "Studio Universal", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Studio_Universal_2016.png", directUrl: "http://190.93.224.43/STUDIO-UNIVERSAL/index.m3u8" },
+  { name: "HBO 2 (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
+  { name: "HBO Plus (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-PLUS/index.m3u8" },
+  { name: "HBO Family (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-FAMILY/index.m3u8" },
+  { name: "HBO Signature (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-SIGNATURE/index.m3u8" },
+  { name: "Comedy Central (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Comedy_Central_2018.svg", directUrl: "http://190.93.224.43/COMEDY-CENTRAL/index.m3u8" },
+  { name: "TNT (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/TNT_Logo_2016.svg", directUrl: "http://190.93.224.43/TNT/index.m3u8" },
+  { name: "TNT Series (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/TNT_Series_logo.svg", directUrl: "http://190.93.224.43/TNT-SERIES/index.m3u8" },
+  { name: "TNT Novelas (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/TNT_Novelas_logo.svg", directUrl: "http://190.93.224.43/TNT-NOVELAS/index.m3u8" },
+  { name: "Star Channel HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Star_Channel_2021.svg", directUrl: "http://45.185.163.75:8000/play/a0dm/index.m3u8" },
+  { name: "Warner Channel HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/3/36/Warner_Channel_2021.svg", directUrl: "http://45.185.163.75:8000/play/a0dn/index.m3u8" },
+  { name: "Cinemax HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Cinemax_logo_2016.svg", directUrl: "http://45.185.163.75:8000/play/a014/index.m3u8" },
+  { name: "Golden Premiere HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Logo.png", directUrl: "http://45.185.163.75:8000/play/a0fv/index.m3u8" },
+  { name: "Cinecanal HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Cinecanal_2016.svg", directUrl: "http://45.185.163.75:8000/play/a0dp/index.m3u8" },
+  { name: "Space (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Space_logo.svg", directUrl: "http://190.93.224.43/SPACE/index.m3u8" },
+  { name: "AXN (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/f/fb/AXN_Logo.svg", directUrl: "http://190.93.224.43/AXN/index.m3u8" },
+  { name: "FX (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/FX_logo.svg", directUrl: "http://190.93.224.43/FX/index.m3u8" },
+  { name: "Sony Channel (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/Sony_Channel_logo.svg", directUrl: "http://190.93.224.43/SONY-CHANNEL/index.m3u8" },
+  { name: "Golden (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Logo.png", directUrl: "http://190.93.224.43/GOLDEN/index.m3u8" },
+  { name: "Studio Universal (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Studio_Universal_2016.png", directUrl: "http://190.93.224.43/STUDIO-UNIVERSAL/index.m3u8" },
 
   // ── Cultura y Variedades ───────────────────────────────────────────────────
-  { name: "Discovery Home & Health (H&H)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Discovery_Home_%26_Health_logo.png", directUrl: "http://45.185.163.75:8000/play/a05r/index.m3u8" },
-  { name: "El Gourmet", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/El_Gourmet_logo.png", directUrl: "http://190.93.224.43/EL-GOURMET/index.m3u8" },
-  { name: "History Channel", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f5/History_Logo.svg", directUrl: "http://190.93.224.43/HISTORY/index.m3u8" },
-  { name: "History 2", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/2/27/History_2_logo.svg", directUrl: "http://190.93.224.43/HISTORY-2/index.m3u8" },
-  { name: "National Geographic", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/National_Geographic_logo.svg", directUrl: "http://190.93.224.43/NAT-GEO/index.m3u8" },
-  { name: "Discovery Turbo", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Discovery_Turbo_Logo.svg", directUrl: "http://190.93.224.43/DISCOVERY-TURBO/index.m3u8" },
+  { name: "Discovery Home & Health (H&H)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Discovery_Home_%26_Health_logo.png", directUrl: "http://45.185.163.75:8000/play/a0c9/index.m3u8" },
+  { name: "El Gourmet (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/El_Gourmet_logo.png", directUrl: "http://190.93.224.43/EL-GOURMET/index.m3u8" },
+  { name: "History Channel (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f5/History_Logo.svg", directUrl: "http://190.93.224.43/HISTORY/index.m3u8" },
+  { name: "History 2 (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/2/27/History_2_logo.svg", directUrl: "http://190.93.224.43/HISTORY-2/index.m3u8" },
+  { name: "National Geographic (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/National_Geographic_logo.svg", directUrl: "http://190.93.224.43/NAT-GEO/index.m3u8" },
+  { name: "Discovery Turbo (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Discovery_Turbo_Logo.svg", directUrl: "http://190.93.224.43/DISCOVERY-TURBO/index.m3u8" },
 
   // ── Infantil ───────────────────────────────────────────────────────────────
   { name: "Cartoon Network", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/8/80/Cartoon_Network_2010_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0e0/index.m3u8" },
   { name: "Cartoonito", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cartoonito_2021.svg", directUrl: "http://45.185.163.75:8000/play/a0e2/index.m3u8" },
-  { name: "Nickelodeon", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Nickelodeon_2009_logo.svg", directUrl: "http://190.93.224.43/NICK/index.m3u8" },
-  { name: "Discovery Kids", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Discovery_Kids_2016.svg", directUrl: "http://190.93.224.43/DISCOVERY-KIDS/index.m3u8" },
-  { name: "Disney Jr", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", directUrl: "http://190.93.224.43/DISNEY-JR/index.m3u8" },
+  { name: "Nickelodeon (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Nickelodeon_2009_logo.svg", directUrl: "http://190.93.224.43/NICK/index.m3u8" },
+  { name: "Discovery Kids (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Discovery_Kids_2016.svg", directUrl: "http://190.93.224.43/DISCOVERY-KIDS/index.m3u8" },
+  { name: "Disney Jr (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", directUrl: "http://190.93.224.43/DISNEY-JR/index.m3u8" },
 
   // ── Noticias y Entretenimiento ─────────────────────────────────────────────
-  { name: "CNN en Español", group: "Noticias", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bb/CNN_en_Espa%C3%B1ol_logo.svg", directUrl: "http://190.93.224.43/CNN-ESPANOL/index.m3u8" },
-  { name: "Telemundo", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Telemundo_logo.svg", directUrl: "http://190.93.224.43/TELEMUNDO/index.m3u8" },
+  { name: "CNN en Español (HD - 16ms)", group: "Noticias", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bb/CNN_en_Espa%C3%B1ol_logo.svg", directUrl: "http://190.93.224.43/CNN-ESPANOL/index.m3u8" },
+  { name: "Telemundo (HD - 16ms)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Telemundo_logo.svg", directUrl: "http://190.93.224.43/TELEMUNDO/index.m3u8" },
 ];
 
 // ─── Mapping: Direct HLS Streams (Optimized Dynamic Window) ───────────────────
@@ -107,10 +103,19 @@ export const DIRECT_HLS_MAP = {
   foxsports1: "http://45.185.163.75:8000/play/a0hm/index.m3u8",
   "fox-sports-1": "http://45.185.163.75:8000/play/a0hm/index.m3u8",
   "fox-sports": "http://45.185.163.75:8000/play/a0hm/index.m3u8",
-  foxsports2: "http://45.185.163.75:8000/play/a0hk/index.m3u8",
-  "fox-sports-2": "http://45.185.163.75:8000/play/a0hk/index.m3u8",
-  foxsports3: "http://45.185.163.75:8000/play/a0hj/index.m3u8",
-  "fox-sports-3": "http://45.185.163.75:8000/play/a0hj/index.m3u8",
+  foxsports2: "http://45.185.163.75:8000/play/a0hn/index.m3u8",
+  "fox-sports-2": "http://45.185.163.75:8000/play/a0hn/index.m3u8",
+  foxsports3: "http://45.185.163.75:8000/play/a0ho/index.m3u8",
+  "fox-sports-3": "http://45.185.163.75:8000/play/a0ho/index.m3u8",
+  "star-channel": "http://45.185.163.75:8000/play/a0dm/index.m3u8",
+  "warner-channel": "http://45.185.163.75:8000/play/a0dn/index.m3u8",
+  cinemax: "http://45.185.163.75:8000/play/a014/index.m3u8",
+  "golden-premier": "http://45.185.163.75:8000/play/a0fv/index.m3u8",
+  cinecanal: "http://45.185.163.75:8000/play/a0dp/index.m3u8",
+  "cartoon-network": "http://45.185.163.75:8000/play/a0e0/index.m3u8",
+  cartoonito: "http://45.185.163.75:8000/play/a0e2/index.m3u8",
+  "discovery-hh": "http://45.185.163.75:8000/play/a0c9/index.m3u8",
+  "claro-sports": "http://45.185.163.75:8000/play/a07k/index.m3u8",
 };
 
 // ─── Mapping: Slugs to TVF90 1080p Flussonic Cluster (PelotaLibre) ───────────
@@ -563,17 +568,7 @@ export async function fetchLiveStreamM3U8(targetSlug, clientIp = "127.0.0.1") {
   if (!targetSlug) throw new Error("Falta slug de canal");
   const cleanSlug = targetSlug.toLowerCase().trim();
 
-  // 1. TVF90 / PelotaLibre 1080p HD streams (FOX Sports, Movistar Deportes, TyC, DSports, Liga 1 Max)
-  const tvf90Id = TVF90_MAP[cleanSlug];
-  if (tvf90Id) {
-    try {
-      return await resolveTvf90M3U8(tvf90Id, cleanSlug);
-    } catch (err) {
-      console.error(`[TVF90 Error] ${cleanSlug} (${tvf90Id}):`, err.message);
-    }
-  }
-
-  // 2. Direct HLS stream (Fallback)
+  // 1. Direct HLS stream (Astra dynamic sliding window)
   const directHls = DIRECT_HLS_MAP[cleanSlug];
   if (directHls) {
     try {
