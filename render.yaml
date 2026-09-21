@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: televisor-proxy
+    runtime: rust
+    buildCommand: cargo build --release
+    startCommand: ./target/release/televisor-server
+    plan: free
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: API_KEY
+        generateValue: true
+      - key: SERVER_URL
+        sync: false
+      - key: RUST_LOG
+        value: info
