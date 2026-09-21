@@ -21,8 +21,8 @@ export const CHANNELS = [
   { name: "Bethel Televisión", group: "Peru", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Bethel_Television_logo.png", directUrl: "http://190.93.224.43/BETHEL/index.m3u8" },
 
   // ── Deportes: Movistar Deportes (Perú) ───────────────────────────────────────
-  { name: "Movistar Deportes (HD Auto-Renovado)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Deportes_logo.png", slug: "movistardeportes" },
-  { name: "Movistar Deportes (Directo Astra HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Deportes_logo.png", directUrl: "http://45.185.163.75:8000/play/a0i9/index.m3u8" },
+  { name: "Movistar Deportes (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Deportes_logo.png", slug: "movistardeportes" },
+  { name: "Movistar Deportes (Respaldo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Deportes_logo.png", directUrl: "http://45.185.163.75:8000/play/a0i9/index.m3u8" },
 
   // ── Deportes: DIRECTV Sports (DSPORTS) ──────────────────────────────────────
   { name: "DSPORTS (DirecTV Sports)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports" },
@@ -40,12 +40,12 @@ export const CHANNELS = [
   { name: "ESPN 6 (Ex-Fox Sports 3)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-6/index.m3u8" },
   { name: "ESPN 7 (Ex-Fox Sports Premium)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-7/index.m3u8" },
   { name: "ESPN Deportes USA", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "espndeportes" },
-  { name: "FOX Sports 1 HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1" },
-  { name: "FOX Sports 1 (Directo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hm/index.m3u8" },
-  { name: "FOX Sports 2 HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
-  { name: "FOX Sports 2 (Directo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hk/index.m3u8" },
-  { name: "FOX Sports 3 HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
-  { name: "FOX Sports 3 (Directo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hj/index.m3u8" },
+  { name: "FOX Sports 1 HD (1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1" },
+  { name: "FOX Sports 1 (Respaldo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hm/index.m3u8" },
+  { name: "FOX Sports 2 HD (1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
+  { name: "FOX Sports 2 (Respaldo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hk/index.m3u8" },
+  { name: "FOX Sports 3 HD (1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
+  { name: "FOX Sports 3 (Respaldo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0hj/index.m3u8" },
 
   // ── Deportes: Ligas, TNT, Win & TyC ─────────────────────────────────────────
   { name: "Liga 1 MAX (Cable HD 60fps)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/Liga1_peru_logo.png", directUrl: "http://190.93.224.43/LIGA-1-MAX/index.m3u8" },
@@ -63,6 +63,8 @@ export const CHANNELS = [
   { name: "HBO Signature", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-SIGNATURE/index.m3u8" },
   { name: "Comedy Central", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Comedy_Central_2018.svg", directUrl: "http://190.93.224.43/COMEDY-CENTRAL/index.m3u8" },
   { name: "TNT", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/TNT_Logo_2016.svg", directUrl: "http://190.93.224.43/TNT/index.m3u8" },
+  { name: "TNT Series", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/TNT_Series_logo.svg", directUrl: "http://190.93.224.43/TNT-SERIES/index.m3u8" },
+  { name: "TNT Novelas", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/TNT_Novelas_logo.svg", directUrl: "http://190.93.224.43/TNT-NOVELAS/index.m3u8" },
   { name: "Space", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Space_logo.svg", directUrl: "http://190.93.224.43/SPACE/index.m3u8" },
   { name: "AXN", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/f/fb/AXN_Logo.svg", directUrl: "http://190.93.224.43/AXN/index.m3u8" },
   { name: "FX", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/FX_logo.svg", directUrl: "http://190.93.224.43/FX/index.m3u8" },
@@ -71,12 +73,20 @@ export const CHANNELS = [
   { name: "Studio Universal", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Studio_Universal_2016.png", directUrl: "http://190.93.224.43/STUDIO-UNIVERSAL/index.m3u8" },
 
   // ── Cultura y Variedades ───────────────────────────────────────────────────
+  { name: "Discovery Home & Health (H&H)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Discovery_Home_%26_Health_logo.png", directUrl: "http://45.185.163.75:8000/play/a05r/index.m3u8" },
+  { name: "El Gourmet", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/El_Gourmet_logo.png", directUrl: "http://190.93.224.43/EL-GOURMET/index.m3u8" },
   { name: "History Channel", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f5/History_Logo.svg", directUrl: "http://190.93.224.43/HISTORY/index.m3u8" },
   { name: "National Geographic", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/National_Geographic_logo.svg", directUrl: "http://190.93.224.43/NAT-GEO/index.m3u8" },
   { name: "Discovery Turbo", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Discovery_Turbo_Logo.svg", directUrl: "http://190.93.224.43/DISCOVERY-TURBO/index.m3u8" },
+
+  // ── Infantil ───────────────────────────────────────────────────────────────
+  { name: "Cartoon Network", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/8/80/Cartoon_Network_2010_logo.svg", directUrl: "http://45.185.163.75:8000/play/a0e0/index.m3u8" },
+  { name: "Cartoonito", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cartoonito_2021.svg", directUrl: "http://45.185.163.75:8000/play/a0e2/index.m3u8" },
   { name: "Nickelodeon", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Nickelodeon_2009_logo.svg", directUrl: "http://190.93.224.43/NICK/index.m3u8" },
   { name: "Discovery Kids", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Discovery_Kids_2016.svg", directUrl: "http://190.93.224.43/DISCOVERY-KIDS/index.m3u8" },
   { name: "Disney Jr", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", directUrl: "http://190.93.224.43/DISNEY-JR/index.m3u8" },
+
+  // ── Noticias y Entretenimiento ─────────────────────────────────────────────
   { name: "CNN en Español", group: "Noticias", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bb/CNN_en_Espa%C3%B1ol_logo.svg", directUrl: "http://190.93.224.43/CNN-ESPANOL/index.m3u8" },
   { name: "Telemundo", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Telemundo_logo.svg", directUrl: "http://190.93.224.43/TELEMUNDO/index.m3u8" },
 ];
@@ -94,6 +104,32 @@ export const DIRECT_HLS_MAP = {
   "fox-sports-2": "http://45.185.163.75:8000/play/a0hk/index.m3u8",
   foxsports3: "http://45.185.163.75:8000/play/a0hj/index.m3u8",
   "fox-sports-3": "http://45.185.163.75:8000/play/a0hj/index.m3u8",
+};
+
+// ─── Mapping: Slugs to TVF90 1080p Flussonic Cluster (PelotaLibre) ───────────
+export const TVF90_MAP = {
+  foxsports: "foxsports",
+  foxsports1: "foxsports",
+  "fox-sports": "foxsports",
+  "fox-sports-1": "foxsports",
+  foxsports2: "foxsports2",
+  "fox-sports-2": "foxsports2",
+  foxsports3: "foxsports3",
+  "fox-sports-3": "foxsports3",
+  movistardeportes: "movistar",
+  "movistar-deportes": "movistar",
+  movistar: "movistar",
+  cmd: "movistar",
+  dsports: "dsports",
+  "directv-sports": "dsports",
+  dsports2: "dsports2",
+  "directv-sports-2": "dsports2",
+  dsportsplus: "dsportsplus",
+  "directv-sports-plus": "dsportsplus",
+  tycsports: "tycsports",
+  "tyc-sports": "tycsports",
+  liga1max: "liga1max",
+  "liga-1-max": "liga1max",
 };
 
 // ─── Mapping: Slugs to PirloTV / Instream Stream IDs ──────────────────────────
@@ -391,13 +427,146 @@ export async function resolveHlsStream(m3u8Url, streamKey) {
   return optimizedM3U8;
 }
 
+// ─── TVF90 / FTL.LY Auto-Renovating Dynamic Resolver (PelotaLibre 1080p HD) ─────
+const tvf90TokenCache = new Map();
+const TVF90_TOKEN_TTL = 3 * 60 * 60 * 1000; // 3 horas
+
+export async function resolveTvf90M3U8(streamId, cleanSlug) {
+  const now = Date.now();
+  const cacheKey = `tvf90_${cleanSlug || streamId}`;
+
+  // Check manifest cache (1.5s live window)
+  const cachedManifest = manifestCache.get(cacheKey);
+  if (cachedManifest && now - cachedManifest.time < MANIFEST_CACHE_TTL && cachedManifest.content) {
+    return cachedManifest.content;
+  }
+
+  let masterUrl = null;
+  const cachedToken = tvf90TokenCache.get(streamId);
+  if (cachedToken && now - cachedToken.time < TVF90_TOKEN_TTL && cachedToken.url) {
+    masterUrl = cachedToken.url;
+  } else {
+    const pageUrl = `https://tvf90.com/5.php?stream=${streamId}`;
+    const pageRes = await fetch(pageUrl, {
+      headers: {
+        "user-agent": UA,
+        "referer": "https://pelotalibre.net.pe/",
+      },
+      signal: AbortSignal.timeout(6000),
+    });
+
+    if (!pageRes.ok) {
+      throw new Error(`tvf90 retornó HTTP ${pageRes.status}`);
+    }
+
+    const html = await pageRes.text();
+    const m = html.match(/(https:\/\/[^"'\s]*mono\.m3u8\?[^"'\s]*)/);
+    if (!m) {
+      throw new Error(`No se encontró mono.m3u8 para ${streamId}`);
+    }
+
+    masterUrl = m[1];
+    tvf90TokenCache.set(streamId, { url: masterUrl, time: now });
+  }
+
+  let m3u8Res = await fetch(masterUrl, {
+    headers: {
+      "user-agent": UA,
+      "referer": "https://tvf90.com/",
+    },
+    signal: AbortSignal.timeout(6000),
+  });
+
+  if (!m3u8Res.ok) {
+    tvf90TokenCache.delete(streamId);
+    const retryPageRes = await fetch(`https://tvf90.com/5.php?stream=${streamId}`, {
+      headers: { "user-agent": UA, "referer": "https://pelotalibre.net.pe/" },
+      signal: AbortSignal.timeout(6000),
+    });
+    const html = await retryPageRes.text();
+    const m = html.match(/(https:\/\/[^"'\s]*mono\.m3u8\?[^"'\s]*)/);
+    if (m) {
+      masterUrl = m[1];
+      tvf90TokenCache.set(streamId, { url: masterUrl, time: now });
+      m3u8Res = await fetch(masterUrl, {
+        headers: { "user-agent": UA, "referer": "https://tvf90.com/" },
+        signal: AbortSignal.timeout(6000),
+      });
+    }
+  }
+
+  if (!m3u8Res.ok) {
+    throw new Error(`Upstream Flussonic retornó HTTP ${m3u8Res.status}`);
+  }
+
+  const text = await m3u8Res.text();
+  const basePath = masterUrl.substring(0, masterUrl.lastIndexOf("/") + 1);
+
+  const lines = text.split("\n");
+  const seqMatch = text.match(/#EXT-X-MEDIA-SEQUENCE:(\d+)/);
+  const origSeq = seqMatch ? parseInt(seqMatch[1]) : 0;
+  const targetDurMatch = text.match(/#EXT-X-TARGETDURATION:(\d+)/);
+  const targetDur = targetDurMatch ? targetDurMatch[1] : "6";
+
+  const segments = [];
+  let currentInf = null;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    if (trimmed.startsWith("#EXTINF:")) {
+      currentInf = trimmed;
+    } else if (currentInf && !trimmed.startsWith("#")) {
+      const fullTs = trimmed.startsWith("http")
+        ? trimmed
+        : (trimmed.startsWith("/") ? new URL(trimmed, masterUrl).href : `${basePath}${trimmed}`);
+      segments.push({ inf: currentInf, ts: fullTs });
+      currentInf = null;
+    }
+  }
+
+  const KEEP_COUNT = 4;
+  const keptSegments = segments.length > KEEP_COUNT ? segments.slice(-KEEP_COUNT) : segments;
+  const droppedCount = segments.length - keptSegments.length;
+  const newSeq = origSeq + droppedCount;
+
+  const outputLines = [
+    "#EXTM3U",
+    "#EXT-X-VERSION:3",
+    `#EXT-X-MEDIA-SEQUENCE:${newSeq}`,
+    `#EXT-X-TARGETDURATION:${targetDur}`,
+  ];
+  if (keptSegments.length >= 3) {
+    outputLines.push("#EXT-X-START:TIME-OFFSET=-4.0,PREFER-PRECISE=YES");
+  }
+
+  for (const seg of keptSegments) {
+    outputLines.push(seg.inf);
+    outputLines.push(seg.ts);
+  }
+
+  const optimizedM3U8 = outputLines.join("\n");
+  manifestCache.set(cacheKey, { content: optimizedM3U8, time: now });
+  return optimizedM3U8;
+}
+
 // ─── Universal Live Stream Fetcher ───────────────────────────────────────────
 
 export async function fetchLiveStreamM3U8(targetSlug, clientIp = "127.0.0.1") {
   if (!targetSlug) throw new Error("Falta slug de canal");
   const cleanSlug = targetSlug.toLowerCase().trim();
 
-  // 1. Direct HLS stream (e.g. Movistar Deportes, Fox Sports)
+  // 1. TVF90 / PelotaLibre 1080p HD streams (FOX Sports, Movistar Deportes, TyC, DSports, Liga 1 Max)
+  const tvf90Id = TVF90_MAP[cleanSlug];
+  if (tvf90Id) {
+    try {
+      return await resolveTvf90M3U8(tvf90Id, cleanSlug);
+    } catch (err) {
+      console.error(`[TVF90 Error] ${cleanSlug} (${tvf90Id}):`, err.message);
+    }
+  }
+
+  // 2. Direct HLS stream (Fallback)
   const directHls = DIRECT_HLS_MAP[cleanSlug];
   if (directHls) {
     try {
