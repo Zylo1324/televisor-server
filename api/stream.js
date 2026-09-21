@@ -56,7 +56,9 @@ export default async function handler(req, res) {
 
     res.setHeader("Content-Type", "application/vnd.apple.mpegurl; charset=utf-8");
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
     res.status(200).send(rewritten);
   } catch (err) {
     res.status(502).send(`Error en proxy: ${err.message}`);

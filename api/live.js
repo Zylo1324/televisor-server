@@ -23,7 +23,9 @@ export default async function handler(req, res) {
     const m3u8Content = await fetchLiveStreamM3U8(target, clientIp);
     res.setHeader("Content-Type", "application/vnd.apple.mpegurl; charset=utf-8");
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
     res.status(200).send(m3u8Content);
   } catch (err) {
     res.status(502).send(`Error resolviendo stream ${target}: ${err.message}\n`);

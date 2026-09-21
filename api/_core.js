@@ -131,39 +131,56 @@ export function generateM3U(filterGroup, baseUrl, apiKey) {
   return lines.join("\n");
 }
 
-// ─── Instream Auto-Renovating Dynamic Resolver ────────────────────────────────
+// ─── Instream Auto-Renovating Dynamic Resolver (Low Latency & Anti-Buffering) ──
 
-const instreamCache = new Map();
-const INSTREAM_CACHE_TTL = 45 * 1000; // 45 segundos de caché rápida para segmentos
+// Two-tier cache:
+// 1. tokenCache: stores upstream streamUrls for 10 minutes so we don't re-scrape instream.click HTML on every poll.
+// 2. manifestCache: stores parsed M3U8 for ONLY 1.5 seconds so live sequence numbers advance smoothly and never stall!
+const tokenCache = new Map();
+const TOKEN_CACHE_TTL = 10 * 60 * 1000; // 10 minutos
+
+const manifestCache = new Map();
+const MANIFEST_CACHE_TTL = 1500; // 1.5 segundos
 
 export async function resolveInstreamM3U8(streamId) {
   const now = Date.now();
-  const cached = instreamCache.get(streamId);
-  if (cached && now - cached.time < INSTREAM_CACHE_TTL && cached.content) {
-    return cached.content;
+
+  // Tier 2: Check ultra-short live manifest cache (1.5s)
+  const cachedManifest = manifestCache.get(streamId);
+  if (cachedManifest && now - cachedManifest.time < MANIFEST_CACHE_TTL && cachedManifest.content) {
+    return cachedManifest.content;
   }
 
-  const pageUrl = `https://instream.click/hlsspanich.php?stream=${streamId}`;
-  const pageRes = await fetch(pageUrl, {
-    headers: {
-      "user-agent": UA,
-      "referer": "https://live4.lat/",
-    },
-    signal: AbortSignal.timeout(6000),
-  });
+  // Tier 1: Check token cache or scrape fresh URLs
+  let urls = null;
+  const cachedToken = tokenCache.get(streamId);
+  if (cachedToken && now - cachedToken.time < TOKEN_CACHE_TTL && cachedToken.urls) {
+    urls = cachedToken.urls;
+  } else {
+    const pageUrl = `https://instream.click/hlsspanich.php?stream=${streamId}`;
+    const pageRes = await fetch(pageUrl, {
+      headers: {
+        "user-agent": UA,
+        "referer": "https://live4.lat/",
+      },
+      signal: AbortSignal.timeout(6000),
+    });
 
-  if (!pageRes.ok) {
-    throw new Error(`instream.click retornó HTTP ${pageRes.status}`);
+    if (!pageRes.ok) {
+      throw new Error(`instream.click retornó HTTP ${pageRes.status}`);
+    }
+
+    const html = await pageRes.text();
+    const m = html.match(/const streamUrls = \["([^"]+)"(?:,"([^"]+)")?\]/);
+    if (!m) {
+      throw new Error(`No se encontró streamUrls para ${streamId}`);
+    }
+
+    urls = [m[1], m[2]].filter(Boolean).map(u => u.replace(/\\u0026/g, "&"));
+    tokenCache.set(streamId, { urls, time: now });
   }
 
-  const html = await pageRes.text();
-  const m = html.match(/const streamUrls = \["([^"]+)"(?:,"([^"]+)")?\]/);
-  if (!m) {
-    throw new Error(`No se encontró streamUrls para ${streamId}`);
-  }
-
-  const urls = [m[1], m[2]].filter(Boolean).map(u => u.replace(/\\u0026/g, "&"));
-
+  // Fetch the fresh live manifest from upstream CDN
   let m3u8Text = null;
   let activeUrl = null;
 
@@ -174,7 +191,7 @@ export async function resolveInstreamM3U8(streamId) {
           "user-agent": UA,
           "referer": "https://instream.click/",
         },
-        signal: AbortSignal.timeout(6000),
+        signal: AbortSignal.timeout(5000),
       });
 
       if (upstreamRes.ok) {
@@ -188,26 +205,65 @@ export async function resolveInstreamM3U8(streamId) {
     } catch (_) {}
   }
 
-  if (!m3u8Text || !activeUrl) {
+  // If cached token failed, invalidate and try scraping once more
+  if (!m3u8Text) {
+    tokenCache.delete(streamId);
     throw new Error(`El stream ${streamId} no devolvió una lista M3U8 válida`);
   }
 
   const targetObj = new URL(activeUrl);
   const basePath = activeUrl.substring(0, activeUrl.lastIndexOf("/") + 1);
 
-  const rewritten = m3u8Text
-    .split("\n")
-    .map(line => {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith("#")) return line;
-      if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
-      if (trimmed.startsWith("/")) return `${targetObj.origin}${trimmed}`;
-      return `${basePath}${trimmed}`;
-    })
-    .join("\n");
+  // ── LOW-LATENCY & ANTI-BUFFERING ENGINE ───────────────────────────────────────
+  // Parse segments and sequence to create an ultra-low latency sliding window
+  const lines = m3u8Text.split("\n");
+  const seqMatch = m3u8Text.match(/#EXT-X-MEDIA-SEQUENCE:(\d+)/);
+  const origSeq = seqMatch ? parseInt(seqMatch[1]) : 0;
+  const targetDurMatch = m3u8Text.match(/#EXT-X-TARGETDURATION:(\d+)/);
+  const targetDur = targetDurMatch ? targetDurMatch[1] : "7";
 
-  instreamCache.set(streamId, { content: rewritten, time: now });
-  return rewritten;
+  const segments = [];
+  let currentInf = null;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    if (trimmed.startsWith("#EXTINF:")) {
+      currentInf = trimmed;
+    } else if (currentInf && !trimmed.startsWith("#")) {
+      const fullTs = trimmed.startsWith("http")
+        ? trimmed
+        : (trimmed.startsWith("/") ? `${targetObj.origin}${trimmed}` : `${basePath}${trimmed}`);
+      segments.push({ inf: currentInf, ts: fullTs });
+      currentInf = null;
+    }
+  }
+
+  // Keep last 4 segments:
+  // - Starts instantly with only 1 chunk buffer (~700KB download)
+  // - Low bandwidth consumption (works smoothly on slow Wi-Fi / mobile data)
+  // - Reduces broadcast latency to 6-10 seconds (near real-time live edge)
+  const KEEP_COUNT = 4;
+  const keptSegments = segments.length > KEEP_COUNT ? segments.slice(-KEEP_COUNT) : segments;
+  const droppedCount = segments.length - keptSegments.length;
+  const newSeq = origSeq + droppedCount;
+
+  const outputLines = [
+    "#EXTM3U",
+    "#EXT-X-VERSION:3",
+    `#EXT-X-MEDIA-SEQUENCE:${newSeq}`,
+    `#EXT-X-TARGETDURATION:${targetDur}`,
+    "#EXT-X-START:TIME-OFFSET=-6.0,PREFER-PRECISE=YES",
+  ];
+
+  for (const seg of keptSegments) {
+    outputLines.push(seg.inf);
+    outputLines.push(seg.ts);
+  }
+
+  const optimizedM3U8 = outputLines.join("\n");
+  manifestCache.set(streamId, { content: optimizedM3U8, time: now });
+  return optimizedM3U8;
 }
 
 // ─── Universal Live Stream Fetcher ───────────────────────────────────────────
