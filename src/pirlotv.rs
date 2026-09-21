@@ -226,54 +226,67 @@ fn sanitize_group_name(name: &str) -> String {
 // ─── Resolver una URL de canal a un stream M3U8 ──────────────────────────────
 
 pub async fn resolve_channel_stream(http: &reqwest::Client, url: &str) -> anyhow::Result<String> {
-    // Paso 1: Obtener la página del canal (playvi.org o pirlotv.la/en-vivo/)
-    tracing::debug!("Resolviendo: {url}");
+    tracing::debug!("Resolviendo cadena desde: {url}");
+    // Intentar hasta 4 niveles de iframe anidados
+    let mut current_url = url.to_string();
+    let mut referer = "https://pirlotv.la/".to_string();
 
-    let html = fetch_html(http, url).await?;
+    for depth in 0..4 {
+        tracing::debug!("[depth {depth}] fetch {current_url}");
+        let html = fetch_html_with_referer(http, &current_url, &referer).await?;
 
-    // Paso 2: Buscar <iframe> con src que apunte a streamx305, live4.lat u otro player
-    let iframe_src = extract_iframe_src(&html)?;
-    tracing::debug!("iframe encontrado: {iframe_src}");
-
-    // Paso 3: Obtener el HTML del player
-    let player_html = fetch_html(http, &iframe_src).await?;
-
-    // Paso 4: Intentar extraer directamente un M3U8 URL
-    if let Some(m3u8) = extract_direct_m3u8(&player_html) {
-        tracing::debug!("M3U8 directo encontrado: {m3u8}");
-        return Ok(m3u8);
-    }
-
-    // Paso 5: Si tiene JS ofuscado tipo streamx305 con array ne[], decodificar
-    if let Some(decoded) = decode_streamx305_js(&player_html) {
-        tracing::info!("Stream decodificado via streamx305: {decoded}");
-        return Ok(decoded);
-    }
-
-    // Paso 6: Buscar otro iframe anidado (live4.lat → streamx305)
-    if let Ok(nested_src) = extract_iframe_src(&player_html) {
-        tracing::debug!("iframe anidado: {nested_src}");
-        let nested_html = fetch_html(http, &nested_src).await?;
-
-        if let Some(m3u8) = extract_direct_m3u8(&nested_html) {
+        // Intentar extraer M3U8 directo
+        if let Some(m3u8) = extract_direct_m3u8(&html) {
+            tracing::info!("M3U8 directo encontrado en depth {depth}: {m3u8}");
             return Ok(m3u8);
         }
-        if let Some(decoded) = decode_streamx305_js(&nested_html) {
+
+        // Intentar decodificar JS ofuscado (streamx305)
+        if let Some(decoded) = decode_streamx305_js(&html) {
+            tracing::info!("Stream decodificado (streamx305) en depth {depth}: {decoded}");
             return Ok(decoded);
+        }
+
+        // Seguir el siguiente iframe
+        match extract_iframe_src(&html) {
+            Ok(next_url) => {
+                tracing::debug!("[depth {depth}] → iframe: {next_url}");
+                referer = current_url.clone();
+                current_url = next_url;
+            }
+            Err(_) => {
+                return Err(anyhow::anyhow!("No se encontró stream en {url} (profundidad {depth})"));
+            }
         }
     }
 
-    Err(anyhow::anyhow!("No se encontró stream en {url}"))
+    Err(anyhow::anyhow!("No se encontró stream en {url} después de 4 niveles"))
 }
 
-async fn fetch_html(http: &reqwest::Client, url: &str) -> anyhow::Result<String> {
+async fn fetch_html_with_referer(
+    http: &reqwest::Client,
+    url: &str,
+    referer: &str,
+) -> anyhow::Result<String> {
     let resp = http
         .get(url)
-        .header("referer", "https://pirlotv.la/")
-        .header("origin", "https://pirlotv.la")
+        .header("referer", referer)
+        .header("origin", extract_origin(referer))
         .send()
         .await?;
     Ok(resp.text().await?)
+}
+
+fn extract_origin(url: &str) -> &str {
+    // Extrae https://domain.com de una URL completa
+    if let Some(idx) = url.find("://") {
+        let rest = &url[idx + 3..];
+        if let Some(slash) = rest.find('/') {
+            return &url[..idx + 3 + slash];
+        }
+        return url;
+    }
+    url
 }
 
 fn extract_iframe_src(html: &str) -> anyhow::Result<String> {
