@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     // Refresh on the CDN without making every player wait for the upstream.
     // Keep the browser's copy at zero age so it checks the live edge playlist.
     res.setHeader("Cache-Control", "public, max-age=0");
-    res.setHeader("Vercel-CDN-Cache-Control", "public, s-maxage=1, stale-while-revalidate=5");
+    res.setHeader("Vercel-CDN-Cache-Control", "public, s-maxage=2, stale-while-revalidate=15");
     res.status(200).send(m3u8Content);
   } catch (err) {
     res.status(502).send(`Error resolviendo stream ${target}: ${err.message}\n`);
