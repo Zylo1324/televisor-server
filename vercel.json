@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/health", "destination": "/api/health" },
+    { "source": "/lista.m3u", "destination": "/api/lista" },
+    { "source": "/deportes.m3u", "destination": "/api/deportes" },
+    { "source": "/peru.m3u", "destination": "/api/peru" },
+    { "source": "/eventos.m3u", "destination": "/api/eventos" },
+    { "source": "/live.m3u8", "destination": "/api/live" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "*" }
+      ]
+    }
+  ]
+}

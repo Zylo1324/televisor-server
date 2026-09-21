@@ -1,0 +1,10 @@
+{
+  "name": "televisor-server",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Cloud streaming server with pirlotv scraping",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
