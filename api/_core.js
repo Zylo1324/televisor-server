@@ -83,7 +83,7 @@ export const CHANNELS = [
   { chno: 92, name: "Cartoonito (HD 1080p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cartoonito_2021.svg", directUrl: "http://181.119.66.28:8081/CARTOONITO/index.m3u8" },
   { chno: 93, name: "Nickelodeon (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Nickelodeon_2009_logo.svg", directUrl: "http://190.93.224.43/NICK/index.m3u8" },
   { chno: 94, name: "Discovery Kids (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Discovery_Kids_2016.svg", directUrl: "http://190.93.224.43/DISCOVERY-KIDS/index.m3u8" },
-  { chno: 95, name: "Disney Jr (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", directUrl: "http://190.93.224.43/DISNEY-JR/index.m3u8" },
+  { chno: 95, name: "Disney Jr (HD 720p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", directUrl: "http://181.78.14.26:4000/play/a073/index.m3u8" },
 
   // ── Cultura y Variedades ───────────────────────────────────────────────────
   { chno: 100, name: "Discovery Home & Health (H&H)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Discovery_Home_%26_Health_logo.png", directUrl: "http://15.204.246.24:8080/DiscoveryHyHHD/index.m3u8" },
