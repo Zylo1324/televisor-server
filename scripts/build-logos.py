@@ -16,6 +16,7 @@ OUTPUT = ROOT / "logos"
 RAW = "https://raw.githubusercontent.com/tv-logo/tv-logos/main/"
 
 SOURCES = {
+    2: "https://assets.rudo.video/assets/latina/live/logoApi_41f7da8c23667b5df6d91c67782924e81757541245.png",
     3: "https://i.imgur.com/Zt3iE86.png",
     4: "https://i.imgur.com/vr0g3u1.png",
     5: "https://i.imgur.com/uQhEDES.png",
@@ -26,6 +27,7 @@ SOURCES = {
     10: "https://i.imgur.com/fY9256H.png",
     11: "https://i.imgur.com/m44jTZK.png",
     12: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/TV_Per%C3%BA_Noticias_-_2019_logo.png/960px-TV_Per%C3%BA_Noticias_-_2019_logo.png",
+    13: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Global_logo_2019.png",
     14: "https://i.imgur.com/oBz3CgE.png",
     15: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/LaTele_Per%C3%BA_2018_Logo.png/960px-LaTele_Per%C3%BA_2018_Logo.png",
     16: "https://i.imgur.com/bZnDDPH.png",
@@ -34,6 +36,8 @@ SOURCES = {
     19: "https://i.imgur.com/VOjLXJd.png",
     21: "https://i.imgur.com/zCVh765.png",
     33: "https://i.imgur.com/9cmIv3q.png",
+    40: "https://next-liga1.fanatiz.com/liga1/strapi/production/small_image_LIGA_1_MAX_fabe3155b8.png",
+    41: "https://next-liga1.fanatiz.com/liga1/strapi/production/small_image_LIGA_1_MAX_fabe3155b8.png",
     42: RAW + "countries/world-latin-america/espn-lam.png",
     43: RAW + "countries/world-latin-america/espn-2-lam.png",
     44: RAW + "countries/world-latin-america/espn-3-lam.png",
