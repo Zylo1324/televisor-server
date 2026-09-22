@@ -54,6 +54,7 @@ export const CHANNELS = [
   { chno: 61, name: "FOX Sports 2 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
   { chno: 62, name: "FOX Sports 3 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
   { chno: 63, name: "ESPN Deportes USA (HD 720p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://168.228.44.241:9998/play/a0dz/index.m3u8" },
+  { chno: 65, name: "Paramount Network (HD 1080p 60fps)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Paramount_Network.svg", directUrl: "http://23.237.104.106:8080/USA_PARAMOUNT_NETWORK/index.m3u8" },
 
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
   { chno: 70, name: "HBO 2 (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
@@ -86,7 +87,7 @@ export const CHANNELS = [
   { chno: 95, name: "Disney Jr (HD 720p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", directUrl: "http://181.78.14.26:4000/play/a073/index.m3u8" },
 
   // ── Cultura y Variedades ───────────────────────────────────────────────────
-  { chno: 100, name: "Discovery Home & Health (H&H)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Discovery_Home_%26_Health_logo.png", directUrl: "http://15.204.246.24:8080/DiscoveryHyHHD/index.m3u8" },
+  { chno: 100, name: "Discovery Home & Health (H&H) (HD 1080p)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Discovery_Home_%26_Health_logo.png", directUrl: "http://190.61.90.17:40000/play/a0hw/index.m3u8" },
   { chno: 101, name: "El Gourmet (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/El_Gourmet_logo.png", directUrl: "http://190.93.224.43/EL-GOURMET/index.m3u8" },
   { chno: 102, name: "History Channel (HD 1080p)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f5/History_Logo.svg", directUrl: "http://138.121.15.230:9002/HISTORY-CHANNEL/index.m3u8" },
   { chno: 103, name: "History 2 (HD 1080p)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/2/27/History_2_logo.svg", directUrl: "http://181.119.66.28:8081/HISTORY-2/index.m3u8" },
