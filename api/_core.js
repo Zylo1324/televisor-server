@@ -388,7 +388,10 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
 // fetching the master playlist on every cache miss, while a failed variant is
 // retried through the master immediately.
 const hlsVariantCache = new Map();
-const HLS_VARIANT_TTL = 8000;
+// Astra variant paths are stable. Reuse them for ten minutes and invalidate
+// immediately on any failed refresh, avoiding an extra master request every
+// time a Smart TV polls the live window.
+const HLS_VARIANT_TTL = 10 * 60 * 1000;
 const hlsRequests = new Map();
 const HLS_STALE_TTL = 15000;
 
