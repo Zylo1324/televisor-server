@@ -53,7 +53,7 @@ export const CHANNELS = [
   { chno: 60, name: "FOX Sports 1 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1" },
   { chno: 61, name: "FOX Sports 2 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
   { chno: 62, name: "FOX Sports 3 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
-  { chno: 65, name: "Paramount Network (HD 1080p 60fps)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Paramount_Network.svg", directUrl: "http://23.237.104.106:8080/USA_PARAMOUNT_NETWORK/index.m3u8" },
+  { chno: 65, name: "Paramount Network (HD 1080p 60fps con respaldo)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Paramount_Network.svg", slug: "paramount" },
 
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
   { chno: 70, name: "HBO 2 (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
@@ -124,6 +124,14 @@ export const DIRECT_HLS_MAP = {
   "cartoon-network": "http://45.185.163.75:8000/play/a0e0/index.m3u8",
   cartoonito: "http://45.185.163.75:8000/play/a0e2/index.m3u8",
   "discovery-hh": "http://45.185.163.75:8000/play/a0c9/index.m3u8",
+  paramount: [
+    "http://4.30.180.36:8420/paramount/index.m3u8?token=test",
+    "http://23.237.104.106:8080/USA_PARAMOUNT_NETWORK/index.m3u8",
+  ],
+  "paramount-network": [
+    "http://4.30.180.36:8420/paramount/index.m3u8?token=test",
+    "http://23.237.104.106:8080/USA_PARAMOUNT_NETWORK/index.m3u8",
+  ],
 };
 
 // ─── Mapping: Slugs to TVF90 1080p Flussonic Cluster (PelotaLibre) ───────────
@@ -210,8 +218,9 @@ export function generateM3U(filterGroup, baseUrl, apiKey) {
     }
 
     const chNo = ch.chno ? ` tvg-chno="${ch.chno}"` : "";
+    const logoUrl = `${baseUrl}/logos/${ch.chno}.png`;
     lines.push(
-      `#EXTINF:-1 tvg-name="${ch.name}"${chNo} tvg-logo="${ch.logo}" group-title="${ch.group}",${ch.name}`
+      `#EXTINF:-1 tvg-name="${ch.name}"${chNo} tvg-logo="${logoUrl}" group-title="${ch.group}",${ch.name}`
     );
 
     const streamUrl = ch.directUrl || `${baseUrl}/live.m3u8?slug=${ch.slug}&key=${apiKey}`;
@@ -513,6 +522,19 @@ async function buildDirectHls(m3u8Url, streamKey) {
   return optimizedM3U8;
 }
 
+export async function resolveHlsStreamWithFallback(sourceUrls, streamKey) {
+  const errors = [];
+  for (const [index, sourceUrl] of sourceUrls.entries()) {
+    try {
+      const sourceKey = index === 0 ? streamKey : `${streamKey}:backup-${index}`;
+      return await resolveHlsStream(sourceUrl, sourceKey);
+    } catch (err) {
+      errors.push(`${sourceUrl}: ${err.message}`);
+    }
+  }
+  throw new Error(`ninguna fuente HLS respondió (${errors.join("; ")})`);
+}
+
 // ─── TVF90 / FTL.LY Auto-Renovating Dynamic Resolver (PelotaLibre 1080p HD) ─────
 const tvf90TokenCache = new Map();
 const TVF90_TOKEN_TTL = 3 * 60 * 60 * 1000; // 3 horas
@@ -656,7 +678,8 @@ export async function fetchLiveStreamM3U8(
   const directHls = DIRECT_HLS_MAP[cleanSlug];
   if (directHls) {
     try {
-      return await resolveHlsStream(directHls, cleanSlug);
+      const sources = Array.isArray(directHls) ? directHls : [directHls];
+      return await resolveHlsStreamWithFallback(sources, cleanSlug);
     } catch (err) {
       console.error(`[Direct HLS Error] ${cleanSlug}:`, err.message);
     }
@@ -672,7 +695,7 @@ export async function fetchLiveStreamM3U8(
     }
   }
 
-  // 2. Direct stream ID (e.g. H94, H95, H96) or mapped slug
+  // 3. Direct stream ID (e.g. H94, H95, H96) or mapped slug
   const streamId = (cleanSlug.startsWith("h") && !isNaN(cleanSlug.slice(1)))
     ? cleanSlug.toUpperCase()
     : INSTREAM_MAP[cleanSlug];
@@ -685,7 +708,7 @@ export async function fetchLiveStreamM3U8(
     }
   }
 
-  // 3. Fallback to tvplusgratis handshake if exists
+  // 4. Fallback to tvplusgratis handshake if exists
   return fetchTvPlusGratisM3U8(cleanSlug, clientIp);
 }
 

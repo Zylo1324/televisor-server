@@ -15,6 +15,7 @@ const TOP_CHANNELS = [
   "tntsports",
   "winplus",
   "tycsports",
+  "paramount",
 ];
 
 export default async function handler(req, res) {
