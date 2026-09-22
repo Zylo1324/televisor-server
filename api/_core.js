@@ -69,7 +69,7 @@ export const CHANNELS = [
   { chno: 80, name: "FX (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/FX_logo.svg", directUrl: "http://190.93.224.43/FX/index.m3u8" },
   { chno: 81, name: "Sony Channel (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/Sony_Channel_logo.svg", directUrl: "http://190.93.224.43/SONY-CHANNEL/index.m3u8" },
   { chno: 82, name: "Star Channel (HD 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Star_Channel_2021.svg", directUrl: "http://181.119.66.28:8081/STAR-CHANNEL/index.m3u8" },
-  { chno: 83, name: "Warner Channel HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/3/36/Warner_Channel_2021.svg", slug: "warner-channel" },
+  { chno: 83, name: "Warner Channel (HD 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/3/36/Warner_Channel_2021.svg", directUrl: "http://15.204.246.24:8080/WarnerChannelHD/index.m3u8" },
   { chno: 84, name: "Cinemax HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Cinemax_logo_2016.svg", slug: "cinemax" },
   { chno: 85, name: "Golden (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Logo.png", directUrl: "http://190.93.224.43/GOLDEN/index.m3u8" },
   { chno: 86, name: "Golden Premiere HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Logo.png", slug: "golden-premier" },
