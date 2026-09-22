@@ -53,7 +53,6 @@ export const CHANNELS = [
   { chno: 60, name: "FOX Sports 1 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1" },
   { chno: 61, name: "FOX Sports 2 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
   { chno: 62, name: "FOX Sports 3 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
-  { chno: 63, name: "ESPN Deportes USA (HD 720p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://168.228.44.241:9998/play/a0dz/index.m3u8" },
   { chno: 65, name: "Paramount Network (HD 1080p 60fps)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Paramount_Network.svg", directUrl: "http://23.237.104.106:8080/USA_PARAMOUNT_NETWORK/index.m3u8" },
 
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
@@ -65,7 +64,7 @@ export const CHANNELS = [
   { chno: 75, name: "TNT (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/TNT_Logo_2016.svg", directUrl: "http://190.93.224.43/TNT/index.m3u8" },
   { chno: 76, name: "TNT Series (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/TNT_Series_logo.svg", directUrl: "http://190.93.224.43/TNT-SERIES/index.m3u8" },
   { chno: 77, name: "TNT Novelas (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/TNT_Novelas_logo.svg", directUrl: "http://190.93.224.43/TNT-NOVELAS/index.m3u8" },
-  { chno: 78, name: "Space (HD 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Space_logo.svg", directUrl: "http://138.121.15.230:9002/SPACE/index.m3u8" },
+  { chno: 78, name: "Space (HD 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Space_logo.svg", directUrl: "http://181.119.66.28:8081/SPACE/index.m3u8" },
   { chno: 79, name: "AXN (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/f/fb/AXN_Logo.svg", directUrl: "http://190.93.224.43/AXN/index.m3u8" },
   { chno: 80, name: "FX (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/FX_logo.svg", directUrl: "http://190.93.224.43/FX/index.m3u8" },
   { chno: 81, name: "Sony Channel (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/Sony_Channel_logo.svg", directUrl: "http://190.93.224.43/SONY-CHANNEL/index.m3u8" },
