@@ -488,10 +488,13 @@ async function buildDirectHls(m3u8Url, streamKey) {
 
   if (!segments.length) throw new Error("Playlist HLS sin fragmentos");
 
-  // Preserve the upstream sequence across independent Vercel instances.
+  // Astra can advertise its newest segment while it still contains only one
+  // 188-byte MPEG-TS packet. Keep completed segments so Smart TVs do not loop
+  // while waiting for that open segment to fill.
   const MAX_RING_SEGMENTS = 6;
-  const dropped = Math.max(0, segments.length - MAX_RING_SEGMENTS);
-  const keptSegments = segments.slice(dropped);
+  const completedSegments = segments.length > 1 ? segments.slice(0, -1) : segments;
+  const dropped = Math.max(0, completedSegments.length - MAX_RING_SEGMENTS);
+  const keptSegments = completedSegments.slice(dropped);
 
   const outputLines = [
     "#EXTM3U",

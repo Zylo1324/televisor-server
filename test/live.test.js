@@ -33,15 +33,16 @@ test("direct HLS preserves upstream sequence and reuses the variant URL", async 
 
   try {
     const first = await resolveHlsStream("https://origin.example/master.m3u8", "test-direct-sequence");
-    assert.match(first, /#EXT-X-MEDIA-SEQUENCE:102\n/);
-    assert.match(first, /https:\/\/origin\.example\/segment-107\.ts/);
+    assert.match(first, /#EXT-X-MEDIA-SEQUENCE:101\n/);
+    assert.match(first, /https:\/\/origin\.example\/segment-106\.ts/);
+    assert.doesNotMatch(first, /segment-107\.ts/);
     assert.doesNotMatch(first, /#EXT-X-START/);
     assert.equal(calls.length, 2);
 
     now = 3000;
     sequence = 108;
     const second = await resolveHlsStream("https://origin.example/master.m3u8", "test-direct-sequence");
-    assert.match(second, /#EXT-X-MEDIA-SEQUENCE:110\n/);
+    assert.match(second, /#EXT-X-MEDIA-SEQUENCE:109\n/);
     assert.equal(calls.length, 3);
     assert.equal(calls[2], "https://origin.example/variant.m3u8");
   } finally {
