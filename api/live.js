@@ -1,6 +1,7 @@
 // api/live.js — Live stream resolver for auto-renovating sports and regional channels
 
-import { checkAuth, fetchLiveStreamM3U8 } from "./_core.js";
+import { checkAuth, fetchLiveStreamM3U8, getBaseUrl } from "./_core.js";
+import { proxySegment } from "./segment.js";
 
 export default async function handler(req, res) {
   if (!checkAuth(req)) {
@@ -8,6 +9,7 @@ export default async function handler(req, res) {
   }
 
   const url = new URL(req.url, "http://localhost");
+  if (url.searchParams.has("url")) return proxySegment(req, res);
   const slug = url.searchParams.get("slug");
   const stream = url.searchParams.get("stream");
   const target = stream || slug;
@@ -20,7 +22,12 @@ export default async function handler(req, res) {
   const clientIp = forwarded.split(",")[0].trim() || req.socket?.remoteAddress || "127.0.0.1";
 
   try {
-    const m3u8Content = await fetchLiveStreamM3U8(target, clientIp);
+    const m3u8Content = await fetchLiveStreamM3U8(
+      target,
+      clientIp,
+      getBaseUrl(req),
+      process.env.API_KEY || "televisor2024",
+    );
     res.setHeader("Content-Type", "application/vnd.apple.mpegurl; charset=utf-8");
     res.setHeader("Access-Control-Allow-Origin", "*");
     // Refresh on the CDN without making every player wait for the upstream.

@@ -31,7 +31,7 @@ export const CHANNELS = [
 
   // ── Deportes (Fútbol y Canales Deportivos) ──────────────────────────────────
   { chno: 40, name: "Liga 1 MAX (HD 1080p 60fps - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/Liga1_peru_logo.png", directUrl: "http://190.93.224.43/LIGA-1-MAX/index.m3u8" },
-  { chno: 41, name: "Liga 1 MAX (Señal 2 PirloTV)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/Liga1_peru_logo.png", slug: "liga1max" },
+  { chno: 41, name: "Liga 1 MAX (Respaldo HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/Liga1_peru_logo.png", directUrl: "http://190.93.224.43/LIGA-1-MAX/index.m3u8" },
   { chno: 42, name: "ESPN (HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN/index.m3u8" },
   { chno: 43, name: "ESPN 2 (HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-2/index.m3u8" },
   { chno: 44, name: "ESPN 3 (HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-3/index.m3u8" },
@@ -48,12 +48,12 @@ export const CHANNELS = [
   { chno: 55, name: "TNT Sports Premium Argentina", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntsports" },
   { chno: 56, name: "TNT Sports Premium Chile", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntchile" },
   { chno: 57, name: "Win Sports +", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winplus" },
-  { chno: 58, name: "Win Sports", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winsports" },
+  { chno: 58, name: "Win Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", directUrl: "http://138.121.15.230:9002/WIN-SPORT/index.m3u8" },
   { chno: 59, name: "Tigo Sports HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", directUrl: "http://190.61.90.17:40000/play/a02v/index.m3u8" },
   { chno: 60, name: "FOX Sports 1 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1" },
   { chno: 61, name: "FOX Sports 2 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
   { chno: 62, name: "FOX Sports 3 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
-  { chno: 63, name: "ESPN Deportes USA", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "espndeportes" },
+  { chno: 63, name: "ESPN Deportes USA (HD 720p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://168.228.44.241:9998/play/a0dz/index.m3u8" },
 
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
   { chno: 70, name: "HBO 2 (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
@@ -64,7 +64,7 @@ export const CHANNELS = [
   { chno: 75, name: "TNT (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/TNT_Logo_2016.svg", directUrl: "http://190.93.224.43/TNT/index.m3u8" },
   { chno: 76, name: "TNT Series (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/TNT_Series_logo.svg", directUrl: "http://190.93.224.43/TNT-SERIES/index.m3u8" },
   { chno: 77, name: "TNT Novelas (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/TNT_Novelas_logo.svg", directUrl: "http://190.93.224.43/TNT-NOVELAS/index.m3u8" },
-  { chno: 78, name: "Space (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Space_logo.svg", directUrl: "http://190.93.224.43/SPACE/index.m3u8" },
+  { chno: 78, name: "Space (HD 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Space_logo.svg", directUrl: "http://138.121.15.230:9002/SPACE/index.m3u8" },
   { chno: 79, name: "AXN (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/f/fb/AXN_Logo.svg", directUrl: "http://190.93.224.43/AXN/index.m3u8" },
   { chno: 80, name: "FX (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/FX_logo.svg", directUrl: "http://190.93.224.43/FX/index.m3u8" },
   { chno: 81, name: "Sony Channel (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/Sony_Channel_logo.svg", directUrl: "http://190.93.224.43/SONY-CHANNEL/index.m3u8" },
@@ -73,7 +73,7 @@ export const CHANNELS = [
   { chno: 84, name: "Cinemax HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Cinemax_logo_2016.svg", slug: "cinemax" },
   { chno: 85, name: "Golden (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Logo.png", directUrl: "http://190.93.224.43/GOLDEN/index.m3u8" },
   { chno: 86, name: "Golden Premiere HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Logo.png", slug: "golden-premier" },
-  { chno: 87, name: "Cinecanal HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Cinecanal_2016.svg", slug: "cinecanal" },
+  { chno: 87, name: "Cinecanal (HD 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Cinecanal_2016.svg", directUrl: "http://138.121.15.230:9002/CINECANAL/index.m3u8" },
   { chno: 88, name: "Studio Universal (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Studio_Universal_2016.png", directUrl: "http://190.93.224.43/STUDIO-UNIVERSAL/index.m3u8" },
   { chno: 89, name: "Comedy Central (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Comedy_Central_2018.svg", directUrl: "http://190.93.224.43/COMEDY-CENTRAL/index.m3u8" },
   { chno: 90, name: "Film & Arts (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/06/Film_%26_Arts.png", directUrl: "http://190.93.224.43/FILM-AND-ARTS/index.m3u8" },
@@ -88,14 +88,14 @@ export const CHANNELS = [
   // ── Cultura y Variedades ───────────────────────────────────────────────────
   { chno: 100, name: "Discovery Home & Health (H&H)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Discovery_Home_%26_Health_logo.png", slug: "discovery-hh" },
   { chno: 101, name: "El Gourmet (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/El_Gourmet_logo.png", directUrl: "http://190.93.224.43/EL-GOURMET/index.m3u8" },
-  { chno: 102, name: "History Channel (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f5/History_Logo.svg", directUrl: "http://190.93.224.43/HISTORY/index.m3u8" },
-  { chno: 103, name: "History 2 (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/2/27/History_2_logo.svg", directUrl: "http://190.93.224.43/HISTORY-2/index.m3u8" },
+  { chno: 102, name: "History Channel (HD 1080p)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f5/History_Logo.svg", directUrl: "http://138.121.15.230:9002/HISTORY-CHANNEL/index.m3u8" },
+  { chno: 103, name: "History 2 (HD 1080p)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/2/27/History_2_logo.svg", directUrl: "http://181.119.66.28:8081/HISTORY-2/index.m3u8" },
   { chno: 104, name: "National Geographic (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/National_Geographic_logo.svg", directUrl: "http://190.93.224.43/NAT-GEO/index.m3u8" },
   { chno: 105, name: "Discovery Turbo (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Discovery_Turbo_Logo.svg", directUrl: "http://190.93.224.43/DISCOVERY-TURBO/index.m3u8" },
 
   // ── Noticias e Internacional ───────────────────────────────────────────────
   { chno: 110, name: "CNN en Español (HD - 16ms)", group: "Noticias", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bb/CNN_en_Espa%C3%B1ol_logo.svg", directUrl: "http://190.93.224.43/CNN-ESPANOL/index.m3u8" },
-  { chno: 111, name: "Telemundo (HD - 16ms)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Telemundo_logo.svg", directUrl: "http://190.93.224.43/TELEMUNDO/index.m3u8" },
+  { chno: 111, name: "Telemundo Puerto Rico (HD 1080p)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Telemundo_logo.svg", directUrl: "https://nbculocallive.akamaized.net/hls/live/2037499/puertorico/stream1/master.m3u8" },
   { chno: 112, name: "Canal de las Estrellas (HD - 16ms)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Telemundo_logo.svg", directUrl: "http://190.93.224.43/CANAL-LAS-ESTRELLAS/index.m3u8" },
   { chno: 113, name: "Univisión (HD - 16ms)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Telemundo_logo.svg", directUrl: "http://190.93.224.43/UNIVISION/index.m3u8" },
 ];
@@ -232,7 +232,18 @@ const TOKEN_CACHE_TTL = 10 * 60 * 1000; // 10 minutos
 const manifestCache = new Map();
 const MANIFEST_CACHE_TTL = 1500; // 1.5 segundos
 
-export async function resolveInstreamM3U8(streamId) {
+function proxySegmentUrl(segmentUrl, referer, slug, offset, proxyBaseUrl, apiKey) {
+  if (!proxyBaseUrl) return segmentUrl;
+  const proxyUrl = new URL("/segment.ts", proxyBaseUrl);
+  proxyUrl.searchParams.set("url", segmentUrl);
+  proxyUrl.searchParams.set("ref", referer);
+  proxyUrl.searchParams.set("slug", slug);
+  proxyUrl.searchParams.set("offset", String(offset));
+  proxyUrl.searchParams.set("key", apiKey || API_KEY_DEFAULT);
+  return proxyUrl.href;
+}
+
+export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
   const now = Date.now();
 
   // Tier 2: Check ultra-short live manifest cache (1.5s)
@@ -345,9 +356,16 @@ export async function resolveInstreamM3U8(streamId) {
     `#EXT-X-TARGETDURATION:${targetDur}`,
   ];
 
-  for (const seg of keptSegments) {
+  for (const [index, seg] of keptSegments.entries()) {
     outputLines.push(seg.inf);
-    outputLines.push(seg.ts);
+    outputLines.push(proxySegmentUrl(
+      seg.ts,
+      "https://instream.click/",
+      streamId,
+      index - keptSegments.length,
+      proxyBaseUrl,
+      apiKey,
+    ));
   }
 
   const optimizedM3U8 = outputLines.join("\n");
@@ -496,7 +514,7 @@ async function buildDirectHls(m3u8Url, streamKey) {
 const tvf90TokenCache = new Map();
 const TVF90_TOKEN_TTL = 3 * 60 * 60 * 1000; // 3 horas
 
-export async function resolveTvf90M3U8(streamId, cleanSlug) {
+export async function resolveTvf90M3U8(streamId, cleanSlug, proxyBaseUrl, apiKey) {
   const now = Date.now();
   const cacheKey = `tvf90_${cleanSlug || streamId}`;
 
@@ -602,9 +620,16 @@ export async function resolveTvf90M3U8(streamId, cleanSlug) {
     `#EXT-X-TARGETDURATION:${targetDur}`,
   ];
 
-  for (const seg of keptSegments) {
+  for (const [index, seg] of keptSegments.entries()) {
     outputLines.push(seg.inf);
-    outputLines.push(seg.ts);
+    outputLines.push(proxySegmentUrl(
+      seg.ts,
+      "https://tvf90.com/",
+      cleanSlug || streamId,
+      index - keptSegments.length,
+      proxyBaseUrl,
+      apiKey,
+    ));
   }
 
   const optimizedM3U8 = outputLines.join("\n");
@@ -614,7 +639,12 @@ export async function resolveTvf90M3U8(streamId, cleanSlug) {
 
 // ─── Universal Live Stream Fetcher ───────────────────────────────────────────
 
-export async function fetchLiveStreamM3U8(targetSlug, clientIp = "127.0.0.1") {
+export async function fetchLiveStreamM3U8(
+  targetSlug,
+  clientIp = "127.0.0.1",
+  proxyBaseUrl = null,
+  apiKey = API_KEY_DEFAULT,
+) {
   if (!targetSlug) throw new Error("Falta slug de canal");
   const cleanSlug = targetSlug.toLowerCase().trim();
 
@@ -633,7 +663,7 @@ export async function fetchLiveStreamM3U8(targetSlug, clientIp = "127.0.0.1") {
   const tvf90Id = TVF90_MAP[cleanSlug];
   if (tvf90Id) {
     try {
-      return await resolveTvf90M3U8(tvf90Id, cleanSlug);
+      return await resolveTvf90M3U8(tvf90Id, cleanSlug, proxyBaseUrl, apiKey);
     } catch (err) {
       console.warn(`[TVF90 fallback] ${cleanSlug} (${tvf90Id}):`, err.message);
     }
@@ -646,7 +676,7 @@ export async function fetchLiveStreamM3U8(targetSlug, clientIp = "127.0.0.1") {
 
   if (streamId) {
     try {
-      return await resolveInstreamM3U8(streamId);
+      return await resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey);
     } catch (err) {
       console.error(`[Instream Error] ${cleanSlug} (${streamId}):`, err.message);
     }
