@@ -53,7 +53,12 @@ export const CHANNELS = [
   { chno: 60, name: "FOX Sports 1 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1" },
   { chno: 61, name: "FOX Sports 2 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
   { chno: 62, name: "FOX Sports 3 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
-  { chno: 63, name: "DAZN", group: "Deportes", logo: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/dazn-int.png", logoVersion: "dazn-1", slug: "dazn-turquia-francia" },
+  { chno: 63, name: "DAZN (En Vivo)", group: "Deportes", logo: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/dazn-int.png", logoVersion: "dazn-1", slug: "disney7" },
+  { chno: 64, name: "Capo Deportes (HD 1080p - En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "capodeportes" },
+  { chno: 66, name: "Disney+ Eventos 1 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney1" },
+  { chno: 67, name: "Disney+ Eventos 2 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney2" },
+  { chno: 68, name: "Disney+ Eventos 3 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney3" },
+  { chno: 69, name: "Disney+ Eventos 7 (ESPN en Disney+ - En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney7" },
   { chno: 65, name: "Paramount Network (HD 1080p 60fps con respaldo)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Paramount_Network.svg", slug: "paramount" },
 
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
@@ -118,10 +123,6 @@ export const DIRECT_HLS_MAP = {
   "fox-sports-2": "http://190.93.224.43/ESPN-5/index.m3u8",
   foxsports3: "http://190.93.224.43/ESPN-6/index.m3u8",
   "fox-sports-3": "http://190.93.224.43/ESPN-6/index.m3u8",
-  "dazn-turquia-francia": [
-    "https://admin2.passionepizza.com.br/france.m3u8",
-    "https://live05.meung.app/live/08552895_tsc.m3u8",
-  ],
   "star-channel": "http://45.185.163.75:8000/play/a0dm/index.m3u8",
   "warner-channel": "http://45.185.163.75:8000/play/a0dn/index.m3u8",
   cinemax: "http://45.185.163.75:8000/play/a014/index.m3u8",
@@ -680,6 +681,139 @@ export async function resolveTvf90M3U8(streamId, cleanSlug, proxyBaseUrl, apiKey
   return optimizedM3U8;
 }
 
+// ─── StreamTP Dynamic Resolver (Disney+ / Star+ Event Feeds) ─────────────────
+const streamTpCache = new Map();
+const STREAMTP_TOKEN_TTL = 10 * 60 * 1000;
+const STREAMTP_MANIFEST_TTL = 1500;
+
+export async function resolveStreamTPM3U8(streamId) {
+  const now = Date.now();
+  const cacheKey = `streamtp_${streamId}`;
+  const cachedManifest = manifestCache.get(cacheKey);
+  if (cachedManifest && now - cachedManifest.time < STREAMTP_MANIFEST_TTL && cachedManifest.content) {
+    return cachedManifest.content;
+  }
+
+  let masterUrl = null;
+  const cachedToken = streamTpCache.get(streamId);
+  if (cachedToken && now - cachedToken.time < STREAMTP_TOKEN_TTL && cachedToken.url) {
+    masterUrl = cachedToken.url;
+  } else {
+    const pageUrl = `https://streamtp-golden1.click/global1.php?stream=${streamId}`;
+    const pageRes = await fetch(pageUrl, {
+      headers: {
+        "user-agent": UA,
+        "referer": "https://playvi.org/",
+      },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!pageRes.ok) throw new Error(`StreamTP retornó HTTP ${pageRes.status}`);
+    const html = await pageRes.text();
+    const m = html.match(/playbackURL\s*=\s*["']([^"']+)["']/);
+    if (!m) throw new Error(`No se encontró playbackURL para ${streamId}`);
+    masterUrl = m[1].replace(/\\\//g, "/");
+    streamTpCache.set(streamId, { url: masterUrl, time: now });
+  }
+
+  const res = await fetch(masterUrl, {
+    headers: { "user-agent": UA, "referer": "https://streamtp-golden1.click/" },
+    signal: AbortSignal.timeout(6000),
+  });
+  if (!res.ok) {
+    streamTpCache.delete(streamId);
+    throw new Error(`StreamTP master retornó HTTP ${res.status}`);
+  }
+  const text = await res.text();
+  let subUrl = masterUrl;
+  let subText = text;
+
+  if (text.includes("#EXT-X-STREAM-INF")) {
+    const subLine = text.split("\n").find(l => l.trim() && !l.trim().startsWith("#"));
+    if (subLine) {
+      const base = masterUrl.substring(0, masterUrl.lastIndexOf("/") + 1);
+      subUrl = subLine.trim().startsWith("http") ? subLine.trim() : `${base}${subLine.trim()}`;
+      const subRes = await fetch(subUrl, {
+        headers: { "user-agent": UA, "referer": "https://streamtp-golden1.click/" },
+        signal: AbortSignal.timeout(6000),
+      });
+      if (subRes.ok) subText = await subRes.text();
+    }
+  }
+
+  const subBase = subUrl.substring(0, subUrl.lastIndexOf("/") + 1);
+  const outLines = [];
+  for (const line of subText.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    if (trimmed.startsWith("#")) {
+      outLines.push(trimmed);
+    } else {
+      const fullTs = trimmed.startsWith("http") ? trimmed : `${subBase}${trimmed}`;
+      outLines.push(fullTs);
+    }
+  }
+  const finalM3u8 = outLines.join("\n");
+  manifestCache.set(cacheKey, { content: finalM3u8, time: now });
+  return finalM3u8;
+}
+
+// ─── Capo Deportes Dynamic Resolver (Instreams / In-streams CA1) ─────────────
+const capoCache = new Map();
+const CAPO_TOKEN_TTL = 10 * 60 * 1000;
+const CAPO_MANIFEST_TTL = 1500;
+
+export async function resolveCapoM3U8(streamId = "CA1") {
+  const now = Date.now();
+  const cacheKey = `capo_${streamId}`;
+  const cachedManifest = manifestCache.get(cacheKey);
+  if (cachedManifest && now - cachedManifest.time < CAPO_MANIFEST_TTL && cachedManifest.content) {
+    return cachedManifest.content;
+  }
+
+  let streamM3u8 = null;
+  const cached = capoCache.get(streamId);
+  if (cached && now - cached.time < CAPO_TOKEN_TTL && cached.url) {
+    streamM3u8 = cached.url;
+  } else {
+    const pageUrl = `https://in-streams.click/capo.php?stream=${streamId}`;
+    const pageRes = await fetch(pageUrl, {
+      headers: { "user-agent": UA, "referer": "https://playvi.org/" },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!pageRes.ok) throw new Error(`In-streams retornó HTTP ${pageRes.status}`);
+    const html = await pageRes.text();
+    const m = html.match(/https:\/\/instreams\.[^"'\s<>]+\.m3u8\?[^"'\s<>]+/);
+    if (!m) throw new Error("No se encontró instreams m3u8 para Capo Deportes");
+    streamM3u8 = m[0].replace(/\\u0026/g, "&");
+    capoCache.set(streamId, { url: streamM3u8, time: now });
+  }
+
+  const res = await fetch(streamM3u8, {
+    headers: { "user-agent": UA, "referer": "https://in-streams.click/" },
+    signal: AbortSignal.timeout(6000),
+  });
+  if (!res.ok) {
+    capoCache.delete(streamId);
+    throw new Error(`Capo manifest retornó HTTP ${res.status}`);
+  }
+  const text = await res.text();
+  const base = streamM3u8.substring(0, streamM3u8.lastIndexOf("/") + 1);
+  const outLines = [];
+  for (const line of text.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    if (trimmed.startsWith("#")) {
+      outLines.push(trimmed);
+    } else {
+      const fullTs = trimmed.startsWith("http") ? trimmed : `${base}${trimmed}`;
+      outLines.push(fullTs);
+    }
+  }
+  const finalM3u8 = outLines.join("\n");
+  manifestCache.set(cacheKey, { content: finalM3u8, time: now });
+  return finalM3u8;
+}
+
 // ─── Universal Live Stream Fetcher ───────────────────────────────────────────
 
 export async function fetchLiveStreamM3U8(
@@ -703,7 +837,26 @@ export async function fetchLiveStreamM3U8(
     }
   }
 
-  // 2. PelotaLibre / TVF90 1080p Flussonic cluster (fallback)
+  // 2. Capo Deportes (Instreams CA1 - HD 1080p)
+  if (cleanSlug === "capodeportes" || cleanSlug === "capo-deportes" || cleanSlug === "ca1") {
+    try {
+      return await resolveCapoM3U8("CA1");
+    } catch (err) {
+      console.warn(`[Capo Deportes Error]:`, err.message);
+    }
+  }
+
+  // 3. Disney+ / Star+ Event Streams (StreamTP: disney1 .. disney10)
+  if (cleanSlug.startsWith("disney") || cleanSlug.startsWith("streamtp-")) {
+    try {
+      const streamId = cleanSlug.replace("streamtp-", "");
+      return await resolveStreamTPM3U8(streamId);
+    } catch (err) {
+      console.warn(`[StreamTP Disney+ Error] ${cleanSlug}:`, err.message);
+    }
+  }
+
+  // 4. PelotaLibre / TVF90 1080p Flussonic cluster (fallback)
   const tvf90Id = TVF90_MAP[cleanSlug];
   if (tvf90Id) {
     try {
@@ -713,7 +866,7 @@ export async function fetchLiveStreamM3U8(
     }
   }
 
-  // 3. Direct stream ID (e.g. H94, H95, H96) or mapped slug
+  // 5. Direct stream ID (e.g. H94, H95, H96) or mapped slug
   const streamId = (cleanSlug.startsWith("h") && !isNaN(cleanSlug.slice(1)))
     ? cleanSlug.toUpperCase()
     : INSTREAM_MAP[cleanSlug];
@@ -726,7 +879,7 @@ export async function fetchLiveStreamM3U8(
     }
   }
 
-  // 4. Fallback to tvplusgratis handshake if exists
+  // 6. Fallback to tvplusgratis handshake if exists
   return fetchTvPlusGratisM3U8(cleanSlug, clientIp);
 }
 

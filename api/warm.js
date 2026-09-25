@@ -17,6 +17,8 @@ const TOP_CHANNELS = [
   "tycsports",
   "paramount",
   "adult-swim",
+  "capodeportes",
+  "disney7",
 ];
 
 export default async function handler(req, res) {
