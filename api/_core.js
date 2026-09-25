@@ -54,7 +54,7 @@ export const CHANNELS = [
   { chno: 61, name: "FOX Sports 2 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
   { chno: 62, name: "FOX Sports 3 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
   { chno: 63, name: "DAZN (En Vivo)", group: "Deportes", logo: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/dazn-int.png", logoVersion: "dazn-1", slug: "disney7" },
-  { chno: 64, name: "Capo Deportes (HD 1080p - En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "capodeportes" },
+  { chno: 64, name: "Capo Deportes (En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "capodeportes" },
   { chno: 66, name: "Disney+ Eventos 1 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney1" },
   { chno: 67, name: "Disney+ Eventos 2 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney2" },
   { chno: 68, name: "Disney+ Eventos 3 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney3" },
@@ -686,9 +686,18 @@ const streamTpCache = new Map();
 const STREAMTP_TOKEN_TTL = 10 * 60 * 1000;
 const STREAMTP_MANIFEST_TTL = 1500;
 
-export async function resolveStreamTPM3U8(streamId) {
+export async function resolveStreamTPM3U8(
+  streamId,
+  proxyBaseUrl = null,
+  apiKey = API_KEY_DEFAULT,
+  forceRefresh = false,
+) {
   const now = Date.now();
-  const cacheKey = `streamtp_${streamId}`;
+  const cacheKey = `streamtp_${streamId}_${proxyBaseUrl ? "proxy" : "raw"}`;
+  if (forceRefresh) {
+    streamTpCache.delete(streamId);
+    manifestCache.delete(cacheKey);
+  }
   const cachedManifest = manifestCache.get(cacheKey);
   if (cachedManifest && now - cachedManifest.time < STREAMTP_MANIFEST_TTL && cachedManifest.content) {
     return cachedManifest.content;
@@ -741,7 +750,12 @@ export async function resolveStreamTPM3U8(streamId) {
   }
 
   const subBase = subUrl.substring(0, subUrl.lastIndexOf("/") + 1);
+  const segmentCount = subText
+    .split("\n")
+    .filter((line) => line.trim() && !line.trim().startsWith("#"))
+    .length;
   const outLines = [];
+  let segmentIndex = 0;
   for (const line of subText.split("\n")) {
     const trimmed = line.trim();
     if (!trimmed) continue;
@@ -749,7 +763,15 @@ export async function resolveStreamTPM3U8(streamId) {
       outLines.push(trimmed);
     } else {
       const fullTs = trimmed.startsWith("http") ? trimmed : `${subBase}${trimmed}`;
-      outLines.push(fullTs);
+      outLines.push(proxySegmentUrl(
+        fullTs,
+        "https://streamtp-golden1.click/",
+        streamId,
+        segmentIndex - segmentCount,
+        proxyBaseUrl,
+        apiKey,
+      ));
+      segmentIndex += 1;
     }
   }
   const finalM3u8 = outLines.join("\n");
@@ -837,7 +859,7 @@ export async function fetchLiveStreamM3U8(
     }
   }
 
-  // 2. Capo Deportes (Instreams CA1 - HD 1080p)
+  // 2. Capo Deportes (Instreams CA1)
   if (cleanSlug === "capodeportes" || cleanSlug === "capo-deportes" || cleanSlug === "ca1") {
     try {
       return await resolveCapoM3U8("CA1");
@@ -850,7 +872,7 @@ export async function fetchLiveStreamM3U8(
   if (cleanSlug.startsWith("disney") || cleanSlug.startsWith("streamtp-")) {
     try {
       const streamId = cleanSlug.replace("streamtp-", "");
-      return await resolveStreamTPM3U8(streamId);
+      return await resolveStreamTPM3U8(streamId, proxyBaseUrl, apiKey);
     } catch (err) {
       console.warn(`[StreamTP Disney+ Error] ${cleanSlug}:`, err.message);
     }

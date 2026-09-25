@@ -1,5 +1,5 @@
-// api/warm.js — Edge Pre-warmer to keep top channels hot in memory for 16ms responses
-import { fetchLiveStreamM3U8 } from "./_core.js";
+// api/warm.js — Pre-warmer to keep top channel resolvers hot in memory
+import { fetchLiveStreamM3U8, getBaseUrl } from "./_core.js";
 
 const TOP_CHANNELS = [
   "movistardeportes",
@@ -24,12 +24,14 @@ const TOP_CHANNELS = [
 export default async function handler(req, res) {
   const start = Date.now();
   const results = {};
+  const baseUrl = getBaseUrl(req);
+  const apiKey = process.env.API_KEY || "televisor2024";
 
   await Promise.allSettled(
     TOP_CHANNELS.map(async (slug) => {
       try {
         const t0 = Date.now();
-        await fetchLiveStreamM3U8(slug);
+        await fetchLiveStreamM3U8(slug, "127.0.0.1", baseUrl, apiKey);
         results[slug] = `${Date.now() - t0}ms OK`;
       } catch (err) {
         results[slug] = `FAIL: ${err.message}`;

@@ -5,6 +5,7 @@ import {
   generateM3U,
   resolveHlsStream,
   resolveHlsStreamWithFallback,
+  resolveStreamTPM3U8,
 } from "../api/_core.js";
 
 function mediaPlaylist(sequence, count = 8) {
@@ -120,6 +121,43 @@ test("direct HLS uses its next source when the primary fails", async () => {
     ]);
     assert.match(result, /#EXT-X-MEDIA-SEQUENCE:300/);
     assert.match(result, /https:\/\/backup\.example\/video\/segment-302\.ts/);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("StreamTP rewrites IP-bound fragments through the same-origin proxy", async () => {
+  const originalFetch = globalThis.fetch;
+  const streamId = "disney-proxy-test";
+  globalThis.fetch = async (url) => {
+    if (url === `https://streamtp-golden1.click/global1.php?stream=${streamId}`) {
+      return new Response('const playbackURL = "https://origin.example/master.m3u8";');
+    }
+    if (url === "https://origin.example/master.m3u8") {
+      return new Response("#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=1000000\nmedia.m3u8");
+    }
+    assert.equal(url, "https://origin.example/media.m3u8");
+    return new Response(mediaPlaylist(400, 2));
+  };
+
+  try {
+    const raw = await resolveStreamTPM3U8(streamId);
+    assert.match(raw, /https:\/\/origin\.example\/segment-401\.ts/);
+
+    const proxied = await resolveStreamTPM3U8(
+      streamId,
+      "https://televisor.example",
+      "secret-key",
+    );
+    const segmentUrl = proxied
+      .split("\n")
+      .find((line) => line.startsWith("https://televisor.example/segment.ts?"));
+    assert.ok(segmentUrl);
+    const parsed = new URL(segmentUrl);
+    assert.equal(parsed.searchParams.get("url"), "https://origin.example/segment-400.ts");
+    assert.equal(parsed.searchParams.get("ref"), "https://streamtp-golden1.click/");
+    assert.equal(parsed.searchParams.get("slug"), streamId);
+    assert.equal(parsed.searchParams.get("key"), "secret-key");
   } finally {
     globalThis.fetch = originalFetch;
   }

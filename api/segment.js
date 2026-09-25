@@ -3,6 +3,7 @@ import {
   checkAuth,
   INSTREAM_MAP,
   resolveInstreamM3U8,
+  resolveStreamTPM3U8,
   resolveTvf90M3U8,
   TVF90_MAP,
 } from "./_core.js";
@@ -11,6 +12,7 @@ const ALLOWED_HOSTS = [
   /(^|\.)ftlly\.com$/i,
   /(^|\.)instreams\.pro$/i,
   /(^|\.)instreams\.live$/i,
+  /(^|\.)domhsd\.com$/i,
 ];
 
 async function fetchSegment(target, referer) {
@@ -57,7 +59,9 @@ export async function proxySegment(req, res) {
     // fresh manifest only when another instance receives the segment request.
     if (!upstream.ok) {
       let freshManifest;
-      if (/(^|\.)ftlly\.com$/i.test(target.hostname) && TVF90_MAP[slug]) {
+      if (/(^|\.)domhsd\.com$/i.test(target.hostname) && slug.startsWith("disney")) {
+        freshManifest = await resolveStreamTPM3U8(slug, null, undefined, true);
+      } else if (/(^|\.)ftlly\.com$/i.test(target.hostname) && TVF90_MAP[slug]) {
         freshManifest = await resolveTvf90M3U8(TVF90_MAP[slug], slug, null);
       } else {
         const streamId = INSTREAM_MAP[slug] || slug.toUpperCase();
@@ -67,7 +71,7 @@ export async function proxySegment(req, res) {
       const candidates = freshManifest
         .split("\n")
         .map((line) => line.trim())
-        .filter((line) => /^https?:\/\//.test(line) && line.includes(".ts"));
+        .filter((line) => /^https?:\/\//.test(line));
       const samePath = candidates.find((candidate) => {
         try { return new URL(candidate).pathname === target.pathname; } catch { return false; }
       });
