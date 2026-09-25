@@ -86,6 +86,7 @@ SOURCES = {
     93: RAW + "countries/world-latin-america/nickelodeon-lam.png",
     94: RAW + "countries/world-latin-america/discovery-kids-lam.png",
     95: RAW + "countries/world-latin-america/disney-jr-lam.png",
+    96: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Adult_Swim_2003_logo.svg/960px-Adult_Swim_2003_logo.svg.png",
     100: RAW + "countries/world-latin-america/discovery-home-and-health-lam.png",
     101: RAW + "countries/world-latin-america/el-gourmet-lam.png",
     102: RAW + "countries/world-latin-america/history-channel-lam.png",
