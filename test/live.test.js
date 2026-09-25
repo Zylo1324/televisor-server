@@ -130,8 +130,9 @@ test("the main playlist gives every channel a same-origin PNG logo", () => {
   const logoLines = m3u.split("\n").filter((line) => line.startsWith("#EXTINF"));
   assert.equal(logoLines.length, CHANNELS.length);
   for (const channel of CHANNELS) {
+    const logoVersion = channel.logoVersion ? `?v=${encodeURIComponent(channel.logoVersion)}` : "";
     assert.ok(logoLines.some((line) => line.includes(
-      `tvg-chno="${channel.chno}" tvg-logo="https://televisor.example/logos/${channel.chno}.png"`,
+      `tvg-chno="${channel.chno}" tvg-logo="https://televisor.example/logos/${channel.chno}.png${logoVersion}"`,
     )));
   }
 });
