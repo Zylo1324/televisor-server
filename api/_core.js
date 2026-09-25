@@ -53,7 +53,7 @@ export const CHANNELS = [
   { chno: 60, name: "FOX Sports 1 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1" },
   { chno: 61, name: "FOX Sports 2 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
   { chno: 62, name: "FOX Sports 3 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
-  { chno: 63, name: "ESPN en Disney+ - Turquía vs Francia (Full HD 1080p 50fps)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "espn-eventos-turquia-francia" },
+  { chno: 63, name: "DAZN - Turquía vs Francia (Full HD 1080p 50fps)", group: "Deportes", logo: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/dazn-int.png", slug: "dazn-turquia-francia" },
   { chno: 65, name: "Paramount Network (HD 1080p 60fps con respaldo)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Paramount_Network.svg", slug: "paramount" },
 
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
@@ -118,7 +118,7 @@ export const DIRECT_HLS_MAP = {
   "fox-sports-2": "http://190.93.224.43/ESPN-5/index.m3u8",
   foxsports3: "http://190.93.224.43/ESPN-6/index.m3u8",
   "fox-sports-3": "http://190.93.224.43/ESPN-6/index.m3u8",
-  "espn-eventos-turquia-francia": [
+  "dazn-turquia-francia": [
     "https://admin2.passionepizza.com.br/france.m3u8",
     "https://live05.meung.app/live/08552895_tsc.m3u8",
   ],

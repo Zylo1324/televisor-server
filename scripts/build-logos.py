@@ -59,6 +59,7 @@ SOURCES = {
     60: RAW + "countries/world-latin-america/fox-sports-1-lam.png",
     61: RAW + "countries/world-latin-america/fox-sports-2-lam.png",
     62: RAW + "countries/world-latin-america/fox-sports-3-lam.png",
+    63: RAW + "countries/international/dazn-int.png",
     65: RAW + "countries/united-states/paramount-network-us.png",
     70: RAW + "countries/world-latin-america/hbo-2-lam.png",
     71: RAW + "countries/world-latin-america/hbo-family-lam.png",
