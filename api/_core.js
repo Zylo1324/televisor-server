@@ -141,11 +141,11 @@ export const DIRECT_HLS_MAP = {
   ],
   "adult-swim": [
     "http://181.209.80.115:8000/hls/adult_swim_hd/index.m3u8",
-    "https://cablered.iptvperu.tv:1936/cablered/adultswing_new/chunks.m3u8",
+    "https://cablered.iptvperu.tv:1936/cablered/adultswing_new/playlist.m3u8",
   ],
   adultswim: [
     "http://181.209.80.115:8000/hls/adult_swim_hd/index.m3u8",
-    "https://cablered.iptvperu.tv:1936/cablered/adultswing_new/chunks.m3u8",
+    "https://cablered.iptvperu.tv:1936/cablered/adultswing_new/playlist.m3u8",
   ],
 };
 
@@ -546,7 +546,7 @@ export async function resolveHlsStreamWithFallback(sourceUrls, streamKey) {
   for (const [index, sourceUrl] of sourceUrls.entries()) {
     const sourceKey = index === 0 ? streamKey : `${streamKey}:backup-${index}`;
     const needsWarmup = index === 0 && (streamKey === "adult-swim" || streamKey === "adultswim");
-    const attempts = needsWarmup ? 4 : 1;
+    const attempts = needsWarmup ? 8 : 1;
 
     for (let attempt = 0; attempt < attempts; attempt += 1) {
       try {
