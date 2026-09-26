@@ -30,10 +30,21 @@ export default async function handler(req, res) {
     );
     res.setHeader("Content-Type", "application/vnd.apple.mpegurl; charset=utf-8");
     res.setHeader("Access-Control-Allow-Origin", "*");
-    // Refresh on the CDN without making every player wait for the upstream.
-    // Keep the browser's copy at zero age so it checks the live edge playlist.
-    res.setHeader("Cache-Control", "public, max-age=0");
-    res.setHeader("Vercel-CDN-Cache-Control", "public, s-maxage=2, stale-while-revalidate=15");
+    const cleanTarget = target.toLowerCase().trim();
+    if (cleanTarget === "adult-swim" || cleanTarget === "adultswim") {
+      // This upstream advances every ~2 seconds. Serving a stale manifest makes
+      // players exhaust their buffer and pause before the CDN refresh catches up.
+      res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+      res.setHeader("CDN-Cache-Control", "no-store");
+      res.setHeader("Vercel-CDN-Cache-Control", "no-store");
+      res.setHeader("Pragma", "no-cache");
+      res.setHeader("Expires", "0");
+    } else {
+      // Refresh on the CDN without making every player wait for the upstream.
+      // Keep the browser's copy at zero age so it checks the live edge playlist.
+      res.setHeader("Cache-Control", "public, max-age=0");
+      res.setHeader("Vercel-CDN-Cache-Control", "public, s-maxage=2, stale-while-revalidate=15");
+    }
     res.status(200).send(m3u8Content);
   } catch (err) {
     res.status(502).send(`Error resolviendo stream ${target}: ${err.message}\n`);
