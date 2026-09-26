@@ -90,7 +90,7 @@ export const CHANNELS = [
   { chno: 93, name: "Nickelodeon (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Nickelodeon_2009_logo.svg", directUrl: "http://190.93.224.43/NICK/index.m3u8" },
   { chno: 94, name: "Discovery Kids (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Discovery_Kids_2016.svg", directUrl: "http://190.93.224.43/DISCOVERY-KIDS/index.m3u8" },
   { chno: 95, name: "Disney Jr (HD 720p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", directUrl: "http://181.78.14.26:4000/play/a073/index.m3u8" },
-  { chno: 96, name: "Adult Swim Latinoamérica (Español Latino - 170ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Adult_Swim_2003_logo.svg/960px-Adult_Swim_2003_logo.svg.png", directUrl: "https://cablered.iptvperu.tv:1936/cablered/adultswing_new/playlist.m3u8" },
+  { chno: 96, name: "Adult Swim Latinoamérica (Español 1080p 60fps)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Adult_Swim_2003_logo.svg/960px-Adult_Swim_2003_logo.svg.png", directUrl: "http://181.209.80.115:8000/play/adult_swim_hd" },
 
   // ── Cultura y Variedades ───────────────────────────────────────────────────
   { chno: 100, name: "Discovery Home & Health (H&H) (HD 1080p)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Discovery_Home_%26_Health_logo.png", directUrl: "http://190.61.90.17:40000/play/a0hw/index.m3u8" },
@@ -141,11 +141,9 @@ export const DIRECT_HLS_MAP = {
   ],
   "adult-swim": [
     "https://cablered.iptvperu.tv:1936/cablered/adultswing_new/chunks.m3u8",
-    "http://138.121.15.230:9002/ADULT-SWIM/index.m3u8",
   ],
   adultswim: [
     "https://cablered.iptvperu.tv:1936/cablered/adultswing_new/chunks.m3u8",
-    "http://138.121.15.230:9002/ADULT-SWIM/index.m3u8",
   ],
 };
 
