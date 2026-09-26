@@ -90,7 +90,7 @@ export const CHANNELS = [
   { chno: 93, name: "Nickelodeon (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Nickelodeon_2009_logo.svg", directUrl: "http://190.93.224.43/NICK/index.m3u8" },
   { chno: 94, name: "Discovery Kids (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Discovery_Kids_2016.svg", directUrl: "http://190.93.224.43/DISCOVERY-KIDS/index.m3u8" },
   { chno: 95, name: "Disney Jr (HD 720p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", directUrl: "http://181.78.14.26:4000/play/a073/index.m3u8" },
-  { chno: 96, name: "Adult Swim Latinoamérica (Español 1080p 60fps)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Adult_Swim_2003_logo.svg/960px-Adult_Swim_2003_logo.svg.png", directUrl: "http://181.209.80.115:8000/hls/adult_swim_hd/index.m3u8" },
+  { chno: 96, name: "Adult Swim Latinoamérica (Español 1080p 60fps)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Adult_Swim_2003_logo.svg/960px-Adult_Swim_2003_logo.svg.png", slug: "adult-swim" },
 
   // ── Cultura y Variedades ───────────────────────────────────────────────────
   { chno: 100, name: "Discovery Home & Health (H&H) (HD 1080p)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Discovery_Home_%26_Health_logo.png", directUrl: "http://190.61.90.17:40000/play/a0hw/index.m3u8" },
@@ -544,11 +544,22 @@ async function buildDirectHls(m3u8Url, streamKey) {
 export async function resolveHlsStreamWithFallback(sourceUrls, streamKey) {
   const errors = [];
   for (const [index, sourceUrl] of sourceUrls.entries()) {
-    try {
-      const sourceKey = index === 0 ? streamKey : `${streamKey}:backup-${index}`;
-      return await resolveHlsStream(sourceUrl, sourceKey);
-    } catch (err) {
-      errors.push(`${sourceUrl}: ${err.message}`);
+    const sourceKey = index === 0 ? streamKey : `${streamKey}:backup-${index}`;
+    const needsWarmup = index === 0 && (streamKey === "adult-swim" || streamKey === "adultswim");
+    const attempts = needsWarmup ? 4 : 1;
+
+    for (let attempt = 0; attempt < attempts; attempt += 1) {
+      try {
+        return await resolveHlsStream(sourceUrl, sourceKey);
+      } catch (err) {
+        const emptyWarmup = err.message.includes("sin fragmentos") && attempt < attempts - 1;
+        if (emptyWarmup) {
+          await new Promise((resolve) => setTimeout(resolve, 750));
+          continue;
+        }
+        errors.push(`${sourceUrl}: ${err.message}`);
+        break;
+      }
     }
   }
   throw new Error(`ninguna fuente HLS respondió (${errors.join("; ")})`);
