@@ -19,3 +19,4 @@
     { "source": "/pelis.m3u", "destination": "/api/pelis" }
   ]
 }
+
