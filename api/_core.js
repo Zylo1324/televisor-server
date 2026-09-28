@@ -105,8 +105,24 @@ export const CHANNELS = [
   { chno: 111, name: "Telemundo Puerto Rico (HD 1080p)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Telemundo_logo.svg", directUrl: "https://nbculocallive.akamaized.net/hls/live/2037499/puertorico/stream1/master.m3u8" },
   { chno: 112, name: "Canal de las Estrellas (HD - 16ms)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Telemundo_logo.svg", directUrl: "http://190.93.224.43/CANAL-LAS-ESTRELLAS/index.m3u8" },
   { chno: 113, name: "Univisión (HD - 16ms)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Telemundo_logo.svg", directUrl: "http://190.93.224.43/UNIVISION/index.m3u8" },
-];
 
+  // ── Fútbol Español & Champions League ──────────────────────────────────────
+  { chno: 120, name: "Movistar LaLiga (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Movistar_LaLiga_logo.png", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/915236.m3u8" },
+  { chno: 121, name: "Movistar LaLiga 1 (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Movistar_LaLiga_logo.png", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/477159.m3u8" },
+  { chno: 122, name: "Movistar LaLiga 2 (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Movistar_LaLiga_logo.png", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/477160.m3u8" },
+  { chno: 123, name: "DAZN LaLiga (HD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e4/DAZN_LaLiga_logo.svg", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/986640.m3u8" },
+  { chno: 124, name: "DAZN LaLiga 2 (HD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e4/DAZN_LaLiga_logo.svg", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/1347433.m3u8" },
+  { chno: 125, name: "Movistar Liga de Campeones (HD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/2/29/Movistar_Liga_de_Campeones_logo.png", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/1777911.m3u8" },
+  { chno: 126, name: "Movistar Liga de Campeones 2 (HD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/2/29/Movistar_Liga_de_Campeones_logo.png", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/1777910.m3u8" },
+  { chno: 127, name: "Movistar #Vamos (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Vamos_por_Movistar_Plus%2B_logo.png", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/1510692.m3u8" },
+
+  // ── Cine Exclusivo Movistar Plus+ España ────────────────────────────────────
+  { chno: 130, name: "Movistar Plus+ Estrenos (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/1547166.m3u8" },
+  { chno: 131, name: "Movistar Plus+ Acción (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/1547154.m3u8" },
+  { chno: 132, name: "Movistar Plus+ Comedia (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/1547157.m3u8" },
+  { chno: 133, name: "Movistar Plus+ Drama (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/1547159.m3u8" },
+  { chno: 134, name: "Movistar Plus+ Clásicos (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/1547163.m3u8" },
+  { chno: 135, name: "Movistar Plus+ Suspense (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://line.tellyshow.cc/live/337b1ad6d3/9e6a19b2cb6f/1547173.m3u8" },
 ];
 
 // ─── Mapping: Direct HLS Streams (Optimized Dynamic Window) ───────────────────

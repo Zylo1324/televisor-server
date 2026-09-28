@@ -15,8 +15,7 @@
     { "source": "/segment.ts", "destination": "/api/live" },
     { "source": "/logos/:chno.png", "destination": "/api/logo?chno=:chno" },
     { "source": "/stream.m3u8", "destination": "/api/stream" },
-    { "source": "/warm", "destination": "/api/warm" },
-    { "source": "/pelis.m3u", "destination": "/api/pelis" }
+    { "source": "/warm", "destination": "/api/warm" }
   ]
 }
 
