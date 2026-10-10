@@ -199,7 +199,10 @@ export const DIRECT_HLS_MAP = {
     "http://181.209.38.115:8000/play/a06g/index.m3u8",
     "http://181.209.80.115:8000/hls/adult_swim_hd/index.m3u8",
   ],
-  "movistar-laliga": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406871.m3u8",
+  "movistar-laliga": [
+    "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406871.m3u8",
+    "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406872.m3u8",
+  ],
   "movistar-laliga-1": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406872.m3u8",
   "movistar-laliga-2": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406873.m3u8",
   "dazn-laliga": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406692.m3u8",
