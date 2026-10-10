@@ -5,9 +5,11 @@ export default function handler(req, res) {
     return res.status(401).send("401 Unauthorized — pasa ?key=TU_API_KEY\n");
   }
 
+  const url = new URL(req.url, "http://localhost");
+  const forceDirect = url.searchParams.get("direct") === "1";
   const baseUrl = getBaseUrl(req);
   const apiKey = process.env.API_KEY || "televisor2024";
-  const m3u = generateM3U(null, baseUrl, apiKey);
+  const m3u = generateM3U(null, baseUrl, apiKey, forceDirect);
 
   res.setHeader("Content-Type", "application/x-mpegurl; charset=utf-8");
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
