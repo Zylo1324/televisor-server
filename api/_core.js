@@ -189,12 +189,57 @@ export const TVF90_MAP = {
 
 // ─── Mapping: Slugs to PirloTV / Instream Stream IDs ──────────────────────────
 export const INSTREAM_MAP = {
+  // DirecTV Sports (Zero IP-lock, multi-gigabit direct streaming)
   dsports: "H94",
   "directv-sports": "H94",
+  "directv-sport": "H94",
+  directvsports: "H94",
   dsports2: "H95",
   "directv-sports-2": "H95",
+  "directv-sport-2": "H95",
+  directvsports2: "H95",
   dsportsplus: "H96",
   "directv-sports-plus": "H96",
+  "directv-sport-plus": "H96",
+  directvsportsplus: "H96",
+
+  // Fútbol Español & DAZN (Partidos y eventos en vivo)
+  "movistar-laliga": "CA1",
+  movistarlaliga: "CA1",
+  "movistar-laliga-1": "CA1",
+  movistarlaliga1: "CA1",
+  "movistar-laliga-2": "CA2",
+  movistarlaliga2: "CA2",
+  laliga: "CA1",
+  "dazn-laliga": "CA1",
+  daznlaliga: "CA1",
+  "dazn-laliga-2": "CA2",
+  daznlaliga2: "CA2",
+  dazn: "CA2",
+  dazn1: "CA2",
+  "movistar-champions": ["CA3", "CA1"],
+  movistarchampions: ["CA3", "CA1"],
+  champions: ["CA3", "CA1"],
+  "movistar-champions-2": ["CA4", "CA2"],
+  movistarchampions2: ["CA4", "CA2"],
+  vamos: ["CA5", "CA1"],
+
+  // Capo Deportes
+  capodeportes: "CA1",
+  "capo-deportes": "CA1",
+  capodeportes2: "CA2",
+  "capo-deportes-2": "CA2",
+
+  // Sudamérica e Internacional
+  espn: "H87",
+  espn2: "H88",
+  "espn-2": "H88",
+  espn3: "H90",
+  "espn-3": "H90",
+  espn4: "H91",
+  "espn-4": "H91",
+  espn5: "H92",
+  "espn-5": "H92",
   espnpremium: "H76",
   "espn-premium": "H76",
   espndeportes: "H71",
@@ -213,6 +258,10 @@ export const INSTREAM_MAP = {
   "tyc-sports": "H77",
   liga1max: "H84",
   "liga-1-max": "H84",
+  formula1: "H60",
+  "formula-1": "H60",
+  f1: "H60",
+  tudn: "H68",
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -286,25 +335,30 @@ function proxySegmentUrl(segmentUrl, referer, slug, offset, proxyBaseUrl, apiKey
 }
 
 export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
+  const normStreamId = String(streamId).toUpperCase().trim();
   const now = Date.now();
 
   // Tier 2: Check ultra-short live manifest cache (1.5s)
-  const cachedManifest = manifestCache.get(streamId);
+  const cachedManifest = manifestCache.get(normStreamId);
   if (cachedManifest && now - cachedManifest.time < MANIFEST_CACHE_TTL && cachedManifest.content) {
     return cachedManifest.content;
   }
 
   // Tier 1: Check token cache or scrape fresh URLs
   let urls = null;
-  const cachedToken = tokenCache.get(streamId);
+  const cachedToken = tokenCache.get(normStreamId);
   if (cachedToken && now - cachedToken.time < TOKEN_CACHE_TTL && cachedToken.urls) {
     urls = cachedToken.urls;
   } else {
-    const pageUrl = `https://xstream.st/hlsspanich.php?stream=${streamId}`;
+    const isCapo = normStreamId.startsWith("CA");
+    const pageUrl = isCapo
+      ? `https://xstream.st/capopro.php?stream=${normStreamId}`
+      : `https://xstream.st/hlsspanich.php?stream=${normStreamId}`;
+    const pageReferer = isCapo ? "https://playvi.org/" : "https://live4.lat/";
     const pageRes = await fetch(pageUrl, {
       headers: {
         "user-agent": UA,
-        "referer": "https://live4.lat/",
+        "referer": pageReferer,
       },
       signal: AbortSignal.timeout(5000),
     });
@@ -316,17 +370,17 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
     const html = await pageRes.text();
     const m = html.match(/const\s+streamUrls\s*=\s*(\[[^\]]+\])/);
     if (!m) {
-      throw new Error(`No se encontró streamUrls para ${streamId}`);
+      throw new Error(`No se encontró streamUrls para ${normStreamId}`);
     }
 
     try {
       urls = JSON.parse(m[1]).map((u) => u.replace(/\\u0026/g, "&"));
     } catch (_) {
       const urlMatches = m[1].match(/https:\/\/[^"',\s]+/g);
-      if (!urlMatches) throw new Error(`Error parseando streamUrls para ${streamId}`);
+      if (!urlMatches) throw new Error(`Error parseando streamUrls para ${normStreamId}`);
       urls = urlMatches.map((u) => u.replace(/\\u0026/g, "&"));
     }
-    tokenCache.set(streamId, { urls, time: now });
+    tokenCache.set(normStreamId, { urls, time: now });
   }
 
   // Fetch the fresh live manifest from upstream CDN
@@ -356,8 +410,8 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
 
   // If cached token failed, invalidate and try scraping once more
   if (!m3u8Text) {
-    tokenCache.delete(streamId);
-    throw new Error(`El stream ${streamId} no devolvió una lista M3U8 válida`);
+    tokenCache.delete(normStreamId);
+    throw new Error(`El stream ${normStreamId} no devolvió una lista M3U8 válida`);
   }
 
   const targetObj = new URL(activeUrl);
@@ -409,7 +463,7 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
     outputLines.push(proxySegmentUrl(
       seg.ts,
       "https://xstream.st/",
-      streamId,
+      normStreamId,
       index - keptSegments.length,
       proxyBaseUrl,
       apiKey,
@@ -417,7 +471,7 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
   }
 
   const optimizedM3U8 = outputLines.join("\n");
-  manifestCache.set(streamId, { content: optimizedM3U8, time: now });
+  manifestCache.set(normStreamId, { content: optimizedM3U8, time: now });
   return optimizedM3U8;
 }
 
@@ -824,61 +878,9 @@ export async function resolveStreamTPM3U8(
   return finalM3u8;
 }
 
-// ─── Capo Deportes Dynamic Resolver (Instreams / In-streams CA1) ─────────────
-const capoCache = new Map();
-const CAPO_TOKEN_TTL = 10 * 60 * 1000;
-const CAPO_MANIFEST_TTL = 1500;
-
-export async function resolveCapoM3U8(streamId = "CA1") {
-  const now = Date.now();
-  const cacheKey = `capo_${streamId}`;
-  const cachedManifest = manifestCache.get(cacheKey);
-  if (cachedManifest && now - cachedManifest.time < CAPO_MANIFEST_TTL && cachedManifest.content) {
-    return cachedManifest.content;
-  }
-
-  let streamM3u8 = null;
-  const cached = capoCache.get(streamId);
-  if (cached && now - cached.time < CAPO_TOKEN_TTL && cached.url) {
-    streamM3u8 = cached.url;
-  } else {
-    const pageUrl = `https://in-streams.click/capo.php?stream=${streamId}`;
-    const pageRes = await fetch(pageUrl, {
-      headers: { "user-agent": UA, "referer": "https://playvi.org/" },
-      signal: AbortSignal.timeout(6000),
-    });
-    if (!pageRes.ok) throw new Error(`In-streams retornó HTTP ${pageRes.status}`);
-    const html = await pageRes.text();
-    const m = html.match(/https:\/\/instreams\.[^"'\s<>]+\.m3u8\?[^"'\s<>]+/);
-    if (!m) throw new Error("No se encontró instreams m3u8 para Capo Deportes");
-    streamM3u8 = m[0].replace(/\\u0026/g, "&");
-    capoCache.set(streamId, { url: streamM3u8, time: now });
-  }
-
-  const res = await fetch(streamM3u8, {
-    headers: { "user-agent": UA, "referer": "https://in-streams.click/" },
-    signal: AbortSignal.timeout(6000),
-  });
-  if (!res.ok) {
-    capoCache.delete(streamId);
-    throw new Error(`Capo manifest retornó HTTP ${res.status}`);
-  }
-  const text = await res.text();
-  const base = streamM3u8.substring(0, streamM3u8.lastIndexOf("/") + 1);
-  const outLines = [];
-  for (const line of text.split("\n")) {
-    const trimmed = line.trim();
-    if (!trimmed) continue;
-    if (trimmed.startsWith("#")) {
-      outLines.push(trimmed);
-    } else {
-      const fullTs = trimmed.startsWith("http") ? trimmed : `${base}${trimmed}`;
-      outLines.push(fullTs);
-    }
-  }
-  const finalM3u8 = outLines.join("\n");
-  manifestCache.set(cacheKey, { content: finalM3u8, time: now });
-  return finalM3u8;
+// ─── Capo Deportes Dynamic Resolver (Instreams CA1) ──────────────────────────
+export async function resolveCapoM3U8(streamId = "CA1", proxyBaseUrl = null, apiKey = API_KEY_DEFAULT) {
+  return resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey);
 }
 
 // ─── Universal Live Stream Fetcher ───────────────────────────────────────────
@@ -904,12 +906,22 @@ export async function fetchLiveStreamM3U8(
     }
   }
 
-  // 2. Capo Deportes (Instreams CA1)
-  if (cleanSlug === "capodeportes" || cleanSlug === "capo-deportes" || cleanSlug === "ca1") {
-    try {
-      return await resolveCapoM3U8("CA1");
-    } catch (err) {
-      console.warn(`[Capo Deportes Error]:`, err.message);
+  // 2. High-speed Instream / PirloTV streams (DirecTV Sports H94/95/96, Movistar LaLiga CA1, DAZN CA2, Champions CA3/CA4, etc.)
+  // Direct multi-gigabit CDN chunks, ZERO IP locks, no 403 Forbidden buffering errors on Smart TVs!
+  const isDirectH = cleanSlug.startsWith("h") && !isNaN(cleanSlug.slice(1));
+  const isDirectCA = cleanSlug.startsWith("ca") && !isNaN(cleanSlug.slice(2));
+  const instreamCandidate = isDirectH || isDirectCA
+    ? cleanSlug.toUpperCase()
+    : INSTREAM_MAP[cleanSlug];
+
+  if (instreamCandidate) {
+    const candidates = Array.isArray(instreamCandidate) ? instreamCandidate : [instreamCandidate];
+    for (const instreamId of candidates) {
+      try {
+        return await resolveInstreamM3U8(instreamId, proxyBaseUrl, apiKey);
+      } catch (err) {
+        console.warn(`[Instream Error] ${cleanSlug} (${instreamId}):`, err.message);
+      }
     }
   }
 
@@ -933,20 +945,7 @@ export async function fetchLiveStreamM3U8(
     }
   }
 
-  // 5. Direct stream ID (e.g. H94, H95, H96) or mapped slug
-  const streamId = (cleanSlug.startsWith("h") && !isNaN(cleanSlug.slice(1)))
-    ? cleanSlug.toUpperCase()
-    : INSTREAM_MAP[cleanSlug];
-
-  if (streamId) {
-    try {
-      return await resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey);
-    } catch (err) {
-      console.error(`[Instream Error] ${cleanSlug} (${streamId}):`, err.message);
-    }
-  }
-
-  // 6. Fallback to tvplusgratis handshake if exists
+  // 5. Fallback to tvplusgratis handshake if exists
   return fetchTvPlusGratisM3U8(cleanSlug, clientIp);
 }
 
