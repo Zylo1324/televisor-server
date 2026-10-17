@@ -23,7 +23,7 @@ export const CHANNELS = [
   { chno: 14, name: "RPP Noticias (HD - 16ms)", group: "Nacionales (Chiclayo)", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/RPP_Noticias_logo.png", directUrl: "http://190.93.224.43/RPP/index.m3u8" },
   { chno: 15, name: "La Tele (HD - 16ms)", group: "Nacionales (Chiclayo)", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", directUrl: "http://190.93.224.43/LA-TELE/index.m3u8" },
   { chno: 16, name: "Willax Televisión (HD - 16ms)", group: "Nacionales (Chiclayo)", logo: "https://upload.wikimedia.org/wikipedia/commons/4/42/Willax_logo.jpg", directUrl: "http://190.93.224.43/WILLAX/index.m3u8" },
-  { chno: 17, name: "ATV Sur (HD)", group: "Nacionales (Chiclayo)", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", directUrl: "https://dnhmqt6n0lkaq.cloudfront.net/ts:abr.m3u8" },
+  { chno: 17, name: "ATV Sur (HD - 16ms)", group: "Nacionales (Chiclayo)", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f4/ATV_logo.png", directUrl: "http://190.93.224.43/ATV-SUR/index.m3u8" },
   { chno: 18, name: "Canal IPe (HD - 16ms)", group: "Nacionales (Chiclayo)", logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/TV_Per%C3%BA.svg", directUrl: "http://190.93.224.43/IPE/index.m3u8" },
   { chno: 19, name: "Justicia TV (HD - 16ms)", group: "Nacionales (Chiclayo)", logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/TV_Per%C3%BA.svg", directUrl: "http://190.93.224.43/JUSTICIA-TV/index.m3u8" },
   { chno: 21, name: "Bethel Televisión (HD - 16ms)", group: "Nacionales (Chiclayo)", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Bethel_Television_logo.png", directUrl: "http://190.93.224.43/BETHEL/index.m3u8" },
@@ -50,16 +50,16 @@ export const CHANNELS = [
   { chno: 57, name: "Win Sports +", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winplus" },
   { chno: 58, name: "Win Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winsports", directUrl: "http://138.121.15.230:9002/WIN-SPORT/index.m3u8" },
   { chno: 59, name: "Tigo Sports HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", directUrl: "http://190.61.90.17:40000/play/a02v/index.m3u8" },
-  { chno: 60, name: "FOX Sports 1 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1" },
-  { chno: 61, name: "FOX Sports 2 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
-  { chno: 62, name: "FOX Sports 3 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
+  { chno: 60, name: "FOX Sports 1 (Señal México HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1", directUrl: "http://190.93.224.43/ESPN-4/index.m3u8" },
+  { chno: 61, name: "FOX Sports 2 (Señal México HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2", directUrl: "http://190.93.224.43/ESPN-5/index.m3u8" },
+  { chno: 62, name: "FOX Sports 3 (Señal México HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3", directUrl: "http://190.93.224.43/ESPN-6/index.m3u8" },
   { chno: 63, name: "DAZN (En Vivo)", group: "Deportes", logo: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/dazn-int.png", logoVersion: "dazn-1", slug: "dazn" },
   { chno: 64, name: "Capo Deportes (En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "capodeportes" },
-  { chno: 66, name: "Disney+ Eventos 1 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney1" },
-  { chno: 67, name: "Disney+ Eventos 2 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney2" },
-  { chno: 68, name: "Disney+ Eventos 3 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney3" },
-  { chno: 69, name: "Disney+ Eventos 7 (ESPN en Disney+ - En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney7" },
-  { chno: 65, name: "Paramount Network (HD 1080p 60fps con respaldo)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Paramount_Network.svg", slug: "paramount" },
+  { chno: 66, name: "Disney+ Eventos 1 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney1", directUrl: "http://190.93.224.43/ESPN/index.m3u8" },
+  { chno: 67, name: "Disney+ Eventos 2 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney2", directUrl: "http://190.93.224.43/ESPN-2/index.m3u8" },
+  { chno: 68, name: "Disney+ Eventos 3 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney3", directUrl: "http://190.93.224.43/ESPN-3/index.m3u8" },
+  { chno: 69, name: "Disney+ Eventos 7 (ESPN en Disney+ - En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney7", directUrl: "http://190.93.224.43/ESPN-PREMIUM/index.m3u8" },
+  { chno: 65, name: "Paramount Network (HD 1080p 60fps con respaldo)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Paramount_Network.svg", directUrl: "http://190.93.224.43/SPACE/index.m3u8" },
 
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
   { chno: 70, name: "HBO 2 (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
@@ -70,11 +70,11 @@ export const CHANNELS = [
   { chno: 75, name: "TNT (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/TNT_Logo_2016.svg", directUrl: "http://190.93.224.43/TNT/index.m3u8" },
   { chno: 76, name: "TNT Series (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/TNT_Series_logo.svg", directUrl: "http://190.93.224.43/TNT-SERIES/index.m3u8" },
   { chno: 77, name: "TNT Novelas (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/TNT_Novelas_logo.svg", directUrl: "http://190.93.224.43/TNT-NOVELAS/index.m3u8" },
-  { chno: 78, name: "Space (HD 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Space_logo.svg", directUrl: "http://181.119.66.28:8081/SPACE/index.m3u8" },
+  { chno: 78, name: "Space (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Space_logo.svg", directUrl: "http://190.93.224.43/SPACE/index.m3u8" },
   { chno: 79, name: "AXN (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/f/fb/AXN_Logo.svg", directUrl: "http://190.93.224.43/AXN/index.m3u8" },
   { chno: 80, name: "FX (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/FX_logo.svg", directUrl: "http://190.93.224.43/FX/index.m3u8" },
   { chno: 81, name: "Sony Channel (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/Sony_Channel_logo.svg", directUrl: "http://190.93.224.43/SONY-CHANNEL/index.m3u8" },
-  { chno: 82, name: "Star Channel (HD 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Star_Channel_2021.svg", directUrl: "http://181.119.66.28:8081/STAR-CHANNEL/index.m3u8" },
+  { chno: 82, name: "Star Channel (HD 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Star_Channel_2021.svg", directUrl: "http://138.121.15.230:9002/STAR-CHANNEL/index.m3u8" },
   { chno: 83, name: "Warner Channel (HD 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/3/36/Warner_Channel_2021.svg", directUrl: "http://15.204.246.24:8080/WarnerChannelHD/index.m3u8" },
   { chno: 84, name: "Cinemax HD", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Cinemax_logo_2016.svg", slug: "cinemax", directUrl: "http://45.185.163.75:8000/play/a014/index.m3u8" },
   { chno: 85, name: "Golden (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Logo.png", directUrl: "http://190.93.224.43/GOLDEN/index.m3u8" },
@@ -85,18 +85,18 @@ export const CHANNELS = [
   { chno: 90, name: "Film & Arts (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/0/06/Film_%26_Arts.png", directUrl: "http://190.93.224.43/FILM-AND-ARTS/index.m3u8" },
 
   // ── Infantil ───────────────────────────────────────────────────────────────
-  { chno: 91, name: "Cartoon Network (HD 1080p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/8/80/Cartoon_Network_2010_logo.svg", directUrl: "http://181.119.66.28:8081/CARTOON-NETWORK/index.m3u8" },
-  { chno: 92, name: "Cartoonito (HD 1080p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cartoonito_2021.svg", directUrl: "http://181.119.66.28:8081/CARTOONITO/index.m3u8" },
+  { chno: 91, name: "Cartoon Network (HD 1080p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/8/80/Cartoon_Network_2010_logo.svg", directUrl: "http://138.121.15.230:9002/CARTOON-NETWORK/index.m3u8" },
+  { chno: 92, name: "Cartoonito (HD 1080p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cartoonito_2021.svg", directUrl: "http://138.121.15.230:9002/CARTOONITO/index.m3u8" },
   { chno: 93, name: "Nickelodeon (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Nickelodeon_2009_logo.svg", directUrl: "http://190.93.224.43/NICK/index.m3u8" },
   { chno: 94, name: "Discovery Kids (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Discovery_Kids_2016.svg", directUrl: "http://190.93.224.43/DISCOVERY-KIDS/index.m3u8" },
-  { chno: 95, name: "Disney Jr (HD 720p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", slug: "disney-jr" },
+  { chno: 95, name: "Disney Jr (HD 1080p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", directUrl: "http://138.121.15.230:9002/DISNEY-JR/index.m3u8" },
   { chno: 96, name: "Adult Swim Latinoamérica (Español 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Adult_Swim_2003_logo.svg/960px-Adult_Swim_2003_logo.svg.png", slug: "adult-swim", directUrl: "http://190.14.238.117:8000/play/a035/index.m3u8" },
 
   // ── Cultura y Variedades ───────────────────────────────────────────────────
   { chno: 100, name: "Discovery Home & Health (H&H) (HD 1080p)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Discovery_Home_%26_Health_logo.png", slug: "discovery-hh", directUrl: "http://45.185.163.75:8000/play/a0c9/index.m3u8" },
   { chno: 101, name: "El Gourmet (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/El_Gourmet_logo.png", directUrl: "http://190.93.224.43/EL-GOURMET/index.m3u8" },
   { chno: 102, name: "History Channel (HD 1080p)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f5/History_Logo.svg", directUrl: "http://138.121.15.230:9002/HISTORY-CHANNEL/index.m3u8" },
-  { chno: 103, name: "History 2 (HD 1080p)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/2/27/History_2_logo.svg", directUrl: "http://181.119.66.28:8081/HISTORY-2/index.m3u8" },
+  { chno: 103, name: "History 2 (HD 1080p)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/2/27/History_2_logo.svg", directUrl: "http://138.121.15.230:9002/HISTORY-2/index.m3u8" },
   { chno: 104, name: "National Geographic (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/National_Geographic_logo.svg", directUrl: "http://190.93.224.43/NAT-GEO/index.m3u8" },
   { chno: 105, name: "Discovery Turbo (HD - 16ms)", group: "Cultura", logo: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Discovery_Turbo_Logo.svg", directUrl: "http://190.93.224.43/DISCOVERY-TURBO/index.m3u8" },
 
@@ -117,12 +117,12 @@ export const CHANNELS = [
   { chno: 127, name: "Movistar #Vamos (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Vamos_por_Movistar_Plus%2B_logo.png", slug: "vamos" },
 
   // ── Cine Exclusivo Movistar Plus+ España ────────────────────────────────────
-  { chno: 130, name: "Movistar Plus+ Estrenos (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-estrenos" },
-  { chno: 131, name: "Movistar Plus+ Acción (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-accion" },
-  { chno: 132, name: "Movistar Plus+ Comedia (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-comedia" },
-  { chno: 133, name: "Movistar Plus+ Drama (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-drama" },
-  { chno: 134, name: "Movistar Plus+ Clásicos (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-clasicos" },
-  { chno: 135, name: "Movistar Plus+ Suspense (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-suspense" },
+  { chno: 130, name: "Movistar Plus+ Estrenos (FHD - 16ms)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.93.224.43/HBO-XTREME/index.m3u8" },
+  { chno: 131, name: "Movistar Plus+ Acción (FHD - 16ms)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
+  { chno: 132, name: "Movistar Plus+ Comedia (FHD - 16ms)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.93.224.43/HBO-FAMILY/index.m3u8" },
+  { chno: 133, name: "Movistar Plus+ Drama (FHD - 16ms)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.93.224.43/HBO-SIGNATURE/index.m3u8" },
+  { chno: 134, name: "Movistar Plus+ Clásicos (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.14.238.117:8000/play/a030/index.m3u8" },
+  { chno: 135, name: "Movistar Plus+ Suspense (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://15.204.246.24:8080/HBOPlusHD/index.m3u8" },
 ];
 
 // ─── Mapping: Direct HLS Streams (Optimized Dynamic Window) ───────────────────
@@ -142,6 +142,14 @@ export const DIRECT_HLS_MAP = {
   "cartoon-network": "http://45.185.163.75:8000/play/a0e0/index.m3u8",
   cartoonito: "http://45.185.163.75:8000/play/a0e2/index.m3u8",
   "discovery-hh": "http://45.185.163.75:8000/play/a0c9/index.m3u8",
+  "m-estrenos": "http://190.93.224.43/HBO-XTREME/index.m3u8",
+  "m-accion": "http://190.93.224.43/HBO-2/index.m3u8",
+  "m-comedia": "http://190.93.224.43/HBO-FAMILY/index.m3u8",
+  "m-drama": "http://190.93.224.43/HBO-SIGNATURE/index.m3u8",
+  "m-clasicos": "http://190.14.238.117:8000/play/a030/index.m3u8",
+  "m-suspense": "http://15.204.246.24:8080/HBOPlusHD/index.m3u8",
+  paramount: "http://190.93.224.43/SPACE/index.m3u8",
+  "paramount-network": "http://190.93.224.43/SPACE/index.m3u8",
   "adult-swim": [
     "http://190.14.238.117:8000/play/a035/index.m3u8",
     "http://181.118.153.15:8000/play/zu33/index.m3u8?hls",
@@ -262,6 +270,22 @@ export const INSTREAM_MAP = {
   "formula-1": "H60",
   f1: "H60",
   tudn: "H68",
+
+  // Fox Sports
+  foxsports: "H91",
+  "fox-sports": "H91",
+  foxsports1: "H91",
+  "fox-sports-1": "H91",
+  foxsports2: "H92",
+  "fox-sports-2": "H92",
+  foxsports3: "H90",
+  "fox-sports-3": "H90",
+
+  // Disney+ Eventos
+  disney1: ["H87", "CA1"],
+  disney2: ["H88", "CA2"],
+  disney3: ["H90", "CA1"],
+  disney7: ["H76", "CA2"],
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -488,7 +512,7 @@ async function fetchHlsText(url) {
   const response = await fetch(url, {
     headers: { "user-agent": UA },
     redirect: "follow",
-    signal: AbortSignal.timeout(3500),
+    signal: AbortSignal.timeout(6000),
   });
   if (!response.ok) throw new Error(`Stream upstream retornó HTTP ${response.status}`);
   const text = await response.text();
