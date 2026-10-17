@@ -225,6 +225,8 @@ export const INSTREAM_MAP = {
   "movistar-champions-2": ["CA4", "CA2"],
   movistarchampions2: ["CA4", "CA2"],
   vamos: ["CA5", "CA1"],
+  "movistar-vamos": ["CA5", "CA1"],
+  movistarvamos: ["CA5", "CA1"],
 
   // Capo Deportes
   capodeportes: "CA1",
