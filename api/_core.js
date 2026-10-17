@@ -180,12 +180,6 @@ export const TVF90_MAP = {
   "movistar-deportes": "movistar",
   movistar: "movistar",
   cmd: "movistar",
-  dsports: "dsports",
-  "directv-sports": "dsports",
-  dsports2: "dsports2",
-  "directv-sports-2": "dsports2",
-  dsportsplus: "dsportsplus",
-  "directv-sports-plus": "dsportsplus",
   tycsports: "tycsports",
   "tyc-sports": "tycsports",
   tntsports: "tntsports",
@@ -346,6 +340,8 @@ const TOKEN_CACHE_TTL = 10 * 60 * 1000; // 10 minutos
 
 const manifestCache = new Map();
 const MANIFEST_CACHE_TTL = 1500; // 1.5 segundos
+const instreamRequests = new Map();
+const INSTREAM_STALE_TTL = 30000; // 30 segundos
 
 function proxySegmentUrl(segmentUrl, referer, slug, offset, proxyBaseUrl, apiKey) {
   if (!proxyBaseUrl) return segmentUrl;
@@ -362,11 +358,45 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
   const normStreamId = String(streamId).toUpperCase().trim();
   const now = Date.now();
 
-  // Tier 2: Check ultra-short live manifest cache (1.5s)
   const cachedManifest = manifestCache.get(normStreamId);
-  if (cachedManifest && now - cachedManifest.time < MANIFEST_CACHE_TTL && cachedManifest.content) {
+  const cacheAge = cachedManifest ? now - cachedManifest.time : Infinity;
+  if (cachedManifest && cacheAge < MANIFEST_CACHE_TTL && cachedManifest.content) {
     return cachedManifest.content;
   }
+
+  // Request deduplication: merge simultaneous requests for the same channel
+  let request = instreamRequests.get(normStreamId);
+  if (!request) {
+    request = buildInstreamHls(normStreamId, proxyBaseUrl, apiKey);
+    instreamRequests.set(normStreamId, request);
+    request.then(
+      () => instreamRequests.delete(normStreamId),
+      () => instreamRequests.delete(normStreamId),
+    );
+  }
+
+  // On Vercel, serve stale live manifest immediately (<5ms) and refresh in background.
+  // This eliminates TV timeout errors (PLAYER_ERROR_CONNECTION_FAILED).
+  if (process.env.VERCEL && cachedManifest?.content && cacheAge < INSTREAM_STALE_TTL) {
+    waitUntil(request.catch((err) => {
+      console.error(`[Instream background refresh] ${normStreamId}:`, err.message);
+    }));
+    return cachedManifest.content;
+  }
+
+  try {
+    return await request;
+  } catch (err) {
+    if (cachedManifest?.content && cacheAge < INSTREAM_STALE_TTL * 2) {
+      console.warn(`[Instream fallback to stale] ${normStreamId}: ${err.message}`);
+      return cachedManifest.content;
+    }
+    throw err;
+  }
+}
+
+async function buildInstreamHls(normStreamId, proxyBaseUrl, apiKey) {
+  const now = Date.now();
 
   // Tier 1: Check token cache or scrape fresh URLs
   let urls = null;
@@ -384,7 +414,7 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
         "user-agent": UA,
         "referer": pageReferer,
       },
-      signal: AbortSignal.timeout(5000),
+      signal: AbortSignal.timeout(6000),
     });
 
     if (!pageRes.ok) {
@@ -418,7 +448,7 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
           "user-agent": UA,
           "referer": "https://xstream.st/",
         },
-        signal: AbortSignal.timeout(3500),
+        signal: AbortSignal.timeout(4500),
       });
 
       if (upstreamRes.ok) {
@@ -442,7 +472,6 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
   const basePath = activeUrl.substring(0, activeUrl.lastIndexOf("/") + 1);
 
   // ── LOW-LATENCY & ANTI-BUFFERING ENGINE ───────────────────────────────────────
-  // Parse segments and sequence to create an ultra-low latency sliding window
   const lines = m3u8Text.split("\n");
   const seqMatch = m3u8Text.match(/#EXT-X-MEDIA-SEQUENCE:(\d+)/);
   const origSeq = seqMatch ? parseInt(seqMatch[1]) : 0;
@@ -466,11 +495,10 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
     }
   }
 
-  // Keep last 4 segments:
-  // - Starts instantly with only 1 chunk buffer (~700KB download)
-  // - Low bandwidth consumption (works smoothly on slow Wi-Fi / mobile data)
-  // - Reduces broadcast latency to 6-10 seconds (near real-time live edge)
-  const KEEP_COUNT = 4;
+  // Keep last 8 completed segments (~50-60s buffer cushion):
+  // - Starts instantly
+  // - Gives TV players ample cushion to prevent buffer underrun and PLAYER_ERROR_CONNECTION_FAILED
+  const KEEP_COUNT = 8;
   const keptSegments = segments.length > KEEP_COUNT ? segments.slice(-KEEP_COUNT) : segments;
   const droppedCount = segments.length - keptSegments.length;
   const newSeq = origSeq + droppedCount;

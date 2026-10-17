@@ -46,6 +46,7 @@ export default async function handler(req, res) {
     }
     res.status(200).send(m3u8Content);
   } catch (err) {
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
     res.status(502).send(`Error resolviendo stream ${target}: ${err.message}\n`);
   }
 }
