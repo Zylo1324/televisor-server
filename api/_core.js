@@ -41,25 +41,25 @@ export const CHANNELS = [
   { chno: 48, name: "FOX Sports Premium / ESPN 7 (HD 60fps - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://190.93.224.43/ESPN-7/index.m3u8" },
   { chno: 49, name: "ESPN Premium (HD 60fps - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-PREMIUM/index.m3u8" },
   { chno: 50, name: "Claro Sports HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Claro_Sports_logo.svg", slug: "claro-sports", directUrl: "http://45.185.163.75:8000/play/a07k/index.m3u8" },
-  { chno: 51, name: "DSPORTS (DirecTV Sports)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/50724.m3u8" },
-  { chno: 52, name: "DSPORTS 2 (DirecTV Sports 2)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports2", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/50726.m3u8" },
-  { chno: 53, name: "DSPORTS + (DirecTV Sports +)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsportsplus", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/54471.m3u8" },
-  { chno: 54, name: "TyC Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/6/62/TyC_Sports_logo.svg", directUrl: "http://15.204.246.24:8080/TyCSportsHD/index.m3u8" },
-  { chno: 55, name: "TNT Sports Premium Argentina", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntsports", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/81251.m3u8" },
-  { chno: 56, name: "TNT Sports Premium Chile", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntchile", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/276332.m3u8" },
-  { chno: 57, name: "Win Sports +", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winplus", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/1384.m3u8" },
-  { chno: 58, name: "Win Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", directUrl: "http://138.121.15.230:9002/WIN-SPORT/index.m3u8" },
+  { chno: 51, name: "DSPORTS (DirecTV Sports)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports" },
+  { chno: 52, name: "DSPORTS 2 (DirecTV Sports 2)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports2" },
+  { chno: 53, name: "DSPORTS + (DirecTV Sports +)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsportsplus" },
+  { chno: 54, name: "TyC Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/6/62/TyC_Sports_logo.svg", slug: "tycsports", directUrl: "http://15.204.246.24:8080/TyCSportsHD/index.m3u8" },
+  { chno: 55, name: "TNT Sports Premium Argentina", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntsports" },
+  { chno: 56, name: "TNT Sports Premium Chile", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntchile" },
+  { chno: 57, name: "Win Sports +", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winplus" },
+  { chno: 58, name: "Win Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winsports", directUrl: "http://138.121.15.230:9002/WIN-SPORT/index.m3u8" },
   { chno: 59, name: "Tigo Sports HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", directUrl: "http://190.61.90.17:40000/play/a02v/index.m3u8" },
-  { chno: 60, name: "FOX Sports 1 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/306299.m3u8" },
-  { chno: 61, name: "FOX Sports 2 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/306301.m3u8" },
-  { chno: 62, name: "FOX Sports 3 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/306303.m3u8" },
-  { chno: 63, name: "DAZN (En Vivo)", group: "Deportes", logo: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/dazn-int.png", logoVersion: "dazn-1", slug: "dazn", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406692.m3u8" },
-  { chno: 64, name: "Capo Deportes (En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "capodeportes", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444070.m3u8" },
-  { chno: 66, name: "Disney+ Eventos 1 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney1", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444055.m3u8" },
-  { chno: 67, name: "Disney+ Eventos 2 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney2", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444067.m3u8" },
-  { chno: 68, name: "Disney+ Eventos 3 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney3", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444058.m3u8" },
-  { chno: 69, name: "Disney+ Eventos 7 (ESPN en Disney+ - En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney7", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444079.m3u8" },
-  { chno: 65, name: "Paramount Network (HD 1080p 60fps con respaldo)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Paramount_Network.svg", slug: "paramount", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/53938.m3u8" },
+  { chno: 60, name: "FOX Sports 1 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1" },
+  { chno: 61, name: "FOX Sports 2 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2" },
+  { chno: 62, name: "FOX Sports 3 (Señal México HD)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3" },
+  { chno: 63, name: "DAZN (En Vivo)", group: "Deportes", logo: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/dazn-int.png", logoVersion: "dazn-1", slug: "dazn" },
+  { chno: 64, name: "Capo Deportes (En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "capodeportes" },
+  { chno: 66, name: "Disney+ Eventos 1 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney1" },
+  { chno: 67, name: "Disney+ Eventos 2 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney2" },
+  { chno: 68, name: "Disney+ Eventos 3 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney3" },
+  { chno: 69, name: "Disney+ Eventos 7 (ESPN en Disney+ - En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney7" },
+  { chno: 65, name: "Paramount Network (HD 1080p 60fps con respaldo)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Paramount_Network.svg", slug: "paramount" },
 
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
   { chno: 70, name: "HBO 2 (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
@@ -89,7 +89,7 @@ export const CHANNELS = [
   { chno: 92, name: "Cartoonito (HD 1080p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cartoonito_2021.svg", directUrl: "http://181.119.66.28:8081/CARTOONITO/index.m3u8" },
   { chno: 93, name: "Nickelodeon (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Nickelodeon_2009_logo.svg", directUrl: "http://190.93.224.43/NICK/index.m3u8" },
   { chno: 94, name: "Discovery Kids (HD - 16ms)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Discovery_Kids_2016.svg", directUrl: "http://190.93.224.43/DISCOVERY-KIDS/index.m3u8" },
-  { chno: 95, name: "Disney Jr (HD 720p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", slug: "disney-jr", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/132697.m3u8" },
+  { chno: 95, name: "Disney Jr (HD 720p)", group: "Infantil", logo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Disney_Junior_2011_logo.svg", slug: "disney-jr" },
   { chno: 96, name: "Adult Swim Latinoamérica (Español 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Adult_Swim_2003_logo.svg/960px-Adult_Swim_2003_logo.svg.png", slug: "adult-swim", directUrl: "http://190.14.238.117:8000/play/a035/index.m3u8" },
 
   // ── Cultura y Variedades ───────────────────────────────────────────────────
@@ -107,22 +107,22 @@ export const CHANNELS = [
   { chno: 113, name: "Univisión (HD - 16ms)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Telemundo_logo.svg", directUrl: "http://190.93.224.43/UNIVISION/index.m3u8" },
 
   // ── Fútbol Español & Champions League ──────────────────────────────────────
-  { chno: 120, name: "Movistar LaLiga (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Movistar_LaLiga_logo.png", slug: "movistar-laliga", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406871.m3u8" },
-  { chno: 121, name: "Movistar LaLiga 1 (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Movistar_LaLiga_logo.png", slug: "movistar-laliga-1", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406872.m3u8" },
-  { chno: 122, name: "Movistar LaLiga 2 (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Movistar_LaLiga_logo.png", slug: "movistar-laliga-2", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406873.m3u8" },
-  { chno: 123, name: "DAZN LaLiga (HD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e4/DAZN_LaLiga_logo.svg", slug: "dazn-laliga", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406692.m3u8" },
-  { chno: 124, name: "DAZN LaLiga 2 (HD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e4/DAZN_LaLiga_logo.svg", slug: "dazn-laliga-2", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406696.m3u8" },
-  { chno: 125, name: "Movistar Liga de Campeones (HD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/2/29/Movistar_Liga_de_Campeones_logo.png", slug: "movistar-champions", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/376384.m3u8" },
-  { chno: 126, name: "Movistar Liga de Campeones 2 (HD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/2/29/Movistar_Liga_de_Campeones_logo.png", slug: "movistar-champions-2", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/376383.m3u8" },
-  { chno: 127, name: "Movistar #Vamos (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Vamos_por_Movistar_Plus%2B_logo.png", slug: "vamos", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/431828.m3u8" },
+  { chno: 120, name: "Movistar LaLiga (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Movistar_LaLiga_logo.png", slug: "movistar-laliga" },
+  { chno: 121, name: "Movistar LaLiga 1 (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Movistar_LaLiga_logo.png", slug: "movistar-laliga-1" },
+  { chno: 122, name: "Movistar LaLiga 2 (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Movistar_LaLiga_logo.png", slug: "movistar-laliga-2" },
+  { chno: 123, name: "DAZN LaLiga (HD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e4/DAZN_LaLiga_logo.svg", slug: "dazn-laliga" },
+  { chno: 124, name: "DAZN LaLiga 2 (HD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e4/DAZN_LaLiga_logo.svg", slug: "dazn-laliga-2" },
+  { chno: 125, name: "Movistar Liga de Campeones (HD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/2/29/Movistar_Liga_de_Campeones_logo.png", slug: "movistar-champions" },
+  { chno: 126, name: "Movistar Liga de Campeones 2 (HD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/2/29/Movistar_Liga_de_Campeones_logo.png", slug: "movistar-champions-2" },
+  { chno: 127, name: "Movistar #Vamos (FHD)", group: "Fútbol Español & Champions", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Vamos_por_Movistar_Plus%2B_logo.png", slug: "vamos" },
 
   // ── Cine Exclusivo Movistar Plus+ España ────────────────────────────────────
-  { chno: 130, name: "Movistar Plus+ Estrenos (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-estrenos", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/316288.m3u8" },
-  { chno: 131, name: "Movistar Plus+ Acción (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-accion", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/316309.m3u8" },
-  { chno: 132, name: "Movistar Plus+ Comedia (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-comedia", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/316292.m3u8" },
-  { chno: 133, name: "Movistar Plus+ Drama (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-drama", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/316317.m3u8" },
-  { chno: 134, name: "Movistar Plus+ Clásicos (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-clasicos", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/316329.m3u8" },
-  { chno: 135, name: "Movistar Plus+ Suspense (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-suspense", directUrl: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/316332.m3u8" },
+  { chno: 130, name: "Movistar Plus+ Estrenos (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-estrenos" },
+  { chno: 131, name: "Movistar Plus+ Acción (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-accion" },
+  { chno: 132, name: "Movistar Plus+ Comedia (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-comedia" },
+  { chno: 133, name: "Movistar Plus+ Drama (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-drama" },
+  { chno: 134, name: "Movistar Plus+ Clásicos (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-clasicos" },
+  { chno: 135, name: "Movistar Plus+ Suspense (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", slug: "m-suspense" },
 ];
 
 // ─── Mapping: Direct HLS Streams (Optimized Dynamic Window) ───────────────────
@@ -134,57 +134,14 @@ export const DIRECT_HLS_MAP = {
   "claro-sports": "http://45.185.163.75:8000/play/a07k/index.m3u8",
   clarosports: "http://45.185.163.75:8000/play/a07k/index.m3u8",
   "claro-sport": "http://45.185.163.75:8000/play/a07k/index.m3u8",
-  dsports: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/50724.m3u8",
-  "directv-sports": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/50724.m3u8",
-  dsports2: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/50726.m3u8",
-  "directv-sports-2": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/50726.m3u8",
-  dsportsplus: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/54471.m3u8",
-  "directv-sports-plus": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/54471.m3u8",
-  tntsports: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/81251.m3u8",
-  tntar: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/81251.m3u8",
-  "tnt-sports": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/81251.m3u8",
-  tntchile: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/276332.m3u8",
-  "tnt-chile": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/276332.m3u8",
-  winplus: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/1384.m3u8",
-  "win-sports-plus": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/1384.m3u8",
-  foxsports1: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/306299.m3u8",
-  "fox-sports-1": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/306299.m3u8",
-  "fox-sports": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/306299.m3u8",
-  foxsports2: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/306301.m3u8",
-  "fox-sports-2": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/306301.m3u8",
-  foxsports3: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/306303.m3u8",
-  "fox-sports-3": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/306303.m3u8",
-  dazn: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406692.m3u8",
-  capodeportes: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444070.m3u8",
-  "capo-deportes": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444070.m3u8",
-  disney1: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444055.m3u8",
-  "disney-1": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444055.m3u8",
-  disney2: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444067.m3u8",
-  "disney-2": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444067.m3u8",
-  disney3: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444058.m3u8",
-  "disney-3": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444058.m3u8",
-  disney7: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444079.m3u8",
-  "disney-7": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/444079.m3u8",
-  "star-channel": "http://45.185.163.75:8000/play/a0dm/index.m3u8",
-  "warner-channel": "http://45.185.163.75:8000/play/a0dn/index.m3u8",
   cinemax: "http://45.185.163.75:8000/play/a014/index.m3u8",
   "golden-premier": "http://45.185.163.75:8000/play/a0fv/index.m3u8",
+  "star-channel": "http://45.185.163.75:8000/play/a0dm/index.m3u8",
+  "warner-channel": "http://45.185.163.75:8000/play/a0dn/index.m3u8",
   cinecanal: "http://45.185.163.75:8000/play/a0dp/index.m3u8",
   "cartoon-network": "http://45.185.163.75:8000/play/a0e0/index.m3u8",
   cartoonito: "http://45.185.163.75:8000/play/a0e2/index.m3u8",
   "discovery-hh": "http://45.185.163.75:8000/play/a0c9/index.m3u8",
-  "disney-jr": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/132697.m3u8",
-  disneyjr: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/132697.m3u8",
-  paramount: [
-    "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/53938.m3u8",
-    "http://4.30.180.36:8420/paramount/index.m3u8?token=test",
-    "http://23.237.104.106:8080/USA_PARAMOUNT_NETWORK/index.m3u8",
-  ],
-  "paramount-network": [
-    "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/53938.m3u8",
-    "http://4.30.180.36:8420/paramount/index.m3u8?token=test",
-    "http://23.237.104.106:8080/USA_PARAMOUNT_NETWORK/index.m3u8",
-  ],
   "adult-swim": [
     "http://190.14.238.117:8000/play/a035/index.m3u8",
     "http://181.118.153.15:8000/play/zu33/index.m3u8?hls",
@@ -199,23 +156,6 @@ export const DIRECT_HLS_MAP = {
     "http://181.209.38.115:8000/play/a06g/index.m3u8",
     "http://181.209.80.115:8000/hls/adult_swim_hd/index.m3u8",
   ],
-  "movistar-laliga": [
-    "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406871.m3u8",
-    "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406872.m3u8",
-  ],
-  "movistar-laliga-1": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406872.m3u8",
-  "movistar-laliga-2": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406873.m3u8",
-  "dazn-laliga": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406692.m3u8",
-  "dazn-laliga-2": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/406696.m3u8",
-  "movistar-champions": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/376384.m3u8",
-  "movistar-champions-2": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/376383.m3u8",
-  vamos: "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/431828.m3u8",
-  "m-estrenos": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/316288.m3u8",
-  "m-accion": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/316309.m3u8",
-  "m-comedia": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/316292.m3u8",
-  "m-drama": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/316317.m3u8",
-  "m-clasicos": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/316329.m3u8",
-  "m-suspense": "http://goldtv.lat:8080/live/9C00D3CF51BB/D3CF51BB9C00/316332.m3u8",
 };
 
 // ─── Mapping: Slugs to TVF90 1080p Flussonic Cluster (PelotaLibre) ───────────
@@ -240,6 +180,9 @@ export const TVF90_MAP = {
   "directv-sports-plus": "dsportsplus",
   tycsports: "tycsports",
   "tyc-sports": "tycsports",
+  tntsports: "tntsports",
+  "tnt-sports": "tntsports",
+  tntar: "tntsports",
   liga1max: "liga1max",
   "liga-1-max": "liga1max",
 };
@@ -259,8 +202,8 @@ export const INSTREAM_MAP = {
   tntsports: "H75",
   tntar: "H75",
   "tnt-sports": "H75",
-  tntchile: "H82",
-  "tnt-chile": "H82",
+  tntchile: "H83",
+  "tnt-chile": "H83",
   winsports: "H82",
   "win-sports": "H82",
   winplus: "H81",
@@ -269,7 +212,7 @@ export const INSTREAM_MAP = {
   tycsports: "H77",
   "tyc-sports": "H77",
   liga1max: "H84",
-  "liga-1-max": "H84"
+  "liga-1-max": "H84",
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -357,26 +300,32 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
   if (cachedToken && now - cachedToken.time < TOKEN_CACHE_TTL && cachedToken.urls) {
     urls = cachedToken.urls;
   } else {
-    const pageUrl = `https://instream.click/hlsspanich.php?stream=${streamId}`;
+    const pageUrl = `https://xstream.st/hlsspanich.php?stream=${streamId}`;
     const pageRes = await fetch(pageUrl, {
       headers: {
         "user-agent": UA,
         "referer": "https://live4.lat/",
       },
-      signal: AbortSignal.timeout(6000),
+      signal: AbortSignal.timeout(5000),
     });
 
     if (!pageRes.ok) {
-      throw new Error(`instream.click retornó HTTP ${pageRes.status}`);
+      throw new Error(`xstream.st retornó HTTP ${pageRes.status}`);
     }
 
     const html = await pageRes.text();
-    const m = html.match(/const streamUrls = \["([^"]+)"(?:,"([^"]+)")?\]/);
+    const m = html.match(/const\s+streamUrls\s*=\s*(\[[^\]]+\])/);
     if (!m) {
       throw new Error(`No se encontró streamUrls para ${streamId}`);
     }
 
-    urls = [m[1], m[2]].filter(Boolean).map(u => u.replace(/\\u0026/g, "&"));
+    try {
+      urls = JSON.parse(m[1]).map((u) => u.replace(/\\u0026/g, "&"));
+    } catch (_) {
+      const urlMatches = m[1].match(/https:\/\/[^"',\s]+/g);
+      if (!urlMatches) throw new Error(`Error parseando streamUrls para ${streamId}`);
+      urls = urlMatches.map((u) => u.replace(/\\u0026/g, "&"));
+    }
     tokenCache.set(streamId, { urls, time: now });
   }
 
@@ -389,9 +338,9 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
       const upstreamRes = await fetch(rawUrl, {
         headers: {
           "user-agent": UA,
-          "referer": "https://instream.click/",
+          "referer": "https://xstream.st/",
         },
-        signal: AbortSignal.timeout(5000),
+        signal: AbortSignal.timeout(3500),
       });
 
       if (upstreamRes.ok) {
@@ -459,7 +408,7 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
     outputLines.push(seg.inf);
     outputLines.push(proxySegmentUrl(
       seg.ts,
-      "https://instream.click/",
+      "https://xstream.st/",
       streamId,
       index - keptSegments.length,
       proxyBaseUrl,
@@ -480,13 +429,12 @@ export async function resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey) {
 const hlsVariantCache = new Map();
 const hlsRequests = new Map();
 const HLS_STALE_TTL = 15000;
-const hlsRingBuffers = new Map();
 
 async function fetchHlsText(url) {
   const response = await fetch(url, {
     headers: { "user-agent": UA },
     redirect: "follow",
-    signal: AbortSignal.timeout(6000),
+    signal: AbortSignal.timeout(3500),
   });
   if (!response.ok) throw new Error(`Stream upstream retornó HTTP ${response.status}`);
   const text = await response.text();
@@ -595,44 +543,29 @@ async function buildDirectHls(m3u8Url, streamKey) {
 
   if (!rawSegments.length) throw new Error("Playlist HLS sin fragmentos");
 
-  // Determine max ring buffer size based on target segment duration:
-  // Short segments (<= 4s, e.g. Astra): keep 6 segments (~18-24s buffer)
-  // Long segments (>= 6s, e.g. GoldTV): keep 4 segments (~40-50s buffer)
-  const maxSegments = numDur <= 4 ? 6 : 4;
+  // Astra streams continuously record the newest edge segment. Omitting the
+  // unfinished edge segment guarantees players only download completed chunks,
+  // preventing buffer stalls and pause-loop cycles.
+  const completedSegments = rawSegments.length > 2 ? rawSegments.slice(0, -1) : rawSegments;
 
-  let ring = hlsRingBuffers.get(streamKey);
-  if (!ring || Math.abs(origSeq - ring.baseSeq) > 30) {
-    // Initialize or resync if upstream sequence drifted significantly
-    ring = {
-      baseSeq: origSeq,
-      segments: [...rawSegments],
-      targetDur,
-    };
-    hlsRingBuffers.set(streamKey, ring);
-  } else {
-    // Append any new segments not yet in the ring buffer
-    const existingUrls = new Set(ring.segments.map((s) => s.ts));
-    for (const seg of rawSegments) {
-      if (!existingUrls.has(seg.ts)) {
-        ring.segments.push(seg);
-      }
-    }
-    // Advance sliding window and increment sequence monotonically
-    while (ring.segments.length > maxSegments) {
-      ring.segments.shift();
-      ring.baseSeq++;
-    }
-    ring.targetDur = targetDur;
-  }
+  // Keep last 3 to 4 completed segments (~9-12s buffer for instant decoding)
+  const KEEP_COUNT = numDur <= 4 ? 4 : 3;
+  const keptSegments = completedSegments.length > KEEP_COUNT
+    ? completedSegments.slice(-KEEP_COUNT)
+    : completedSegments;
+
+  // Stateless media sequence: 100% deterministic and synchronized across all Vercel Lambdas
+  const droppedCount = rawSegments.length - keptSegments.length;
+  const newSeq = origSeq + droppedCount;
 
   const outputLines = [
     "#EXTM3U",
     "#EXT-X-VERSION:3",
-    `#EXT-X-MEDIA-SEQUENCE:${ring.baseSeq}`,
-    `#EXT-X-TARGETDURATION:${ring.targetDur}`,
+    `#EXT-X-MEDIA-SEQUENCE:${newSeq}`,
+    `#EXT-X-TARGETDURATION:${targetDur}`,
   ];
 
-  for (const seg of ring.segments) {
+  for (const seg of keptSegments) {
     outputLines.push(seg.inf);
     outputLines.push(seg.ts);
   }
@@ -647,7 +580,7 @@ export async function resolveHlsStreamWithFallback(sourceUrls, streamKey) {
   for (const [index, sourceUrl] of sourceUrls.entries()) {
     const sourceKey = index === 0 ? streamKey : `${streamKey}:backup-${index}`;
     const needsWarmup = index === 0 && (streamKey === "adult-swim" || streamKey === "adultswim");
-    const attempts = needsWarmup ? 8 : 2;
+    const attempts = needsWarmup ? 6 : 1;
 
     for (let attempt = 0; attempt < attempts; attempt += 1) {
       try {
@@ -655,7 +588,7 @@ export async function resolveHlsStreamWithFallback(sourceUrls, streamKey) {
       } catch (err) {
         const canRetry = attempt < attempts - 1;
         if (canRetry) {
-          await new Promise((resolve) => setTimeout(resolve, 350));
+          await new Promise((resolve) => setTimeout(resolve, 300));
           continue;
         }
         errors.push(`${sourceUrl}: ${err.message}`);
