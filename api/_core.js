@@ -60,9 +60,9 @@ export const CHANNELS = [
   { chno: 68, name: "Disney+ Eventos 3 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney3", directUrl: "http://190.93.224.43/ESPN-3/index.m3u8" },
   { chno: 69, name: "Disney+ Eventos 7 (ESPN en Disney+ - En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney7", directUrl: "http://190.93.224.43/ESPN-PREMIUM/index.m3u8" },
   { chno: 65, name: "Paramount Network (HD 1080p 60fps con respaldo)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Paramount_Network.svg", directUrl: "http://190.93.224.43/SPACE/index.m3u8" },
-  { chno: 128, name: "Paramount+ 1 (UFC / Deportes en Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Paramount_Plus.svg", slug: "paramount1" },
-  { chno: 129, name: "Paramount+ 2 (UFC / Deportes en Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Paramount_Plus.svg", slug: "paramount2" },
-  { chno: 130, name: "Paramount+ 3 (UFC / Deportes en Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Paramount_Plus.svg", slug: "paramount3" },
+  { chno: 128, name: "UFC 1 (En Vivo HD - Paramount+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/0d/UFC_logo.svg", slug: "ufc" },
+  { chno: 129, name: "UFC 2 (En Vivo HD - Paramount+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/0d/UFC_logo.svg", slug: "ufc2" },
+  { chno: 130, name: "Capo Deportes 2 (UFC en Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/0d/UFC_logo.svg", slug: "capodeportes2" },
 
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
   { chno: 70, name: "HBO 2 (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
@@ -234,6 +234,21 @@ export const INSTREAM_MAP = {
   "capo-deportes": "CA1",
   capodeportes2: "CA2",
   "capo-deportes-2": "CA2",
+
+  // UFC & Paramount+ Feeds (Zero IP Lock, High Speed Multi-Gigabit CDN)
+  ufc: ["CA2", "CA1", "CA3"],
+  ufc1: ["CA2", "CA1", "CA3"],
+  "ufc-1": ["CA2", "CA1", "CA3"],
+  ufc2: ["CA3", "CA2", "CA4"],
+  "ufc-2": ["CA3", "CA2", "CA4"],
+  ufc3: ["CA4", "CA3", "CA2"],
+  "ufc-3": ["CA4", "CA3", "CA2"],
+  paramount1: ["CA2", "CA1", "CA3"],
+  "paramount-1": ["CA2", "CA1", "CA3"],
+  paramount2: ["CA3", "CA2", "CA4"],
+  "paramount-2": ["CA3", "CA2", "CA4"],
+  paramount3: ["CA4", "CA3", "CA2"],
+  "paramount-3": ["CA4", "CA3", "CA2"],
 
   // Sudamérica e Internacional
   espn: "H87",
@@ -1058,14 +1073,6 @@ export async function fetchLiveStreamM3U8(
     }
   }
 
-  // 2. Paramount+ / UFC Live Feeds (paramount1..3, ufc, ufc1..3)
-  if (cleanSlug.startsWith("paramount") || cleanSlug.startsWith("ufc")) {
-    try {
-      return await resolveParamountM3U8(cleanSlug, proxyBaseUrl, apiKey);
-    } catch (err) {
-      console.warn(`[Paramount+ UFC Error] ${cleanSlug}:`, err.message);
-    }
-  }
 
   // 2. High-speed Instream / PirloTV streams (DirecTV Sports H94/95/96, Movistar LaLiga CA1, DAZN CA2, Champions CA3/CA4, etc.)
   // Direct multi-gigabit CDN chunks, ZERO IP locks, no 403 Forbidden buffering errors on Smart TVs!
