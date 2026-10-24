@@ -49,7 +49,7 @@ export const CHANNELS = [
   { chno: 56, name: "TNT Sports Premium Chile", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntchile" },
   { chno: 57, name: "Win Sports +", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winplus" },
   { chno: 58, name: "Win Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winsports", directUrl: "http://138.121.15.230:9002/WIN-SPORT/index.m3u8" },
-  { chno: 59, name: "Tigo Sports HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", directUrl: "http://190.61.90.17:40000/play/a02v/index.m3u8" },
+  { chno: 59, name: "Tigo Sports HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", directUrl: "http://190.61.90.17:40000/play/a02e/index.m3u8" },
   { chno: 60, name: "FOX Sports 1 (Señal México HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1", directUrl: "http://190.93.224.43/ESPN-4/index.m3u8" },
   { chno: 61, name: "FOX Sports 2 (Señal México HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2", directUrl: "http://190.93.224.43/ESPN-5/index.m3u8" },
   { chno: 62, name: "FOX Sports 3 (Señal México HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports3", directUrl: "http://190.93.224.43/ESPN-6/index.m3u8" },
@@ -60,6 +60,9 @@ export const CHANNELS = [
   { chno: 68, name: "Disney+ Eventos 3 (ESPN en Disney+)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney3", directUrl: "http://190.93.224.43/ESPN-3/index.m3u8" },
   { chno: 69, name: "Disney+ Eventos 7 (ESPN en Disney+ - En Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", slug: "disney7", directUrl: "http://190.93.224.43/ESPN-PREMIUM/index.m3u8" },
   { chno: 65, name: "Paramount Network (HD 1080p 60fps con respaldo)", group: "Entretenimiento", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Paramount_Network.svg", directUrl: "http://190.93.224.43/SPACE/index.m3u8" },
+  { chno: 128, name: "Paramount+ 1 (UFC / Deportes en Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Paramount_Plus.svg", slug: "paramount1" },
+  { chno: 129, name: "Paramount+ 2 (UFC / Deportes en Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Paramount_Plus.svg", slug: "paramount2" },
+  { chno: 130, name: "Paramount+ 3 (UFC / Deportes en Vivo)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Paramount_Plus.svg", slug: "paramount3" },
 
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
   { chno: 70, name: "HBO 2 (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
@@ -121,7 +124,7 @@ export const CHANNELS = [
   { chno: 131, name: "Movistar Plus+ Acción (FHD - 16ms)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
   { chno: 132, name: "Movistar Plus+ Comedia (FHD - 16ms)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.93.224.43/HBO-FAMILY/index.m3u8" },
   { chno: 133, name: "Movistar Plus+ Drama (FHD - 16ms)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.93.224.43/HBO-SIGNATURE/index.m3u8" },
-  { chno: 134, name: "Movistar Plus+ Clásicos (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.14.238.117:8000/play/a030/index.m3u8" },
+  { chno: 134, name: "Movistar Plus+ Clásicos (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.93.224.43/STUDIO-UNIVERSAL/index.m3u8" },
   { chno: 135, name: "Movistar Plus+ Suspense (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://15.204.246.24:8080/HBOPlusHD/index.m3u8" },
 ];
 
@@ -146,23 +149,21 @@ export const DIRECT_HLS_MAP = {
   "m-accion": "http://190.93.224.43/HBO-2/index.m3u8",
   "m-comedia": "http://190.93.224.43/HBO-FAMILY/index.m3u8",
   "m-drama": "http://190.93.224.43/HBO-SIGNATURE/index.m3u8",
-  "m-clasicos": "http://190.14.238.117:8000/play/a030/index.m3u8",
+  "m-clasicos": "http://190.93.224.43/STUDIO-UNIVERSAL/index.m3u8",
   "m-suspense": "http://15.204.246.24:8080/HBOPlusHD/index.m3u8",
   paramount: "http://190.93.224.43/SPACE/index.m3u8",
   "paramount-network": "http://190.93.224.43/SPACE/index.m3u8",
   "adult-swim": [
+    "http://181.78.8.199:8000/play/a0ah/index.m3u8",
+    "http://181.209.80.115:8000/hls/adult_swim_hd/index.m3u8",
     "http://190.14.238.117:8000/play/a035/index.m3u8",
     "http://181.118.153.15:8000/play/zu33/index.m3u8?hls",
-    "http://181.78.8.199:8000/play/a0ah/index.m3u8",
-    "http://181.209.38.115:8000/play/a06g/index.m3u8",
-    "http://181.209.80.115:8000/hls/adult_swim_hd/index.m3u8",
   ],
   adultswim: [
+    "http://181.78.8.199:8000/play/a0ah/index.m3u8",
+    "http://181.209.80.115:8000/hls/adult_swim_hd/index.m3u8",
     "http://190.14.238.117:8000/play/a035/index.m3u8",
     "http://181.118.153.15:8000/play/zu33/index.m3u8?hls",
-    "http://181.78.8.199:8000/play/a0ah/index.m3u8",
-    "http://181.209.38.115:8000/play/a06g/index.m3u8",
-    "http://181.209.80.115:8000/hls/adult_swim_hd/index.m3u8",
   ],
 };
 
@@ -200,10 +201,10 @@ export const INSTREAM_MAP = {
   "directv-sports-2": "H95",
   "directv-sport-2": "H95",
   directvsports2: "H95",
-  dsportsplus: "H96",
-  "directv-sports-plus": "H96",
-  "directv-sport-plus": "H96",
-  directvsportsplus: "H96",
+  dsportsplus: ["H97", "H96", "H93"],
+  "directv-sports-plus": ["H97", "H96", "H93"],
+  "directv-sport-plus": ["H97", "H96", "H93"],
+  directvsportsplus: ["H97", "H96", "H93"],
 
   // Fútbol Español & DAZN (Partidos y eventos en vivo)
   "movistar-laliga": "CA1",
@@ -937,6 +938,103 @@ export async function resolveCapoM3U8(streamId = "CA1", proxyBaseUrl = null, api
   return resolveInstreamM3U8(streamId, proxyBaseUrl, apiKey);
 }
 
+// ─── Paramount+ / UFC Resolver ───────────────────────────────────────────────
+const paramountCache = new Map();
+const PARAMOUNT_TOKEN_TTL = 10 * 60 * 1000; // 10 minutos
+const PARAMOUNT_MANIFEST_TTL = 2000;
+
+export async function resolveParamountM3U8(channel, proxyBaseUrl = null, apiKey = API_KEY_DEFAULT) {
+  let normCh = channel.toLowerCase().trim();
+  if (normCh.startsWith("ufc") || normCh === "paramount") {
+    if (normCh.includes("2")) normCh = "paramount2";
+    else if (normCh.includes("3")) normCh = "paramount3";
+    else normCh = "paramount1";
+  }
+  const now = Date.now();
+  const cacheKey = `paramount_${normCh}`;
+
+  const cachedManifest = manifestCache.get(cacheKey);
+  if (cachedManifest && now - cachedManifest.time < PARAMOUNT_MANIFEST_TTL && cachedManifest.content) {
+    return cachedManifest.content;
+  }
+
+  let targetUrl = null;
+  const cachedToken = paramountCache.get(normCh);
+  if (cachedToken && now - cachedToken.time < PARAMOUNT_TOKEN_TTL && cachedToken.targetUrl) {
+    targetUrl = cachedToken.targetUrl;
+  } else {
+    const pageUrl = `https://streamx723.sbs/global3.php?channel=${normCh}`;
+    const pageRes = await fetch(pageUrl, {
+      headers: {
+        "user-agent": UA,
+        "referer": "https://cdplay.live/",
+      },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!pageRes.ok) throw new Error(`Paramount streamx723 retornó HTTP ${pageRes.status}`);
+    const html = await pageRes.text();
+    const arrMatch = html.match(/\[\[\d+,"[^"]+"\](?:,\[\d+,"[^"]+"\])+\]/);
+    const funcMatch = [...html.matchAll(/function\s+[A-Za-z]+\(\)\{return\s*(\d+);/g)];
+    if (!arrMatch || funcMatch.length < 2) {
+      throw new Error(`No se pudo decodificar stream para ${normCh}`);
+    }
+    const arr = JSON.parse(arrMatch[0]);
+    const k = parseInt(funcMatch[0][1]) + parseInt(funcMatch[1][1]);
+    arr.sort((a, b) => a[0] - b[0]);
+    let playbackURL = "";
+    arr.forEach((e) => {
+      let v = e[1];
+      const digits = Buffer.from(v, "base64").toString("utf-8").replace(/\D/g, "");
+      playbackURL += String.fromCharCode(parseInt(digits) - k);
+    });
+
+    const r2 = await fetch(playbackURL, {
+      headers: { "user-agent": UA, "referer": pageUrl },
+      signal: AbortSignal.timeout(6000),
+    });
+    const text = await r2.text();
+    targetUrl = r2.url;
+    if (text.includes("#EXT-X-STREAM-INF")) {
+      const lines = text.split("\n");
+      const subLine = lines.find((l) => l.trim() && !l.trim().startsWith("#"));
+      if (subLine) {
+        targetUrl = new URL(subLine.trim(), r2.url).href;
+      }
+    }
+    paramountCache.set(normCh, { targetUrl, time: now });
+  }
+
+  const subRes = await fetch(targetUrl, {
+    headers: { "user-agent": UA },
+    signal: AbortSignal.timeout(6000),
+  });
+  if (!subRes.ok) {
+    paramountCache.delete(normCh);
+    throw new Error(`Paramount sub-manifest retornó HTTP ${subRes.status}`);
+  }
+  const subText = await subRes.text();
+  if (!subText.includes("#EXTM3U")) {
+    paramountCache.delete(normCh);
+    throw new Error("Respuesta inválida de Paramount");
+  }
+
+  const lines = subText.split("\n");
+  const outputLines = [];
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    if (trimmed.startsWith("#")) {
+      outputLines.push(trimmed);
+    } else {
+      outputLines.push(trimmed.startsWith("http") ? trimmed : new URL(trimmed, targetUrl).href);
+    }
+  }
+
+  const finalM3u8 = outputLines.join("\n");
+  manifestCache.set(cacheKey, { content: finalM3u8, time: now });
+  return finalM3u8;
+}
+
 // ─── Universal Live Stream Fetcher ───────────────────────────────────────────
 
 export async function fetchLiveStreamM3U8(
@@ -957,6 +1055,15 @@ export async function fetchLiveStreamM3U8(
       return await resolveHlsStreamWithFallback(sources, cleanSlug);
     } catch (err) {
       console.error(`[Direct HLS Error] ${cleanSlug}:`, err.message);
+    }
+  }
+
+  // 2. Paramount+ / UFC Live Feeds (paramount1..3, ufc, ufc1..3)
+  if (cleanSlug.startsWith("paramount") || cleanSlug.startsWith("ufc")) {
+    try {
+      return await resolveParamountM3U8(cleanSlug, proxyBaseUrl, apiKey);
+    } catch (err) {
+      console.warn(`[Paramount+ UFC Error] ${cleanSlug}:`, err.message);
     }
   }
 
