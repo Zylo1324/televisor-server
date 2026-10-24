@@ -44,7 +44,7 @@ export const CHANNELS = [
   { chno: 51, name: "DSPORTS (DirecTV Sports)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports" },
   { chno: 52, name: "DSPORTS 2 (DirecTV Sports 2)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports2" },
   { chno: 53, name: "DSPORTS + (DirecTV Sports +)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsportsplus" },
-  { chno: 54, name: "TyC Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/6/62/TyC_Sports_logo.svg", slug: "tycsports", directUrl: "http://15.204.246.24:8080/TyCSportsHD/index.m3u8" },
+  { chno: 54, name: "TyC Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/6/62/TyC_Sports_logo.svg", slug: "tycsports" },
   { chno: 55, name: "TNT Sports Premium Argentina", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntsports" },
   { chno: 56, name: "TNT Sports Premium Chile", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntchile" },
   { chno: 57, name: "Win Sports +", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winplus" },
@@ -67,7 +67,7 @@ export const CHANNELS = [
   // ── Películas, Series y Premium (HBO, Warner, Sony, etc.) ───────────────────
   { chno: 70, name: "HBO 2 (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-2/index.m3u8" },
   { chno: 71, name: "HBO Family (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-FAMILY/index.m3u8" },
-  { chno: 72, name: "HBO Plus (HD 1080p)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://15.204.246.24:8080/HBOPlusHD/index.m3u8" },
+  { chno: 72, name: "HBO Plus (HD 1080p - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-PLUS/index.m3u8" },
   { chno: 73, name: "HBO Signature (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-SIGNATURE/index.m3u8" },
   { chno: 74, name: "HBO Xtreme (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg", directUrl: "http://190.93.224.43/HBO-XTREME/index.m3u8" },
   { chno: 75, name: "TNT (HD - 16ms)", group: "Series y Peliculas", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/TNT_Logo_2016.svg", directUrl: "http://190.93.224.43/TNT/index.m3u8" },
@@ -125,7 +125,7 @@ export const CHANNELS = [
   { chno: 132, name: "Movistar Plus+ Comedia (FHD - 16ms)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.93.224.43/HBO-FAMILY/index.m3u8" },
   { chno: 133, name: "Movistar Plus+ Drama (FHD - 16ms)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.93.224.43/HBO-SIGNATURE/index.m3u8" },
   { chno: 134, name: "Movistar Plus+ Clásicos (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.93.224.43/STUDIO-UNIVERSAL/index.m3u8" },
-  { chno: 135, name: "Movistar Plus+ Suspense (FHD)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://15.204.246.24:8080/HBOPlusHD/index.m3u8" },
+  { chno: 135, name: "Movistar Plus+ Suspense (FHD - 16ms)", group: "Cine Movistar Plus+", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Movistar_Plus%2B_logo.svg", directUrl: "http://190.93.224.43/HBO-PLUS/index.m3u8" },
 ];
 
 // ─── Mapping: Direct HLS Streams (Optimized Dynamic Window) ───────────────────
@@ -150,7 +150,7 @@ export const DIRECT_HLS_MAP = {
   "m-comedia": "http://190.93.224.43/HBO-FAMILY/index.m3u8",
   "m-drama": "http://190.93.224.43/HBO-SIGNATURE/index.m3u8",
   "m-clasicos": "http://190.93.224.43/STUDIO-UNIVERSAL/index.m3u8",
-  "m-suspense": "http://15.204.246.24:8080/HBOPlusHD/index.m3u8",
+  "m-suspense": "http://190.93.224.43/HBO-PLUS/index.m3u8",
   paramount: "http://190.93.224.43/SPACE/index.m3u8",
   "paramount-network": "http://190.93.224.43/SPACE/index.m3u8",
   "adult-swim": [
