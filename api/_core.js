@@ -41,14 +41,14 @@ export const CHANNELS = [
   { chno: 48, name: "FOX Sports Premium / ESPN 7 (HD 60fps - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", directUrl: "http://190.93.224.43/ESPN-7/index.m3u8" },
   { chno: 49, name: "ESPN Premium (HD 60fps - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg", directUrl: "http://190.93.224.43/ESPN-PREMIUM/index.m3u8" },
   { chno: 50, name: "Claro Sports HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Claro_Sports_logo.svg", slug: "claro-sports", directUrl: "http://45.185.163.75:8000/play/a07k/index.m3u8" },
-  { chno: 51, name: "DSPORTS (DirecTV Sports)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports" },
-  { chno: 52, name: "DSPORTS 2 (DirecTV Sports 2)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports2" },
-  { chno: 53, name: "DSPORTS + (DirecTV Sports +)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsportsplus" },
-  { chno: 54, name: "TyC Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/6/62/TyC_Sports_logo.svg", slug: "tycsports" },
-  { chno: 55, name: "TNT Sports Premium Argentina", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntsports" },
+  { chno: 51, name: "DSPORTS (DirecTV Sports)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports", directUrl: "http://45.185.163.75:8000/play/a0hf/index.m3u8" },
+  { chno: 52, name: "DSPORTS 2 (DirecTV Sports 2)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsports2", directUrl: "http://45.185.163.75:8000/play/a0hg/index.m3u8" },
+  { chno: 53, name: "DSPORTS + (DirecTV Sports +)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", slug: "dsportsplus", directUrl: "http://45.185.163.75:8000/play/a0hg/index.m3u8" },
+  { chno: 54, name: "TyC Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/6/62/TyC_Sports_logo.svg", slug: "tycsports", directUrl: "http://45.185.163.75:8000/play/a06d/index.m3u8" },
+  { chno: 55, name: "TNT Sports Premium Argentina", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntsports", directUrl: "http://45.185.163.75:8000/play/a06u/index.m3u8" },
   { chno: 56, name: "TNT Sports Premium Chile", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4f/TNT_Sports_logo.svg", slug: "tntchile" },
-  { chno: 57, name: "Win Sports +", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winplus" },
-  { chno: 58, name: "Win Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winsports", directUrl: "http://138.121.15.230:9002/WIN-SPORT/index.m3u8" },
+  { chno: 57, name: "Win Sports +", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winplus", directUrl: "http://45.185.163.75:8000/play/a04m/index.m3u8" },
+  { chno: 58, name: "Win Sports (HD 1080p)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Win_Sports_logo.svg", slug: "winsports", directUrl: "http://45.185.163.75:8000/play/a04m/index.m3u8" },
   { chno: 59, name: "Tigo Sports HD", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/DSPORTS_logo.png", directUrl: "http://190.61.90.17:40000/play/a02e/index.m3u8" },
   { chno: 60, name: "FOX Sports 1 (Señal México HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports1", directUrl: "http://190.93.224.43/ESPN-4/index.m3u8" },
   { chno: 61, name: "FOX Sports 2 (Señal México HD - 16ms)", group: "Deportes", logo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Fox_Sports_logo.svg", slug: "foxsports2", directUrl: "http://190.93.224.43/ESPN-5/index.m3u8" },
@@ -130,6 +130,76 @@ export const CHANNELS = [
 
 // ─── Mapping: Direct HLS Streams (Optimized Dynamic Window) ───────────────────
 export const DIRECT_HLS_MAP = {
+  // DirecTV Sports / DSPORTS (Ultra-fast Astra cluster - zero IP lock & no buffering)
+  dsports: [
+    "http://45.185.163.75:8000/play/a0hf/index.m3u8",
+    "http://45.185.163.75:8000/play/a0hg/index.m3u8",
+  ],
+  "directv-sports": [
+    "http://45.185.163.75:8000/play/a0hf/index.m3u8",
+    "http://45.185.163.75:8000/play/a0hg/index.m3u8",
+  ],
+  "directv-sport": [
+    "http://45.185.163.75:8000/play/a0hf/index.m3u8",
+    "http://45.185.163.75:8000/play/a0hg/index.m3u8",
+  ],
+  directvsports: [
+    "http://45.185.163.75:8000/play/a0hf/index.m3u8",
+    "http://45.185.163.75:8000/play/a0hg/index.m3u8",
+  ],
+  dsports2: [
+    "http://45.185.163.75:8000/play/a0hg/index.m3u8",
+    "http://45.185.163.75:8000/play/a0hf/index.m3u8",
+  ],
+  "directv-sports-2": [
+    "http://45.185.163.75:8000/play/a0hg/index.m3u8",
+    "http://45.185.163.75:8000/play/a0hf/index.m3u8",
+  ],
+  "directv-sport-2": [
+    "http://45.185.163.75:8000/play/a0hg/index.m3u8",
+    "http://45.185.163.75:8000/play/a0hf/index.m3u8",
+  ],
+  directvsports2: [
+    "http://45.185.163.75:8000/play/a0hg/index.m3u8",
+    "http://45.185.163.75:8000/play/a0hf/index.m3u8",
+  ],
+  dsportsplus: [
+    "http://45.185.163.75:8000/play/a0hg/index.m3u8",
+    "http://45.185.163.75:8000/play/a0hf/index.m3u8",
+  ],
+  "directv-sports-plus": [
+    "http://45.185.163.75:8000/play/a0hg/index.m3u8",
+    "http://45.185.163.75:8000/play/a0hf/index.m3u8",
+  ],
+  "directv-sport-plus": [
+    "http://45.185.163.75:8000/play/a0hg/index.m3u8",
+    "http://45.185.163.75:8000/play/a0hf/index.m3u8",
+  ],
+  directvsportsplus: [
+    "http://45.185.163.75:8000/play/a0hg/index.m3u8",
+    "http://45.185.163.75:8000/play/a0hf/index.m3u8",
+  ],
+
+  // TyC Sports / TNT Sports / Win Sports / ESPN Premium
+  tycsports: "http://45.185.163.75:8000/play/a06d/index.m3u8",
+  "tyc-sports": "http://45.185.163.75:8000/play/a06d/index.m3u8",
+  tyc: "http://45.185.163.75:8000/play/a06d/index.m3u8",
+  tntsports: "http://45.185.163.75:8000/play/a06u/index.m3u8",
+  "tnt-sports": "http://45.185.163.75:8000/play/a06u/index.m3u8",
+  tntar: "http://45.185.163.75:8000/play/a06u/index.m3u8",
+  winsports: "http://45.185.163.75:8000/play/a04m/index.m3u8",
+  "win-sports": "http://45.185.163.75:8000/play/a04m/index.m3u8",
+  winplus: "http://45.185.163.75:8000/play/a04m/index.m3u8",
+  "win-sports-plus": "http://45.185.163.75:8000/play/a04m/index.m3u8",
+  espnpremium: [
+    "http://190.93.224.43/ESPN-PREMIUM/index.m3u8",
+    "http://45.185.163.75:8000/play/a03c/index.m3u8",
+  ],
+  "espn-premium": [
+    "http://190.93.224.43/ESPN-PREMIUM/index.m3u8",
+    "http://45.185.163.75:8000/play/a03c/index.m3u8",
+  ],
+
   movistardeportes: "http://45.185.163.75:8000/play/a0i9/index.m3u8",
   "movistar-deportes": "http://45.185.163.75:8000/play/a0i9/index.m3u8",
   movistar: "http://45.185.163.75:8000/play/a0i9/index.m3u8",
@@ -1113,7 +1183,14 @@ export async function fetchLiveStreamM3U8(
     }
   }
 
-  // 5. Fallback to tvplusgratis handshake if exists
+  // 5. Emergency sports fallback: If it's a sports channel, route to Astra live sports feeds rather than failing with tvplusgratis
+  if (["dsports", "directv", "laliga", "dazn", "tyc", "tnt", "espn", "win", "fox"].some((s) => cleanSlug.includes(s))) {
+    try {
+      return await resolveHlsStream("http://45.185.163.75:8000/play/a0hf/index.m3u8", cleanSlug);
+    } catch (_) {}
+  }
+
+  // 6. Fallback to tvplusgratis handshake if exists
   return fetchTvPlusGratisM3U8(cleanSlug, clientIp);
 }
 
