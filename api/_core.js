@@ -665,8 +665,8 @@ async function loadDirectHls(m3u8Url, streamKey) {
       const subRes = await fetchHlsText(targetUrl);
       text = subRes.text;
       activeUrl = subRes.activeUrl;
-      // Cache Astra sub-playlist for 2 minutes (auto-recovers instantly on 404)
-      hlsVariantCache.set(streamKey, { url: targetUrl, expires: Date.now() + 2 * 60 * 1000 });
+      // Cache Astra sub-playlist for 15 seconds (prevents requesting stale expired variant IDs)
+      hlsVariantCache.set(streamKey, { url: targetUrl, expires: Date.now() + 15 * 1000 });
     }
   }
 
